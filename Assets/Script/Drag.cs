@@ -1,3 +1,32 @@
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using UnityEngine.EventSystems;
+
+//public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+//{
+//    public Transform parent = null;
+    
+//    public void OnBeginDrag(PointerEventData even)
+//    {
+//        Debug.Log("OnBeginDrag");
+//        parent = this.transform.parent;
+//        this.transform.SetParent(this.transform.parent.parent);
+//        GetComponent<CanvasGroup>().blocksRaycasts = false;
+//    }
+//    public void OnDrag(PointerEventData eventData)
+//    {
+//       // Debug.Log("OnDrag");
+//        this.transform.position = eventData.position;
+//    }
+//    public void OnEndDrag(PointerEventData eventData)
+//    {
+//        Debug.Log("OnEndDrag");
+//        this.transform.SetParent(parent);
+//        GetComponent<CanvasGroup>().blocksRaycasts = true;
+        
+//    }
+//}
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,25 +34,25 @@ using UnityEngine.EventSystems;
 
 public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Transform parent = null;
-    
-    public void OnBeginDrag(PointerEventData even)
+    public Transform parent = null;                                  // Almacena un objeto arrastrable de tipo Transform
+
+    public void OnBeginDrag(PointerEventData evenData)              // se ejecuta cuando se comienza a arrastrar el objeto.
     {
-        Debug.Log("OnBeginDrag");
+        // Debug.Log("OnBeginDrag"); Pruebas en Consola
         parent = this.transform.parent;
-        this.transform.SetParent(this.transform.parent.parent);
+        this.transform.SetParent(this.transform.parent.parent);     // Traslada al objeto por la jerarquía de objetos.
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
-    public void OnDrag(PointerEventData eventData)
+    public void OnDrag(PointerEventData eventData)                  // Se ejecuta mientras el objeto está siendo arrastrado
     {
-       // Debug.Log("OnDrag");
-        this.transform.position = eventData.position;
+        // Debug.Log("OnDrag");  Pruebas en Consola
+        this.transform.position = eventData.position;               // Actualiza la posición del objeto a la posición actual del puntero
     }
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)               // Se ejecuta al finalizar el arrastre
     {
-        Debug.Log("OnEndDrag");
+        // Debug.Log("OnEndDrag");   Pruebas en Consola
         this.transform.SetParent(parent);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        
+
     }
 }

@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{328BB73D-0D96-C9B1-3B81-E014D25BD910}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\drag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{328BB73D-0D96-C9B1-3B81-E014D25BD910}|Assembly-CSharp.csproj|d:\\cibern\u00E9tica\\proyecto\\gwent pro 2d\\assets\\script\\drop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{328BB73D-0D96-C9B1-3B81-E014D25BD910}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\drop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{328BB73D-0D96-C9B1-3B81-E014D25BD910}|Assembly-CSharp.csproj|D:\\Cibern\u00E9tica\\Proyecto\\Gwent Pro 2D\\assets\\script\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{328BB73D-0D96-C9B1-3B81-E014D25BD910}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328BB73D-0D96-C9B1-3B81-E014D25BD910}|Assembly-CSharp.csproj|D:\\Cibern\u00E9tica\\Proyecto\\Gwent Pro 2D\\assets\\script\\drop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328BB73D-0D96-C9B1-3B81-E014D25BD910}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\drop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,24 +22,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Drop.cs",
               "DocumentMoniker": "D:\\Cibern\u00E9tica\\Proyecto\\Gwent Pro 2D\\Assets\\Script\\Drop.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Drop.cs",
               "ToolTip": "D:\\Cibern\u00E9tica\\Proyecto\\Gwent Pro 2D\\Assets\\Script\\Drop.cs",
               "RelativeToolTip": "Assets\\Script\\Drop.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAmAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAYwCsAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-05T04:38:09.51Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -49,14 +45,14 @@
               "RelativeDocumentMoniker": "Assets\\Script\\Drag.cs",
               "ToolTip": "D:\\Cibern\u00E9tica\\Proyecto\\Gwent Pro 2D\\Assets\\Script\\Drag.cs",
               "RelativeToolTip": "Assets\\Script\\Drag.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAEAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-05T02:54:07.081Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MainMenu.cs",
               "DocumentMoniker": "D:\\Cibern\u00E9tica\\Proyecto\\Gwent Pro 2D\\Assets\\Script\\MainMenu.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\MainMenu.cs",
@@ -64,7 +60,8 @@
               "RelativeToolTip": "Assets\\Script\\MainMenu.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-05T02:01:15.822Z"
+              "WhenOpened": "2024-03-05T02:01:15.822Z",
+              "EditorCaption": ""
             }
           ]
         }
