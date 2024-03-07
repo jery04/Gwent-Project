@@ -20,12 +20,11 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     {
         // Debug.Log(evenData.pointerDrag.name + " was dropped on " + gameObject.name);  Pruebas en Consola
         Drag item = evenData.pointerDrag.GetComponent<Drag>();
-        if (item != null && countMaxObject < maxObject)
+        if (item != null && countMaxObject < maxObject)             // Si el objeto tiene un componente Drag, establece el padre del objeto arrastrado al objeto actual
         {
             item.parent = this.transform;
             countMaxObject++;
-            Debug.Log(countMaxObject);
-        }                                        // Si el objeto arrastrado tiene un componente Drag, establece el padre del objeto arrastrado al objeto actual
+        }                                        
             
     }
 }
