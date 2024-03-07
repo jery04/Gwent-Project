@@ -375,6 +375,8 @@
 -analyzer:"C:/Program Files/Unity 2022.3.15f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Script/Card.cs"
 "Assets/Script/CardDisplay.cs"
+"Assets/Script/DataBase.cs"
+"Assets/Script/DeckManager.cs"
 "Assets/Script/Drag.cs"
 "Assets/Script/Drop.cs"
 "Assets/Script/GameManager.cs"

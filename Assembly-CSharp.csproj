@@ -67,6 +67,8 @@
     <Compile Include="Assets\Script\Card.cs" />
     <Compile Include="Assets\Script\Drag.cs" />
     <Compile Include="Assets\Script\Panels.cs" />
+    <Compile Include="Assets\Script\DataBase.cs" />
+    <Compile Include="Assets\Script\DeckManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

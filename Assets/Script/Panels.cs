@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Panels : MonoBehaviour
 {
-    public List<Card> cards;
+    public List<GameObject> cards;
     public int maxItems;
     public int itemsCounter;
+
+
 }
 

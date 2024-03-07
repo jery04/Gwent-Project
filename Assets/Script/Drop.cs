@@ -1,10 +1,12 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    
     int countMaxObject = 0;
     int maxObject = 5;
     
@@ -18,6 +20,7 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     }
     public void OnDrop(PointerEventData evenData)                   // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script.
     {
+        
         // Debug.Log(evenData.pointerDrag.name + " was dropped on " + gameObject.name);  Pruebas en Consola
         Drag item = evenData.pointerDrag.GetComponent<Drag>();
         if (item != null && countMaxObject < maxObject)             // Si el objeto tiene un componente Drag, establece el padre del objeto arrastrado al objeto actual

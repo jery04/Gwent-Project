@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993f7dd44b2d997489e765ae13749b08, type: 3}
   m_Name: mon1
   m_EditorClassIdentifier: 
-  child: {fileID: 0}
   power: 3
-  artWork: {fileID: 21300000, guid: c91625414d8e66f458cfa44b2e577b08, type: 3}
-  portrait: {fileID: 21300000, guid: 28f362f666c3a9742bbca2879c67c468, type: 3}
+  artWork: {fileID: 21300000, guid: 3542b46dc0d8680409e842e44703e65c, type: 3}
+  portrait: {fileID: 21300000, guid: 5e8882fe1cc47b048bd6d687fabccfec, type: 3}
