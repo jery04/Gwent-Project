@@ -377,7 +377,9 @@
 "Assets/Script/CardDisplay.cs"
 "Assets/Script/Drag.cs"
 "Assets/Script/Drop.cs"
+"Assets/Script/GameManager.cs"
 "Assets/Script/MainMenu.cs"
+"Assets/Script/Panels.cs"
 -langversion:9.0
 
 /deterministic

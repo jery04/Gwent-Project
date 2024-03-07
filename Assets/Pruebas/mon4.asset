@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: mon4
   m_EditorClassIdentifier: 
   child: {fileID: 0}
-  power: 0
+  power: 4
   artWork: {fileID: 21300000, guid: 16a816ac5a4f33046a375c580d5d9c79, type: 3}
   portrait: {fileID: 21300000, guid: 28f362f666c3a9742bbca2879c67c468, type: 3}
