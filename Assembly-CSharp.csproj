@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="Assets\Script\MainMenu.cs" />
     <Compile Include="Assets\Script\Drop.cs" />
+    <Compile Include="Assets\CardDisplay.cs" />
+    <Compile Include="Assets\Script\Card.cs" />
     <Compile Include="Assets\Script\Drag.cs" />
   </ItemGroup>
   <ItemGroup>
