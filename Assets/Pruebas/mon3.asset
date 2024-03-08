@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993f7dd44b2d997489e765ae13749b08, type: 3}
   m_Name: mon3
   m_EditorClassIdentifier: 
-  child: {fileID: 0}
   power: 2
-  artWork: {fileID: 21300000, guid: f10c9288fb9fb6f4c9478f8c29ebf2d7, type: 3}
-  portrait: {fileID: 21300000, guid: 7e40853002e850c498e47f8862c72f5a, type: 3}
+  artWork: {fileID: 21300000, guid: 271ebf722c6f120438824ad8b52fd93c, type: 3}
+  portrait: {fileID: 21300000, guid: 8a6eb0871701bd1419b32e9b3661d1be, type: 3}
+  typeCard: 0
+  typeUnity: 2

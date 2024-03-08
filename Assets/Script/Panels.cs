@@ -7,7 +7,6 @@ public class Panels : MonoBehaviour
     public List<GameObject> cards;
     public int maxItems;
     public int itemsCounter;
-
-
+    public Card.kind_cardUnity kindUnity;
 }
 

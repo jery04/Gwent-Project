@@ -15,3 +15,5 @@ MonoBehaviour:
   power: 5
   artWork: {fileID: 21300000, guid: 7fdc36388bb53a4419f67e8ef197bf0c, type: 3}
   portrait: {fileID: 21300000, guid: 28f362f666c3a9742bbca2879c67c468, type: 3}
+  typeCard: 0
+  typeUnity: 1
