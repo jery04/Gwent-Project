@@ -16,4 +16,4 @@ MonoBehaviour:
   artWork: {fileID: 21300000, guid: 271ebf722c6f120438824ad8b52fd93c, type: 3}
   portrait: {fileID: 21300000, guid: 8a6eb0871701bd1419b32e9b3661d1be, type: 3}
   typeCard: 0
-  typeUnity: 2
+  cardPosition: 1

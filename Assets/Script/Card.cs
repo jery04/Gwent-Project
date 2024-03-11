@@ -13,16 +13,31 @@ public class Card : ScriptableObject
     public int power;
     public Sprite artWork;
     public Sprite portrait;
-    public enum kind_cardUnity { M, R, S, MR, MS, RS, MRS };
-    public enum kind_card { golden, silver, climate, clear, lure };
+    public enum card_position { M, R, S, MR, MS, RS, MRS };
+    public enum kind_card { golden, silver, climate, clear, bait, increase };
     public kind_card typeCard;
-    public kind_cardUnity typeUnity;
+    public card_position cardPosition;
     bool IsHero;
     bool IsLeader;
 
     // Constructor
     public Card(int power, Sprite artWork, Sprite portrait)
     {
+        this.power = power;
+        this.artWork = artWork;
+        this.portrait = portrait;
+    }
+    public Card(int power, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition)
+    {
+        this.typeCard = typeCard;
+        this.cardPosition = cardPosition;
+        this.power = power;
+        this.artWork = artWork;
+        this.portrait = portrait;
+    }
+    public Card(int power, Sprite artWork, Sprite portrait, kind_card typeCard)
+    {
+        this.typeCard = typeCard;
         this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;

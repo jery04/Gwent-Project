@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: mon4
   m_EditorClassIdentifier: 
   power: 4
-  artWork: {fileID: 21300000, guid: 4ebedd42080e383429243d58c57cbf23, type: 3}
-  portrait: {fileID: 21300000, guid: 28f362f666c3a9742bbca2879c67c468, type: 3}
+  artWork: {fileID: 21300000, guid: 700175dcb3c40e64caa5e1466c52f25f, type: 3}
+  portrait: {fileID: 21300000, guid: 5e8882fe1cc47b048bd6d687fabccfec, type: 3}
+  typeCard: 0
+  cardPosition: 0

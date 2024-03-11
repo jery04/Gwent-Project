@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mon2
   m_EditorClassIdentifier: 
   power: 5
-  artWork: {fileID: 21300000, guid: 7fdc36388bb53a4419f67e8ef197bf0c, type: 3}
-  portrait: {fileID: 21300000, guid: 28f362f666c3a9742bbca2879c67c468, type: 3}
+  artWork: {fileID: 21300000, guid: 40a8446536b0d7444ab958e8d1f1f602, type: 3}
+  portrait: {fileID: 21300000, guid: 5e8882fe1cc47b048bd6d687fabccfec, type: 3}
   typeCard: 0
-  typeUnity: 1
+  cardPosition: 2
