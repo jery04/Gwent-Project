@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DataBase : MonoBehaviour
 {
-    List<Card> deckDemon = new List<Card>();
-    List<Card> deckHeavenly = new List<Card>();
+    public List<Card> deckDemon = new List<Card>();
+    public List<Card> deckHeavenly = new List<Card>();
     public void CreateCard()
     {
         // Mazo 1(Demonios)

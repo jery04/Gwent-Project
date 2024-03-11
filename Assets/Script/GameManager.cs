@@ -5,28 +5,65 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
+    List<GameObject> cartas = new List<GameObject>();
+
+
     // Start is called before the first frame update
+    public void Take()
+    {
+        int numChild = GameObject.Find("Hand").transform.childCount;
+        if ( numChild == 0 )
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                int rand = Random.Range(1, 25);
+                GameObject.Find("Deck").transform.GetChild(rand).transform.SetParent(GameObject.Find("Hand").transform);
+            }
+        }
+        else if((numChild != 0) && (numChild < 10))
+        {
+            if(10 - numChild <= 2)
+            {
+                for (int i = 0; i < (10 - numChild); i++)
+                {
+                    int rand = Random.Range(1, 25);
+                    GameObject.Find("Deck").transform.GetChild(rand).transform.SetParent(GameObject.Find("Hand").transform);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    int rand = Random.Range(1, 25);
+                    GameObject.Find("Deck").transform.GetChild(rand).transform.SetParent(GameObject.Find("Hand").transform);
+                }
+            }
+        }
+    }
     void Start()
     {
-        DataBase dataCard = new DataBase();
         GameObject prefarb = Resources.Load<GameObject>("Card");
-        Card cartaPrueba = new Card(8, Resources.Load<Sprite>("o1"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.M);
-
-        GameObject b1 = Instantiate(prefarb, GameObject.Find("Hand").transform);
-        GameObject b2 = Instantiate(prefarb, GameObject.Find("Hand").transform);
-        GameObject b3 = Instantiate(prefarb, GameObject.Find("Hand").transform);
-        GameObject b4 = Instantiate(prefarb, GameObject.Find("Hand").transform);
-
-        b1.GetComponent<CardDisplay>().card = cartaPrueba;
-        b1.GetComponent<CardDisplay>().artWork.sprite = cartaPrueba.artWork;
-
+        DataBase dataCard = new DataBase();
+        dataCard.CreateCard();
+        
+        for (int i = 1; i < 25; i++)
+        {
+            GameObject a = Instantiate(prefarb, GameObject.Find("Deck").transform);
+            a.GetComponent<CardDisplay>().card = dataCard.deckDemon[i];
+            a.GetComponent<Image>().sprite = dataCard.deckDemon[i].artWork;
+            a.transform.GetChild(0).GetComponent<Image>().sprite = dataCard.deckDemon[i].portrait;
+            a.transform.GetChild(1).GetComponent<Text>().text = dataCard.deckDemon[i].power.ToString();
+            cartas.Add(a);
+            GameObject.Find("Deck").GetComponent<Panels>().cards.Add(a);
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
