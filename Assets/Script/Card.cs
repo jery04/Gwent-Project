@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Card : ScriptableObject
 {
     // Campo
+    public string id;
     public int power;
     public Sprite artWork;
     public Sprite portrait;

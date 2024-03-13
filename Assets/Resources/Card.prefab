@@ -94,9 +94,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 0}
-  textPower: {fileID: 0}
-  artWork: {fileID: 0}
-  portrait: {fileID: 0}
+  textPower: {fileID: 2512134465393078206}
+  artWork: {fileID: 5550093308497448100}
+  portrait: {fileID: 1443074159576760818}
   type_Card: 0
   cardPosition: 0
 --- !u!114 &5728242484522748464
