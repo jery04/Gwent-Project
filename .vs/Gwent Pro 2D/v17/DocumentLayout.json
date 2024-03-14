@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "Assets\\Script\\GameManager.cs",
               "ToolTip": "D:\\Cibern\u00E9tica\\Proyecto\\Gwent Pro 2D\\Assets\\Script\\GameManager.cs",
               "RelativeToolTip": "Assets\\Script\\GameManager.cs",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAYwE4AAAAQAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADcAAAB+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-08T07:18:39.201Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "Assets\\Script\\DataBase.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAUwAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T20:41:01.91Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-07T20:41:01.91Z"
             },
             {
               "$type": "Document",
@@ -80,8 +79,7 @@
               "RelativeToolTip": "Assets\\Script\\CardDisplay.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T13:38:43.133Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-07T13:38:43.133Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "Assets\\Script\\Card.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T01:04:55.721Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-07T01:04:55.721Z"
             },
             {
               "$type": "Document",
