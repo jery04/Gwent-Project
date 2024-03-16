@@ -5,11 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayScene()     // Llama a la próxima escena
+    public void ActionEvent(string nameMethod)     // Llama a la próxima escena
+    {
+        Invoke(nameMethod, 0.2f);
+    }
+    private void GoPlay()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void Out()   // Cierra la aplicación
+    private void Out()   // Cierra la aplicación
     {
         Application.Quit();
     }
