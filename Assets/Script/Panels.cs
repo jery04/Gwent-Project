@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Panels : MonoBehaviour
 {
-    public List<GameObject> cards;
+    public List<GameObject> cards = new List<GameObject>();
     public int maxItems;
     public int itemsCounter;
-    public Card.card_position cardPosition;
+    public List<Card.card_position> cardPos = new List<Card.card_position>();
 }
 

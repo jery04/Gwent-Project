@@ -10,41 +10,39 @@ using UnityEngine.UI;
 public class Card : ScriptableObject
 {
     // Campo
-    public string id;
     public int power;
     public Sprite artWork;
     public Sprite portrait;
-    public enum card_position { M, R, S, MR, MS, RS, MRS };
+    public enum card_position { M, R, S, MR, MS, RS, MRS, I, C};
     public enum kind_card { golden, silver, climate, clear, bait, increase };
     public kind_card typeCard;
     public card_position cardPosition;
-    bool IsHero;
+    public bool IsHero;
     bool IsLeader;
 
     // Constructor
-    public Card(int power, Sprite artWork, Sprite portrait)
+    public Card(int power, bool IsHeroe, Sprite artWork, Sprite portrait)
     {
+        this.IsHero = IsHeroe;
         this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
     }
-    public Card(int power, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition)
+    public Card(int power, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition)
     {
+        this.IsHero = IsHeroe;
         this.typeCard = typeCard;
         this.cardPosition = cardPosition;
         this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
     }
-    public Card(int power, Sprite artWork, Sprite portrait, kind_card typeCard)
+    public Card(int power, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard)
     {
+        this.IsHero = IsHeroe;
         this.typeCard = typeCard;
         this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
     }
-
-    //Métodos
-    public void Delta(int delta) => power += delta; 
-
 }
