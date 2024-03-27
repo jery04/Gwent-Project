@@ -17,26 +17,24 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         }
         return false;
     }
-    public void OnPointerEnter(PointerEventData evenData)            // Se ejecuta cuando el puntero entra en el área del objeto
+    public void OnPointerEnter(PointerEventData eventData)            // Se ejecuta cuando el puntero entra en el área del objeto
     {
 
-        //if (evenData.pointerDrag.GetComponent<Drag>() != null)
-        //    GameObject.Find("Panel_Card").transform.GetChild(2).GetComponent<Text>().text = evenData.pointerDrag.GetComponent<CardDisplay>().textPower.text;
     }
-    public void OnPointerExit(PointerEventData evenData)            //  Se ejecuta cuando el puntero sale del área del objeto.
+    public void OnPointerExit(PointerEventData eventData)            //  Se ejecuta cuando el puntero sale del área del objeto.
     {
 
-        //GameObject.Find("Panel_Card").transform.GetChild(2).GetComponent<Text>().text = "";
     }
-    public void OnDrop(PointerEventData evenData)                   // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script.
+    public void OnDrop(PointerEventData eventData)                   // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script.
     {
-        Drag item = evenData.pointerDrag.GetComponent<Drag>();
-        if (item != null && this.GetComponent<Panels>().itemsCounter < this.GetComponent<Panels>().maxItems && CardPosition(this, evenData.pointerDrag))             // Si el objeto tiene un componente Drag, establece el padre del objeto arrastrado al objeto actual
+        Drag item = eventData.pointerDrag.GetComponent<Drag>();
+ 
+        if (item != null && this.GetComponent<Panels>().itemsCounter < this.GetComponent<Panels>().maxItems && CardPosition(this, eventData.pointerDrag))             // Si el objeto tiene un componente Drag, coinciden las posiciones y cabe en la fila establece el padre del objeto arrastrado al objeto actual
         {
-            item.parent = this.transform;
-            this.GetComponent<Panels>().itemsCounter++;
-            this.GetComponent<Panels>().cards.Add(evenData.pointerDrag);
-        }                                        
-            
+            item.parent = this.transform;                            // Cambia el padre
+            //this.GetComponent<Panels>().itemsCounter++;              // Aumenta un hijo al 
+            this.GetComponent<Panels>().cards.Add(eventData.pointerDrag);
+            GameObject.Find(GameManager.currentPlayer.handName).GetComponent<Panels>().cards.Remove(eventData.pointerDrag);
+        }                                               
     }
 }

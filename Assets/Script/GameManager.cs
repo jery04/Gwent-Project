@@ -9,38 +9,66 @@ using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
-    List<GameObject> cartas = new List<GameObject>();
+    int round;
+    int counterTurn;
     DataBase dataCard = new DataBase();
     Player player1;
     Player player2;
-    Player currentPlayer;
+    static public Player currentPlayer;
 
     public void ChangeTurn()        // Cambia de turno
     {
-        if(player1.MyTurn)
+        if (counterTurn != 2)
         {
-            player1.MyTurn = false; player2.MyTurn = true;
-            currentPlayer = player2;
+            counterTurn += 1;
+
+            if (player1.MyTurn)
+            {
+                player1.MyTurn = false; player2.MyTurn = true;
+                currentPlayer = player2;
+            }
+            else
+            {
+                player2.MyTurn = false; player1.MyTurn = true;
+                currentPlayer = player1;
+            }
         }
-        else
+           
+        else if (counterTurn == 2)
         {
-            player2.MyTurn = false; player1.MyTurn = true;
-            currentPlayer = player1;
+            if (player1.GeneralPower() > player2.GeneralPower())
+            {
+                player1.MyTurn = true; player2.MyTurn = false;
+                currentPlayer = player1;
+            }
+            else
+            {
+                player1.MyTurn = false; player2.MyTurn = true;
+                currentPlayer = player2;
+            }
+            player1.Cementery();
+            player2.Cementery();
+            counterTurn = 1;
+            round += 1;
         }
+        Debug.Log(counterTurn + " " + round);
+        playerUpdate();
+    }
+    private void playerUpdate()
+    {
+        player1.BackImageAndDrag();
+        player2.BackImageAndDrag();
+
     }
     private void InstantiateCard(string handName, List<Card> deck)
     {
         GameObject prefarb = Resources.Load<GameObject>("Card");
-        int rand = Random.Range(1, 25);
+        int rand = Random.Range(1, deck.Count);
 
         GameObject a = Instantiate(prefarb, GameObject.Find(handName).transform);
         a.GetComponent<CardDisplay>().card = deck[rand];
-        //a.GetComponent<Image>().sprite = dataCard.deckDemon[rand].artWork;
-        //a.transform.GetChild(0).GetComponent<Image>().sprite = dataCard.deckDemon[rand].portrait;
-        //a.transform.GetChild(1).GetComponent<Text>().text = dataCard.deckDemon[rand].power.ToString();
-
-        cartas.Add(a);
         GameObject.Find(handName).GetComponent<Panels>().cards.Add(a);
+        deck.RemoveAt(rand);
     }
     public void Take()                                     // Tomar cartas del deck
     {
@@ -65,7 +93,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public void ModifiedRow(string nameRow, int delta)
     {
         for (int i = 0; i < GameObject.Find(nameRow).GetComponent<Panels>().itemsCounter; i++)
@@ -80,6 +107,8 @@ public class GameManager : MonoBehaviour
         player2 = new Player("Player2", "Hand2", dataCard.deckHeavenly, "Melee (2)", "Range (2)", "Siege (2)");
         player1.MyTurn = true;                                                                                     // Inicia el juego con el jugador 1                                                     
         currentPlayer = player1;
+        round = 1;                                                                                                 // Declara la ronda 1
+        counterTurn = 1;                                                                                           // Declara el turno 1
     }
 
     void Update()

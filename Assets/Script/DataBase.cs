@@ -9,7 +9,7 @@ public class DataBase : MonoBehaviour
     public void CreateCard()    // Crea las instancias de las cartas
     {
         // Mazo 1(Demonios)
-        deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("l1"), Resources.Load<Sprite>("silver")));  // Lider
+        deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader));  // Lider
 
         deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));  // Señuelo
         deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));
@@ -46,7 +46,7 @@ public class DataBase : MonoBehaviour
 
 
         // Mazo 2(Celestiales)
-        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2l1"), Resources.Load<Sprite>("silver")));  // Lider
+        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader));  // Lider
 
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));  // Señuelo
         deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));

@@ -13,6 +13,7 @@ public class CardDisplay : MonoBehaviour
     public Text textPower;
     public Image artWork;
     public Image portrait;
+    public Image Back;
     public kind_card type_Card;
     public card_position cardPosition;
 
@@ -22,7 +23,7 @@ public class CardDisplay : MonoBehaviour
     }
     void Start()
     {
-        type_Card = card.typeCard;
+        type_Card = card.typeCard; 
         cardPosition = card.cardPosition;
         textPower.text = card.power.ToString();
         artWork.sprite = card.artWork;
@@ -36,7 +37,5 @@ public class CardDisplay : MonoBehaviour
             //if (Convert.ToInt32(textPower.text) < 0)
             //    this.transform.SetParent(GameObject.Find("Cementery").transform);
         }
-
-
     }
 }

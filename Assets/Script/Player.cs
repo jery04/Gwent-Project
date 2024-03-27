@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
     public string playerName;
-    public int generalPower;
     public string handName;
     public List<Card> deck = new List<Card>();
     public string meleeName; 
@@ -22,31 +22,57 @@ public class Player : MonoBehaviour
         this.meleeName = meleeName;
         this.rangeName = rangeName;
         this.siegeName = siegeName;
+        this.Start();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Cementery()
     {
-        generalPower = 0;          // Inicializa en cero
-        MyTurn = false;             
+        foreach (GameObject item in GameObject.Find(meleeName).GetComponent<Panels>().cards)  // Envía las cartas en Melee al cementerio
+            GameObject.Destroy(item);                                                           
+
+        foreach (GameObject item in GameObject.Find(rangeName).GetComponent<Panels>().cards)  // Envía las cartas en Range al cementerio
+            GameObject.Destroy(item);
+
+        foreach (GameObject item in GameObject.Find(siegeName).GetComponent<Panels>().cards)  // Envía las cartas en Siege al cementerio
+            GameObject.Destroy(item);
     }
     public int GeneralPower()      // Devuelve la puntuacion del jugador al finalizar la ronda
     {
         int generalPower = 0;
-        foreach (GameObject item in GameObject.Find(meleeName).GetComponent<Panels>().cards)   // Acumulado de Melee
-            generalPower += int.Parse(item.GetComponent<CardDisplay>().textPower.text);
 
-        foreach (GameObject item in GameObject.Find(rangeName).GetComponent<Panels>().cards)  // Acumulado de Range
-            generalPower += int.Parse(item.GetComponent<CardDisplay>().textPower.text);
-
-        foreach (GameObject item in GameObject.Find(siegeName).GetComponent<Panels>().cards)  // Acumulado de Siege
-            generalPower += int.Parse(item.GetComponent<CardDisplay>().textPower.text);
+        generalPower += GameObject.Find(meleeName).GetComponent<Panels>().PowerRow();
+        generalPower += GameObject.Find(rangeName).GetComponent<Panels>().PowerRow();
+        generalPower += GameObject.Find(siegeName).GetComponent<Panels>().PowerRow();
 
         return generalPower;
     }
-    // Update is called once per frame
-    void Update()
+    public void BackImageAndDrag()
     {
-        generalPower = GeneralPower();
+        if (!MyTurn)        
+        {
+            foreach (GameObject item in GameObject.Find(handName).GetComponent<Panels>().cards)
+            {
+                item.GetComponent<CardDisplay>().Back.enabled = true;       // Si no está jugando se activa el BackImage 
+                item.GetComponent<Drag>().enabled = false;                  // Si no está jugando se desactiva el Script Drag
+            }    
+        }
+        else               
+        {
+            foreach (GameObject item in GameObject.Find(handName).GetComponent<Panels>().cards)
+            {
+                item.GetComponent<CardDisplay>().Back.enabled = false;      // Si está jugando se desactiva el BackImage 
+                item.GetComponent<Drag>().enabled = true;                   // Si está jugando se activa el Script Drag
+            }   
+        }
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        MyTurn = false;             
+    }
+    // Update is called once per frame
+    public void Update()
+    {
+
     }
 }

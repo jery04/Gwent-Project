@@ -22,6 +22,5 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         this.transform.SetParent(parent);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-
     }
 }
