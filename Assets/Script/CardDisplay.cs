@@ -17,10 +17,7 @@ public class CardDisplay : MonoBehaviour
     public kind_card type_Card;
     public card_position cardPosition;
 
-    public void Delta(int delta)
-    {
-        textPower.text = (int.Parse(textPower.text) + delta).ToString();
-    }
+    public void Delta(int delta) => textPower.text = (int.Parse(textPower.text) + delta).ToString();
     void Start()
     {
         type_Card = card.typeCard; 

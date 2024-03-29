@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     {
         player1.BackImageAndDrag();
         player2.BackImageAndDrag();
-
     }
     private void InstantiateCard(string handName, List<Card> deck)
     {
@@ -110,7 +109,6 @@ public class GameManager : MonoBehaviour
         round = 1;                                                                                                 // Declara la ronda 1
         counterTurn = 1;                                                                                           // Declara el turno 1
     }
-
     void Update()
     {
 
