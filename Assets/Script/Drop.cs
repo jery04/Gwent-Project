@@ -32,9 +32,9 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         if (item != null && this.GetComponent<Panels>().itemsCounter < this.GetComponent<Panels>().maxItems && CardPosition(this, eventData.pointerDrag))             // Si el objeto tiene un componente Drag, coinciden las posiciones y cabe en la fila establece el padre del objeto arrastrado al objeto actual
         {
             item.parent = this.transform;                            // Cambia el padre
-            //this.GetComponent<Panels>().itemsCounter++;              // Aumenta un hijo al 
             this.GetComponent<Panels>().cards.Add(eventData.pointerDrag);
             GameObject.Find(GameManager.currentPlayer.handName).GetComponent<Panels>().cards.Remove(eventData.pointerDrag);
+            GameManager.currentPlayer.oneMove = true;
         }                                               
     }
 }

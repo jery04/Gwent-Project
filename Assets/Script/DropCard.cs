@@ -19,13 +19,13 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             case Card.card_position.S:
                 return "Siege";
             case Card.card_position.MR:
-                return "Melee and Range";
+                return "Melee-Range";
             case Card.card_position.MS:
-                return "Melee and Siege";
+                return "Melee-Siege";
             case Card.card_position.MRS:
-                return "Melee, Range and Siege";
+                return "Mel-Ran-Sie";
             case Card.card_position.RS:
-                return "Range and Siege";
+                return "Range-Siege";
         }
         return "";
     }
@@ -53,19 +53,11 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public void OnPointerEnter(PointerEventData evenData)            // Se ejecuta cuando el puntero entra en el área del objeto
     {
 
-        if (this != null && GameManager.currentPlayer.handName == this.transform.parent.name)
-        //{
-        //    GameObject prefarb = Resources.Load<GameObject>("Card");
-
-        //    GameObject a = Instantiate(prefarb, GameObject.Find("Panel_Card").transform);
-        //    a.transform.position = Vector3.zero;
-        //    a.GetComponent<CardDisplay>().card = this.GetComponent<CardDisplay>().card;
-
-        //}
+        if (this != null && !this.GetComponent<CardDisplay>().Back.enabled)
         {
-            GameObject.Find("Panel_Card").transform.GetChild(2).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;
             GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().card.artWork;
             GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().card.portrait;
+            GameObject.Find("Panel_Card").transform.GetChild(2).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;   
             GameObject.Find("Panel_Card").transform.GetChild(4).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);
             GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition);
         }
@@ -75,9 +67,10 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     {
         if (this != null)
         {
+            GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Panel");
             GameObject.Find("Panel_Card").transform.GetChild(2).GetComponent<Text>().text = "";
-            GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = null;
-            GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = null;
+            GameObject.Find("Panel_Card").transform.GetChild(4).GetComponent<Text>().text = "";
+            GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "";
         }
     }
     public void OnDrop(PointerEventData evenData)                   // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script.

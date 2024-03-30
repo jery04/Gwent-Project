@@ -9,16 +9,16 @@ using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
-    int round;
+    public static int round;
     int counterTurn;
-    DataBase dataCard = new DataBase();
+    DataBase dataCard;
     Player player1;
     Player player2;
     static public Player currentPlayer;
 
     public void ChangeTurn()        // Cambia de turno
     {
-        if (counterTurn != 2)
+        if (counterTurn == 1)
         {
             counterTurn += 1;
 
@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
            
         else if (counterTurn == 2)
         {
-            if (player1.GeneralPower() > player2.GeneralPower())
+            
+            if (player1.powerRound[round - 1] > player2.powerRound[round-1])
             {
                 player1.MyTurn = true; player2.MyTurn = false;
                 currentPlayer = player1;
@@ -50,46 +51,39 @@ public class GameManager : MonoBehaviour
             player2.Cementery();
             counterTurn = 1;
             round += 1;
+
+                                                                                 // Inicia el juego con el jugador 1                                                                                  // Declara el turno 1
         }
-        Debug.Log(counterTurn + " " + round);
-        playerUpdate();
+        currentPlayer.oneMove = false;
     }
-    private void playerUpdate()
-    {
-        player1.BackImageAndDrag();
-        player2.BackImageAndDrag();
-    }
-    private void InstantiateCard(string handName, List<Card> deck)
+    private IEnumerator For(int max)                       // Cantidad de cartas que toma del deck
     {
         GameObject prefarb = Resources.Load<GameObject>("Card");
-        int rand = Random.Range(1, deck.Count);
+        for (int i = 0; i < max; i++)
+        {
+            int rand = Random.Range(1, currentPlayer.deck.Count);
+            GameObject a = Instantiate(prefarb, GameObject.Find(currentPlayer.handName).transform);
 
-        GameObject a = Instantiate(prefarb, GameObject.Find(handName).transform);
-        a.GetComponent<CardDisplay>().card = deck[rand];
-        GameObject.Find(handName).GetComponent<Panels>().cards.Add(a);
-        deck.RemoveAt(rand);
-    }
+            a.GetComponent<CardDisplay>().card = currentPlayer.deck[rand];
+            GameObject.Find(currentPlayer.handName).GetComponent<Panels>().cards.Add(a);
+            currentPlayer.deck.RemoveAt(rand);
+
+            yield return new WaitForSeconds(0.08f);
+        }
+    }           
     public void Take()                                     // Tomar cartas del deck
     {
         int numChild = GameObject.Find(currentPlayer.handName).transform.childCount;
 
-        if (numChild == 0)                                 // Tomar 10 iniciales 
-        {
-            for (int i = 0; i < 10; i++)
-                InstantiateCard(currentPlayer.handName, currentPlayer.deck);
-        }
-        else if ((numChild != 0) && (numChild < 10))      // Tomar 2 cartas
+        if (numChild == 0)                                // Tomar 10 iniciales 
+            StartCoroutine(For(10));
+
+        else if ((numChild != 0) && (numChild < 10))      // Tomar 2 cartas o menos
         {
             if (10 - numChild <= 2)
-            {
-                for (int i = 0; i < (10 - numChild); i++)
-                    InstantiateCard(currentPlayer.handName, currentPlayer.deck);
-            }
+                StartCoroutine(For(10 - numChild));
             else
-            {
-                for (int i = 0; i < 2; i++)
-                    InstantiateCard(currentPlayer.handName, currentPlayer.deck);
-            }
+                StartCoroutine(For(2));
         }
     }
     public void ModifiedRow(string nameRow, int delta)
@@ -101,13 +95,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        dataCard.CreateCard();                                                                                      // Crea las instancias de las cartas 
-        player1 = new Player("Player1", "Hand1", dataCard.deckDemon, "Melee", "Range", "Siege");
-        player2 = new Player("Player2", "Hand2", dataCard.deckHeavenly, "Melee (2)", "Range (2)", "Siege (2)");
-        player1.MyTurn = true;                                                                                     // Inicia el juego con el jugador 1                                                     
-        currentPlayer = player1;
+        dataCard = new DataBase();
+        dataCard.CreateCard();                                                                                     // Crea las instancias de las cartas 
+
         round = 1;                                                                                                 // Declara la ronda 1
-        counterTurn = 1;                                                                                           // Declara el turno 1
+        counterTurn = 1;
+
+        player1 = GameObject.Find("Player1").GetComponent<Player>();
+        player2 = GameObject.Find("Player2").GetComponent<Player>();
+        player1.deck = dataCard.deckDemon;
+        player2.deck = dataCard.deckHeavenly;                                                                                   
+          
+        currentPlayer = player1;                                                                                   // Inicia el juego con el jugador 1                                                                                  // Declara el turno 1
+        Take();
+
     }
     void Update()
     {

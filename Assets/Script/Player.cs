@@ -3,50 +3,57 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.XR;
 
 public class Player : MonoBehaviour
 {
+    public int[] powerRound;
     public string playerName;
     public string handName;
     public List<Card> deck = new List<Card>();
     public string meleeName; 
     public string rangeName; 
     public string siegeName;
+    public string leader;
+    public string[] increaseName;
     public bool MyTurn;
+    public bool oneMove;
 
     public Player(string playerName, string handName, List<Card> deck, string meleeName, string rangeName, string siegeName)
     {
+        powerRound = new int[3] { 0, 0, 0 };
         this.playerName = playerName;
         this.handName = handName;
         this.deck = deck;
         this.meleeName = meleeName;
         this.rangeName = rangeName;
         this.siegeName = siegeName;
-        this.Start();
     }
 
     public void Cementery()
     {
-        foreach (GameObject item in GameObject.Find(meleeName).GetComponent<Panels>().cards)  // Envía las cartas en Melee al cementerio
+        foreach (string item in increaseName)                                                 // Envía las cartas de Increase al cementerio
+            GameObject.Destroy(GameObject.Find(item));
+
+        foreach (GameObject item in GameObject.Find(meleeName).GetComponent<Panels>().cards)  // Envía las cartas de Melee al cementerio
             GameObject.Destroy(item);                                                           
 
-        foreach (GameObject item in GameObject.Find(rangeName).GetComponent<Panels>().cards)  // Envía las cartas en Range al cementerio
+        foreach (GameObject item in GameObject.Find(rangeName).GetComponent<Panels>().cards)  // Envía las cartas de Range al cementerio
             GameObject.Destroy(item);
 
-        foreach (GameObject item in GameObject.Find(siegeName).GetComponent<Panels>().cards)  // Envía las cartas en Siege al cementerio
+        foreach (GameObject item in GameObject.Find(siegeName).GetComponent<Panels>().cards)  // Envía las cartas de Siege al cementerio
             GameObject.Destroy(item);
     }
-    public int GeneralPower()      // Devuelve la puntuacion del jugador al finalizar la ronda
+    private void GeneralPower(int round)      // Devuelve la puntuacion del jugador al finalizar la ronda
     {
-        int generalPower = 0;
-
-        generalPower += GameObject.Find(meleeName).GetComponent<Panels>().PowerRow();
-        generalPower += GameObject.Find(rangeName).GetComponent<Panels>().PowerRow();
-        generalPower += GameObject.Find(siegeName).GetComponent<Panels>().PowerRow();
-
-        return generalPower;
+        int power = 0;
+        power += GameObject.Find(meleeName).GetComponent<Panels>().PowerRow();
+        power += GameObject.Find(rangeName).GetComponent<Panels>().PowerRow();
+        power += GameObject.Find(siegeName).GetComponent<Panels>().PowerRow();
+        powerRound[round - 1] = power;
     }
-    public void BackImageAndDrag()
+    private void BackImageAndDrag()
     {
         if (!MyTurn)        
         {
@@ -56,23 +63,36 @@ public class Player : MonoBehaviour
                 item.GetComponent<Drag>().enabled = false;                  // Si no está jugando se desactiva el Script Drag
             }    
         }
-        else               
+        else            
         {
-            foreach (GameObject item in GameObject.Find(handName).GetComponent<Panels>().cards)
+            if (!oneMove)
             {
-                item.GetComponent<CardDisplay>().Back.enabled = false;      // Si está jugando se desactiva el BackImage 
-                item.GetComponent<Drag>().enabled = true;                   // Si está jugando se activa el Script Drag
-            }   
+                foreach (GameObject item in GameObject.Find(handName).GetComponent<Panels>().cards)
+                {
+                    item.GetComponent<CardDisplay>().Back.enabled = false;      // Si está jugando se desactiva el BackImage 
+                    item.GetComponent<Drag>().enabled = true;                   // Si está jugando y no ha hecho ningún movimiento se activa el Script Drag
+                }
+            }
+            else
+            {
+                foreach (GameObject item in GameObject.Find(handName).GetComponent<Panels>().cards)
+                {
+                    item.GetComponent<CardDisplay>().Back.enabled = false;      // Si está jugando se desactiva el BackImage 
+                    item.GetComponent<Drag>().enabled = false;                  // Si está jugando y ya hizo un movimiento se desactiva el Script Drag
+                }
+            }
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        MyTurn = false;             
+        powerRound = new int[3] { 0, 0, 0 };
     }
     // Update is called once per frame
     public void Update()
     {
-
+       GeneralPower(GameManager.round);
+       BackImageAndDrag();
     }
 }
