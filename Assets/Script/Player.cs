@@ -8,6 +8,7 @@ using UnityEngine.XR;
 
 public class Player : MonoBehaviour
 {
+    public Sprite player;
     public int[] powerRound;
     public string playerName;
     public string handName;
@@ -92,7 +93,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-       GeneralPower(GameManager.round);
-       BackImageAndDrag();
+        GeneralPower(GameManager.round);
+        BackImageAndDrag();
     }
 }

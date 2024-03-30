@@ -10,6 +10,7 @@ using UnityEngine.XR;
 public class GameManager : MonoBehaviour
 {
     public static int round;
+    public GameObject panelRound;
     int counterTurn;
     DataBase dataCard;
     Player player1;
@@ -55,6 +56,36 @@ public class GameManager : MonoBehaviour
                                                                                  // Inicia el juego con el jugador 1                                                                                  // Declara el turno 1
         }
         currentPlayer.oneMove = false;
+    }
+    private void  PanelRound()
+    {
+        Transform panel = GameObject.Find("PanelRound").GetComponent<CanvasGroup>().transform;
+
+        //Player1
+        panel.GetChild(6).GetComponent<Text>().text = player1.powerRound[0].ToString();
+        panel.GetChild(7).GetComponent<Text>().text = player1.powerRound[1].ToString();
+        panel.GetChild(8).GetComponent<Text>().text = player1.powerRound[2].ToString();
+
+        //Player2
+        panel.GetChild(9).GetComponent<Text>().text = player2.powerRound[0].ToString();
+        panel.GetChild(10).GetComponent<Text>().text = player2.powerRound[1].ToString();
+        panel.GetChild(11).GetComponent<Text>().text = player2.powerRound[2].ToString();
+
+        //Winner
+        panel.GetChild(18).GetComponent<Image>().sprite = Winner(player1, player2).player;
+    }
+    private Player Winner(Player one, Player two)
+    {
+        int oneSigma = 0;
+        int twoSigma = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            oneSigma += one.GetComponent<Player>().powerRound[i];
+            twoSigma += two.GetComponent<Player>().powerRound[i];
+        }
+        if (oneSigma > twoSigma)
+            return one;
+        else return two;
     }
     private IEnumerator For(int max)                       // Cantidad de cartas que toma del deck
     {
@@ -112,6 +143,10 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-
+        if (round == 4)
+        {
+            panelRound.SetActive(true);
+            PanelRound();
+        }
     }
 }

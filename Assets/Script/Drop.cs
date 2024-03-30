@@ -28,7 +28,7 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     public void OnDrop(PointerEventData eventData)                   // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script.
     {
         Drag item = eventData.pointerDrag.GetComponent<Drag>();
- 
+
         if (item != null && this.GetComponent<Panels>().itemsCounter < this.GetComponent<Panels>().maxItems && CardPosition(this, eventData.pointerDrag))             // Si el objeto tiene un componente Drag, coinciden las posiciones y cabe en la fila establece el padre del objeto arrastrado al objeto actual
         {
             item.parent = this.transform;                            // Cambia el padre

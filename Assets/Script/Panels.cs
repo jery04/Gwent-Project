@@ -49,7 +49,6 @@ public class Panels : MonoBehaviour
         Remove();
         UnDragging();
         itemsCounter = cards.Count;
-
     }
 }
 
