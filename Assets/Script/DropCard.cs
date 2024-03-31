@@ -57,9 +57,9 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         {
             GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().card.artWork;
             GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().card.portrait;
-            GameObject.Find("Panel_Card").transform.GetChild(2).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;   
-            GameObject.Find("Panel_Card").transform.GetChild(4).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);
-            GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition);
+            GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;   
+            GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);
+            GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition);
         }
 
     }
@@ -68,9 +68,9 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         if (this != null)
         {
             GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Panel");
-            GameObject.Find("Panel_Card").transform.GetChild(2).GetComponent<Text>().text = "";
-            GameObject.Find("Panel_Card").transform.GetChild(4).GetComponent<Text>().text = "";
-            GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "";
+            GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = "";
+            GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = "";
+            GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = "";
         }
     }
     public void OnDrop(PointerEventData evenData)                   // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script.
