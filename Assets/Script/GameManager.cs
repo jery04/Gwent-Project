@@ -19,43 +19,52 @@ public class GameManager : MonoBehaviour
 
     public void ChangeTurn()        // Cambia de turno
     {
-        if (counterTurn == 1)
+        if(round < 3)
         {
-            counterTurn += 1;
+            if (counterTurn == 1)
+            {
+                counterTurn += 1;
 
-            if (player1.MyTurn)
-            {
-                player1.MyTurn = false; player2.MyTurn = true;
-                currentPlayer = player2;
+                if (player1.MyTurn)
+                {
+                    player1.MyTurn = false; player2.MyTurn = true;
+                    currentPlayer = player2;
+                }
+                else
+                {
+                    player2.MyTurn = false; player1.MyTurn = true;
+                    currentPlayer = player1;
+                }
             }
-            else
+
+            else if (counterTurn == 2)
             {
-                player2.MyTurn = false; player1.MyTurn = true;
-                currentPlayer = player1;
+
+                if (player1.powerRound[round - 1] > player2.powerRound[round - 1])
+                {
+                    player1.MyTurn = true; player2.MyTurn = false;
+                    currentPlayer = player1;
+                }
+                else
+                {
+                    player1.MyTurn = false; player2.MyTurn = true;
+                    currentPlayer = player2;
+                }
+                player1.Cementery();
+                player2.Cementery();
+                counterTurn = 1;
+                round += 1;
+                Take(player1);
+                Take(player2);
+                // Inicia el juego con el jugador 1                                                                                  // Declara el turno 1
             }
+            currentPlayer.oneMove = false;
         }
-           
-        else if (counterTurn == 2)
+        else
         {
-            
-            if (player1.powerRound[round - 1] > player2.powerRound[round-1])
-            {
-                player1.MyTurn = true; player2.MyTurn = false;
-                currentPlayer = player1;
-            }
-            else
-            {
-                player1.MyTurn = false; player2.MyTurn = true;
-                currentPlayer = player2;
-            }
-            player1.Cementery();
-            player2.Cementery();
-            counterTurn = 1;
-            round += 1;
-
-                                                                                 // Inicia el juego con el jugador 1                                                                                  // Declara el turno 1
+            panelRound.SetActive(true);
+            PanelRound();
         }
-        currentPlayer.oneMove = false;
     }
     private void  PanelRound()
     {
@@ -87,7 +96,7 @@ public class GameManager : MonoBehaviour
             return one;
         else return two;
     }
-    private IEnumerator For(int max)                       // Cantidad de cartas que toma del deck
+    private IEnumerator For(int max, Player currentPlayer)                       // Cantidad de cartas que toma del deck
     {
         GameObject prefarb = Resources.Load<GameObject>("Card");
         for (int i = 0; i < max; i++)
@@ -102,19 +111,22 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.08f);
         }
     }           
-    public void Take()                                     // Tomar cartas del deck
+    public void Take(Player currentPlayer)                                     // Tomar cartas del deck
     {
         int numChild = GameObject.Find(currentPlayer.handName).transform.childCount;
 
-        if (numChild == 0)                                // Tomar 10 iniciales 
-            StartCoroutine(For(10));
+        if (numChild == 0)
+        {
+            StartCoroutine(For(10, currentPlayer));
+        }                                 // Tomar 10 iniciales 
+
 
         else if ((numChild != 0) && (numChild < 10))      // Tomar 2 cartas o menos
         {
             if (10 - numChild <= 2)
-                StartCoroutine(For(10 - numChild));
+                StartCoroutine(For(10 - numChild, currentPlayer));
             else
-                StartCoroutine(For(2));
+                StartCoroutine(For(2, currentPlayer));
         }
     }
     public void ModifiedRow(string nameRow, int delta)
@@ -138,15 +150,12 @@ public class GameManager : MonoBehaviour
         player2.deck = dataCard.deckHeavenly;                                                                                   
           
         currentPlayer = player1;                                                                                   // Inicia el juego con el jugador 1                                                                                  // Declara el turno 1
-        Take();
+        Take(player1);
+        Take(player2);
 
     }
     void Update()
     {
-        if (round == 4)
-        {
-            panelRound.SetActive(true);
-            PanelRound();
-        }
+
     }
 }
