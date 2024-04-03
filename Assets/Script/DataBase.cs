@@ -70,13 +70,13 @@ public class DataBase : MonoBehaviour
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear));  // Despeje
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear));
 
-        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate)); // Clima
-        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate));
-        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate));
+        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C)); // Clima
+        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C));
+        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C));
 
-        deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase)); // Aumento
-        deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase));
-        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase));
+        deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I)); // Aumento
+        deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I));
+        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I));
     }
     void Start()
     {

@@ -26,7 +26,7 @@ public class CardDisplay : MonoBehaviour
         artWork.sprite = card.artWork;
         portrait.sprite = card.portrait;
     }
-    private void Update()
+    void Update()
     {
         if (card != null)
         {

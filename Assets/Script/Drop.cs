@@ -10,7 +10,7 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 {
     private bool CardPosition(Drop item, GameObject item2)
     {
-        foreach (Card.card_position i in item.GetComponent<Panels>().cardPos)
+        foreach (Card.card_position i in item.GetComponent<Panels>().position)
         {
             if (i == item2.GetComponent<CardDisplay>().cardPosition)
                 return true;
@@ -33,7 +33,7 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         {
             item.parent = this.transform;                            // Cambia el padre
             this.GetComponent<Panels>().cards.Add(eventData.pointerDrag);
-            GameObject.Find(GameManager.currentPlayer.handName).GetComponent<Panels>().cards.Remove(eventData.pointerDrag);
+            GameManager.currentPlayer.hand.GetComponent<Panels>().cards.Remove(eventData.pointerDrag);
             GameManager.currentPlayer.oneMove = true;
         }                                               
     }

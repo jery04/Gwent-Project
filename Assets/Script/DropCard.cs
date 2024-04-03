@@ -13,19 +13,19 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         switch (pos)
         {
             case Card.card_position.M:
-                return "Melee";
+                return "melee";
             case Card.card_position.R:
-                return "Range";
+                return "range";
             case Card.card_position.S:
-                return "Siege";
+                return "siege";
             case Card.card_position.MR:
-                return "Melee-Range";
+                return "melee-range";
             case Card.card_position.MS:
-                return "Melee-Siege";
+                return "melee-siege";
             case Card.card_position.MRS:
                 return "Mel-Ran-Sie";
             case Card.card_position.RS:
-                return "Range-Siege";
+                return "range-siege";
         }
         return "";
     }
@@ -44,7 +44,7 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             case Card.kind_card.bait:
                 return "Bait";
             case Card.kind_card.increase:
-                return "Increase";
+                return "increase";
             case Card.kind_card.leader:
                 return "Leader";
         }
@@ -55,8 +55,8 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
         if (this != null && !this.GetComponent<CardDisplay>().Back.enabled)
         {
-            GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().card.artWork;
-            GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().card.portrait;
+            GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().artWork.sprite;
+            GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().portrait.sprite;
             GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;   
             GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);
             GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition);

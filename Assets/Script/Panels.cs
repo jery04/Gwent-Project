@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Panels : MonoBehaviour
+public class Panels : MonoBehaviour 
 {
     public List<GameObject> cards = new List<GameObject>();
-    public List<Card.card_position> cardPos = new List<Card.card_position>();
+    public List<Card.card_position> position = new List<Card.card_position>(); 
     public int maxItems;
     public int itemsCounter;
 
@@ -26,7 +26,8 @@ public class Panels : MonoBehaviour
         if (cards != null && cards.Count > 0)
         {
             foreach (GameObject item in cards)
-                powerRow += int.Parse(item.GetComponent<CardDisplay>().textPower.text);
+                if(item!= null)
+                    powerRow += int.Parse(item.GetComponent<CardDisplay>().textPower.text);
         }
 
         return powerRow;
@@ -34,7 +35,7 @@ public class Panels : MonoBehaviour
 
     private void UnDragging()
     {
-        if (cards != null && cards.Count > 0 && GameManager.currentPlayer.handName != this.name)
+        if (cards != null && cards.Count > 0 && GameManager.currentPlayer.hand.name != this.name)
         {
             foreach (GameObject item in cards)
                 item.GetComponent<Drag>().enabled = false;
@@ -47,8 +48,9 @@ public class Panels : MonoBehaviour
     private void Update()
     {
         Remove();
-        UnDragging();
         itemsCounter = cards.Count;
+        UnDragging();
+
     }
 }
 
