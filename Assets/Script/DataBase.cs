@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DataBase : MonoBehaviour
 {
-    public List<Card> deckDemon = new List<Card>();
-    public List<Card> deckHeavenly = new List<Card>();
-    public void CreateCard()    // Crea las instancias de las cartas
+    public List<Card> deckDemon = new List<Card>();         // Mazo1 (Demonios)
+    public List<Card> deckHeavenly = new List<Card>();      // Mazo2 (Celestiales)
+    public void CreateCard()                                // Crea las instancias de las cartas
     {
-        // Mazo 1(Demonios)
+        // Mazo1 (Demonios)
         deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader));  // Lider
 
-        deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));  // Señuelo
+        deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));    // Señuelo
         deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));
         deckDemon.Add(new Card(0, false,Resources.Load<Sprite>("s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));
         deckDemon.Add(new Card(0, false,Resources.Load<Sprite>("s4"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));
@@ -30,10 +30,10 @@ public class DataBase : MonoBehaviour
         deckDemon.Add(new Card(9, true, Resources.Load<Sprite>("o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.M));
         deckDemon.Add(new Card(7, true, Resources.Load<Sprite>("o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MR));
 
-        deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear));  // Despeje
+        deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear));    // Despeje
         deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear));
 
-        deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C)); // Clima
+        deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C));  // Clima
         deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C));
         deckDemon.Add(new Card(0, false, Resources.Load<Sprite>("c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C));
 
@@ -44,11 +44,10 @@ public class DataBase : MonoBehaviour
 
 
 
-
-        // Mazo 2(Celestiales)
+        // Mazo2 (Celestiales)
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader));  // Lider
 
-        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));  // Señuelo
+        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));    // Señuelo
         deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));
         deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2s4"), Resources.Load<Sprite>("silver"), Card.kind_card.bait));
@@ -67,23 +66,15 @@ public class DataBase : MonoBehaviour
         deckHeavenly.Add(new Card(7, true, Resources.Load<Sprite>("2o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.R));
         deckHeavenly.Add(new Card(5, true, Resources.Load<Sprite>("2o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S));
 
-        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear));  // Despeje
+        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear));    // Despeje
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear));
 
-        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C)); // Clima
+        deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C));   // Clima
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C));
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C));
 
         deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I)); // Aumento
         deckHeavenly.Add(new Card(0, false,  Resources.Load<Sprite>("2a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I));
         deckHeavenly.Add(new Card(0, false, Resources.Load<Sprite>("2a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I));
-    }
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
     }
 }

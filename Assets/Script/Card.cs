@@ -9,17 +9,17 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
-    // Campo
-    public int power;
-    public Sprite artWork;
-    public Sprite portrait;
-    public enum card_position { M, R, S, MR, MS, RS, MRS, I, C};
-    public enum kind_card { golden, silver, climate, clear, bait, increase, leader };
-    public kind_card typeCard;
-    public card_position cardPosition;
+    // Propiedades (Campo)
+    public int power;                                                                   // Poder
+    public Sprite artWork;                                                              // Imagen principal
+    public Sprite portrait;                                                             // Imagen del marco
+    public enum card_position { M, R, S, MR, MS, RS, MRS, I, C};                        // Posiciones en que se puede ubicar
+    public enum kind_card { golden, silver, climate, clear, bait, increase, leader };   // Tipos de carta
+    public kind_card typeCard;                                                          // Tipo de carta
+    public card_position cardPosition;                                                  // Tipo de posición
     public bool IsHero;
 
-    // Constructor
+    // Constructores (Sobrecargado)
     public Card(int power, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard)
     {
         this.typeCard = typeCard;

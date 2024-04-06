@@ -20,7 +20,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void OnEndDrag(PointerEventData eventData)               // Se ejecuta al finalizar el arrastre
     {
-        this.transform.SetParent(parent);
+        this.transform.SetParent(parent);                           // Se cambia de padre en la jerarquía de objetos
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 }

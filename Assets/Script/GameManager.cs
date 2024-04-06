@@ -5,54 +5,51 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
-    public static int round;
-    public bool SkipRound;
-    public GameObject panelGameOver;
-    public GameObject panelRound;
-    DataBase dataCard;
-    Player player1;
-    Player player2;
-    static public Player currentPlayer;
-    Player start;
-    Player playerEnd;
+    // Propiedades (Campo)
+    public static int round;                                         // (1) Número de Ronda
+    public bool SkipRound;                                           // (2) True(si algún jugador pasa la ronda) 
+    public GameObject[] numberRound;                                 // (3) Panel-Display hace referencia al número de ronda
+    public GameObject panelGameOver;                                 // (4) Panel que muestra los resultados a final del juego
+    public GameObject panelRound;                                    // (5) Panel que muestra los resultados a final de ronda
+    DataBase dataCard;                                               // (6) Base de Datos de las cartas
+    public Player player1;                                           // (7) Jugador 1
+    public Player player2;                                           // (8) Jugador 2
+    private Player start;                                            // (9) Jugador que comienza cada ronda
+    private Player playerEnd;                                        // (10) Jugador que termina cada ronda
+    static public Player currentPlayer;                              // (11) Jugador actual
 
-    public void CallPanelRound()
+    // Constructor 
+    public GameManager(string namePlayer1, string namePlayer2, List<Card> deck1, List<Card> deck2 )
+    {
+        // Requiere los nombres de los jugadores y sus mazos correspondientes
+        player1.name = namePlayer1;
+        player2.deck = deck1;
+
+        player2.name = namePlayer2;
+        player2.deck = deck2;
+    }
+
+    // Métodos
+    private void CallPanelRound()                                    // Muestra el panel (5)
     {
         StartCoroutine(PanelRound());
         IEnumerator PanelRound()
         {
             panelRound.SetActive(true);
             Transform panel = panelRound.GetComponent<CanvasGroup>().transform;
-            panel.GetChild(3).GetComponent<Image>().sprite = Winner(player1, player2, round).image;
+            panel.GetChild(3).GetComponent<Image>().sprite = Winner(round).image;
             yield return new WaitForSeconds(3);
 
             panelRound.SetActive(false);
         }
-    }
-    private Player Winner()
-    {
-        int winner1=0;
-        int winner2=0;
-        for (int i = 0; i < round+1; i++)
-        {
-            if (player1.powerRound[i] > player2.powerRound[i] && player1.powerRound[i] > player2.powerRound[i])
-                winner1++;
-            else winner2++;
-        }
-        if(winner1 == 2 || winner2 == 2) 
-        {
-            if (winner1 > winner2)
-                return player1;
-            else return player2;
-        }
-        return null;
-    }
-    public void ButtonSkipTurn()
+    }                                   
+    private void ButtonSkipTurn()                                    // Salta el turno
     {
         currentPlayer.oneMove = false;
         if (!SkipRound)
@@ -71,11 +68,11 @@ public class GameManager : MonoBehaviour
         else
             ButtonSkipRound();
     }
-    public void ButtonSkipRound()
+    private void ButtonSkipRound()                                   // Tranformaciones cuando cambia de ronda
     {
         if (playerEnd == currentPlayer)
         {
-            if (round == 2 || Winner() != null)
+            if (Winner() != null)
                 PanelGameOver();
             else
             {
@@ -110,7 +107,7 @@ public class GameManager : MonoBehaviour
             SkipRound = true;
         }
     }
-    private void PanelGameOver()
+    private void PanelGameOver()                                     // Muestra el panel (4)
     {
         panelGameOver.SetActive(true);
         Transform panel = panelGameOver.GetComponent<CanvasGroup>().transform;
@@ -129,13 +126,35 @@ public class GameManager : MonoBehaviour
         if(Winner() != null)
         panel.GetChild(18).GetComponent<Image>().sprite = Winner().image;
     }
-    private Player Winner(Player one, Player two, int round)
+    private Player Winner(int round)                                 // Devuelve el ganador en una ronda (null si hay empate)
     {
-        if (one.GetComponent<Player>().powerRound[round] > two.GetComponent<Player>().powerRound[round])
-            return one;
+        if (player1.GetComponent<Player>().powerRound[round] > player2.GetComponent<Player>().powerRound[round])
+            return player1;
 
-        else return two;
+        else return player2;
     }
+    private Player Winner()                                          // Método sobrecargado, devuelve el ganador hasta la ronda actual
+    {
+        // winner1-winner2 almacenan el número de rondas ganadas por jugador
+        int winner1 = 0;
+        int winner2 = 0;
+        for (int i = 0; i < round + 1; i++)     
+        {
+            if (player1.powerRound[i] > player2.powerRound[i] && player1.powerRound[i] > player2.powerRound[i])
+                winner1++;
+            else winner2++;
+        }
+        if (winner1 == 2 || winner2 == 2)
+        {
+            if (winner1 > winner2)
+                return player1;
+            else return player2;
+        }
+        return null;
+    }
+    public void ButtonGoBack() => Invoke("GoBack", 0.2f);
+    private void GoBack() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);  // Cambia de escena (menú principal)
+
     public void ModifiedRow(string nameRow, int delta)
     {
         for (int i = 0; i < GameObject.Find(nameRow).GetComponent<Panels>().itemsCounter; i++)
@@ -145,25 +164,21 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        dataCard = new DataBase();
-        dataCard.CreateCard();                                                                                     // Crea las instancias de las cartas 
-
-        round = 0;                                                                                                 // Declara la ronda 1
-
-        player1 = GameObject.Find("Player1").GetComponent<Player>();
-        player2 = GameObject.Find("Player2").GetComponent<Player>();
-        player1.deck = dataCard.deckDemon;
-        player2.deck = dataCard.deckHeavenly;                                                                                   
-          
-        currentPlayer = player1;
-        start = player1;  // Inicia el juego con el jugador 1       
-        playerEnd = player2;// Declara el turno 1
-        player1.TakeCard();
+        dataCard = new DataBase();                                    // Crea una instancia de la base de datos
+        dataCard.CreateCard();                                        // Crea las instancias de las cartas (crea los decks)
+        round = 0;                                                    // Declara la ronda 1 (0)
+    
+        player1.deck = dataCard.deckDemon;                            // Asigna los decks a los jugadores
+        player2.deck = dataCard.deckHeavenly;
+        start = player1;                                              //  Declara el jugador que terminará la ronda
+        playerEnd = player2;
+        currentPlayer = player1;                                      // Declara el jugador que comienza la ronda 1
+        player1.TakeCard();                                           // Agrega cartas a la mano
         player2.TakeCard();
 
     }
     void Update()
     {
-
+        numberRound[round].GetComponent<CanvasGroup>().alpha = 1;     // Actualiza el panel (3) con la ronda ronda actual
     }
 }
