@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         foreach (GameObject item in field)
             power += item.GetComponent<Panels>().PowerRow();
 
-        powerRound[round - 1] = power;
+        powerRound[round] = power;
     }
     private void BackImageAndDrag()
     {
@@ -76,7 +76,37 @@ public class Player : MonoBehaviour
                 item.GetComponent<Drop>().enabled = true;
         }
     }
+    private IEnumerator For(int max)                       // Cantidad de cartas que toma del deck
+    {
+        GameObject prefarb = Resources.Load<GameObject>("Card");
+        for (int i = 0; i < max; i++)
+        {
+            int rand = Random.Range(1, deck.Count);
+            GameObject a = Instantiate(prefarb, hand.transform);
 
+            a.GetComponent<CardDisplay>().card = deck[rand];
+            hand.GetComponent<Panels>().cards.Add(a);
+            deck.RemoveAt(rand);
+
+            yield return new WaitForSeconds(0.08f);
+        }
+    }
+    public void TakeCard()                                     // Tomar cartas del deck
+    {
+        int numChild = hand.transform.childCount;
+
+        if (numChild == 0)
+            StartCoroutine(For(10));                                // Tomar 10 iniciales 
+
+
+        else if ((numChild != 0) && (numChild < 10))      // Tomar 2 cartas o menos
+        {
+            if (10 - numChild <= 2)
+                StartCoroutine(For(10 - numChild));
+            else
+                StartCoroutine(For(2));
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

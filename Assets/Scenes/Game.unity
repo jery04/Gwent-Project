@@ -826,9 +826,6 @@ MonoBehaviour:
   SkipRound: 0
   oneMove: 0
   hand: {fileID: 1445032459}
-  melee: {fileID: 1401754267}
-  range: {fileID: 2035502110}
-  siege: {fileID: 1994179300}
   field:
   - {fileID: 1401754267}
   - {fileID: 2035502110}
@@ -1265,9 +1262,6 @@ MonoBehaviour:
   SkipRound: 0
   oneMove: 0
   hand: {fileID: 2005503998}
-  melee: {fileID: 1486067698}
-  range: {fileID: 1727532462}
-  siege: {fileID: 742431965}
   field:
   - {fileID: 1486067698}
   - {fileID: 1727532462}

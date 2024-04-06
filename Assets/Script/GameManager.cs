@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -22,20 +23,38 @@ public class GameManager : MonoBehaviour
 
     public void CallPanelRound()
     {
+        StartCoroutine(PanelRound());
         IEnumerator PanelRound()
         {
             panelRound.SetActive(true);
             Transform panel = panelRound.GetComponent<CanvasGroup>().transform;
-            panel.GetChild(3).GetComponent<Image>().sprite = Winner(player1, player2).image;
-            yield return new WaitForSeconds(2f);
+            panel.GetChild(3).GetComponent<Image>().sprite = Winner(player1, player2, round).image;
+            yield return new WaitForSeconds(3);
+
             panelRound.SetActive(false);
         }
-        StartCoroutine(PanelRound());
-        if (round == 3 && SkipRound)
-            PanelGameOver();
+    }
+    private Player Winner()
+    {
+        int winner1=0;
+        int winner2=0;
+        for (int i = 0; i < round+1; i++)
+        {
+            if (player1.powerRound[i] > player2.powerRound[i] && player1.powerRound[i] > player2.powerRound[i])
+                winner1++;
+            else winner2++;
+        }
+        if(winner1 == 2 || winner2 == 2) 
+        {
+            if (winner1 > winner2)
+                return player1;
+            else return player2;
+        }
+        return null;
     }
     public void ButtonSkipTurn()
     {
+        currentPlayer.oneMove = false;
         if (!SkipRound)
         {
             if (player1.myTurn)
@@ -50,38 +69,40 @@ public class GameManager : MonoBehaviour
             }
         }
         else
-        {
             ButtonSkipRound();
-        }
-        currentPlayer.oneMove = false;
     }
     public void ButtonSkipRound()
     {
         if (playerEnd == currentPlayer)
         {
-            if (player1.powerRound[round - 1] > player2.powerRound[round - 1])
-            {
-                player1.myTurn = true; player2.myTurn = false;
-                currentPlayer = player1;
-                start = player1;
-                playerEnd = player2;
-            }
+            if (round == 2 || Winner() != null)
+                PanelGameOver();
             else
             {
-                player1.myTurn = false; player2.myTurn = true;
-                currentPlayer = player2;
-                start = player2;
-                playerEnd = player1;
-            }
-            SkipRound = false;
-            currentPlayer.oneMove = false;
-            player1.Cementery();
-            player2.Cementery();
-            TakeCard(player1);
-            TakeCard(player2);
+                CallPanelRound();
+                SkipRound = false;
+                currentPlayer.oneMove = false;
+                if (player1.powerRound[round] > player2.powerRound[round])
+                {
+                    player1.myTurn = true; player2.myTurn = false;
+                    currentPlayer = player1;
+                    start = player1;
+                    playerEnd = player2;
+                }
+                else
+                {
+                    player1.myTurn = false; player2.myTurn = true;
+                    currentPlayer = player2;
+                    start = player2;
+                    playerEnd = player1;
+                }
+                round += 1;
 
-            CallPanelRound();
-            round += 1;
+                player1.Cementery();
+                player2.Cementery();
+                player1.TakeCard();
+                player2.TakeCard();
+            }
         }
         else
         {
@@ -91,6 +112,7 @@ public class GameManager : MonoBehaviour
     }
     private void PanelGameOver()
     {
+        panelGameOver.SetActive(true);
         Transform panel = panelGameOver.GetComponent<CanvasGroup>().transform;
 
         //Player1
@@ -104,45 +126,15 @@ public class GameManager : MonoBehaviour
         panel.GetChild(11).GetComponent<Text>().text = player2.powerRound[2].ToString();
 
         //Winner
-        panel.GetChild(18).GetComponent<Image>().sprite = Winner(player1, player2).image;
+        if(Winner() != null)
+        panel.GetChild(18).GetComponent<Image>().sprite = Winner().image;
     }
-    private Player Winner(Player one, Player two)
+    private Player Winner(Player one, Player two, int round)
     {
-        if (one.GetComponent<Player>().powerRound[round-1] > two.GetComponent<Player>().powerRound[round-1])
+        if (one.GetComponent<Player>().powerRound[round] > two.GetComponent<Player>().powerRound[round])
             return one;
 
         else return two;
-    }
-    private IEnumerator For(int max, Player currentPlayer)                       // Cantidad de cartas que toma del deck
-    {
-        GameObject prefarb = Resources.Load<GameObject>("Card");
-        for (int i = 0; i < max; i++)
-        {
-            int rand = Random.Range(1, currentPlayer.deck.Count);
-            GameObject a = Instantiate(prefarb, currentPlayer.hand.transform);
-
-            a.GetComponent<CardDisplay>().card = currentPlayer.deck[rand];
-            currentPlayer.hand.GetComponent<Panels>().cards.Add(a);
-            currentPlayer.deck.RemoveAt(rand);
-
-            yield return new WaitForSeconds(0.08f);
-        }
-    }           
-    public void TakeCard(Player currentPlayer)                                     // Tomar cartas del deck
-    {
-        int numChild = currentPlayer.hand.transform.childCount;
-
-        if (numChild == 0)
-            StartCoroutine(For(10, currentPlayer));                                // Tomar 10 iniciales 
-
-
-        else if ((numChild != 0) && (numChild < 10))      // Tomar 2 cartas o menos
-        {
-            if (10 - numChild <= 2)
-                StartCoroutine(For(10 - numChild, currentPlayer));
-            else
-                StartCoroutine(For(2, currentPlayer));
-        }
     }
     public void ModifiedRow(string nameRow, int delta)
     {
@@ -156,7 +148,7 @@ public class GameManager : MonoBehaviour
         dataCard = new DataBase();
         dataCard.CreateCard();                                                                                     // Crea las instancias de las cartas 
 
-        round = 1;                                                                                                 // Declara la ronda 1
+        round = 0;                                                                                                 // Declara la ronda 1
 
         player1 = GameObject.Find("Player1").GetComponent<Player>();
         player2 = GameObject.Find("Player2").GetComponent<Player>();
@@ -166,8 +158,8 @@ public class GameManager : MonoBehaviour
         currentPlayer = player1;
         start = player1;  // Inicia el juego con el jugador 1       
         playerEnd = player2;// Declara el turno 1
-        TakeCard(player1);
-        TakeCard(player2);
+        player1.TakeCard();
+        player2.TakeCard();
 
     }
     void Update()
