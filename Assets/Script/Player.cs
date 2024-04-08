@@ -4,38 +4,39 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class Player : MonoBehaviour
 {
-    public string playerName;                   // Nombre del jugador
-    public Sprite image;                        // Imagen-player
-    public List<Card> deck = new List<Card>();  // Mazo del jugador
-    public int[] powerRound;                    // Puntos acumulados por rondas
+    #region Propiedades
+    public string playerName;                              // Nombre del jugador
+    public Sprite image;                                   // Imagen-player
+    public List<Card> deck = new List<Card>();             // Mazo del jugador
+    public int[] powerRound;                               // Puntos acumulados por rondas
 
-    public bool myTurn;                         // Dicta el turno del jugador
-    public bool SkipRound;                      // Dicta si el jugador pasa la ronda
-    public bool oneMove;                        // Dicta si el jugador ya ha jugado una carta
+    public bool myTurn;                                    // Dicta el turno del jugador
+    public bool SkipRound;                                 // Dicta si el jugador pasa la ronda
+    public bool oneMove;                                   // Dicta si el jugador ya ha jugado una carta
+    public Text counterDeck;
 
-    public GameObject hand;                     // Cartas de la mano
-    public GameObject[] field;                  // Cartas del campo(Melee-Range-Siege)
-    public GameObject[] increase;               // Cartas de aumento
-    public GameObject climate;                  // Cartas clima
+    public GameObject hand;                                // Cartas de la mano
+    public GameObject[] field;                             // Cartas del campo(Melee-Range-Siege)
+    public GameObject[] increase;                          // Cartas de aumento
+    public GameObject climate;                             // Cartas clima
+    #endregion 
 
-    public void Cementery()                     // Envía todas las cartas al cementerio
+    public void Cementery()                                // Envía todas las cartas al cementerio
     {
-        foreach (GameObject item in climate.GetComponent<Panels>().cards)   // Envía las cartas de climate al cementerio
-            GameObject.Destroy(item);
+        climate.GetComponent<Panels>().RemoveAll();        // Envía las cartas de climate al cementerio
 
-        foreach (GameObject item in increase)                               // Envía las cartas de increase al cementerio
-            if(item.GetComponent<Panels>().cards.Count != 0)
-                GameObject.Destroy(item.GetComponent<Panels>().cards[0]);
+        foreach (GameObject item in field)                 // Envía las cartas de increase al cementerio
+            item.GetComponent<Panels>().RemoveAll();
 
-        foreach (GameObject item in field)                                  // Envía las cartas Melee, Range y Siege al cementerio
-            foreach (GameObject item2 in item.GetComponent<Panels>().cards)
-                GameObject.Destroy(item2);
+        foreach (GameObject item in increase)              // Envía las cartas Melee, Range y Siege al cementerio
+            item.GetComponent<Panels>().RemoveAll();
     }
-    private void GeneralPower(int round)        // Devuelve la puntuación del jugador al finalizar la ronda
+    private void GeneralPower(int round)                   // Devuelve la puntuación del jugador al finalizar la ronda
     {
         int power = 0;
         foreach (GameObject item in field)
@@ -77,7 +78,7 @@ public class Player : MonoBehaviour
                 item.GetComponent<Drop>().enabled = true;
         }
     }
-    private IEnumerator For(int max)            // Cantidad de cartas que puede tomar del deck
+    private IEnumerator For(int max)                       // Cantidad de cartas que puede tomar del deck
     {
         GameObject prefarb = Resources.Load<GameObject>("Card");
         for (int i = 0; i < max; i++)
@@ -86,19 +87,22 @@ public class Player : MonoBehaviour
             GameObject a = Instantiate(prefarb, hand.transform);
 
             a.GetComponent<CardDisplay>().card = deck[rand];
+            a.name = deck[rand].name;
             hand.GetComponent<Panels>().cards.Add(a);
             deck.RemoveAt(rand);
 
             yield return new WaitForSeconds(0.08f);
         }
     }
-    public void TakeCard()                      // Tomar cartas del deck
+    public void TakeCard(int num = 0)                      // Tomar cartas del deck
     {
         int numChild = hand.transform.childCount;
 
         if (numChild == 0)
-            StartCoroutine(For(10));                                // Tomar 10 iniciales 
+            StartCoroutine(For(10));                      // Tomar 10 iniciales 
 
+        else if (num != 0 && numChild < 10)               // Toma 1 carta
+            StartCoroutine(For(1));
 
         else if ((numChild != 0) && (numChild < 10))      // Tomar 2 cartas o menos
         {
@@ -111,12 +115,13 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        powerRound = new int[3] { 0, 0, 0 };    // Inicializa la puntuación de las ronndas en cero
+        powerRound = new int[3] { 0, 0, 0 };              // Inicializa la puntuación de las ronndas en cero
     }
 
     public void Update()
     {
-        GeneralPower(GameManager.round);        // Actualiza el poder
-        BackImageAndDrag();                     // Actualiza el Método
+        GeneralPower(GameManager.round);                 // Actualiza el poder
+        BackImageAndDrag();                              // Actualiza el Método
+        counterDeck.text = deck.Count.ToString();
     }
 }

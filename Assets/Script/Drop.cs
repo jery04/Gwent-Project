@@ -36,6 +36,8 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             this.GetComponent<Panels>().cards.Add(eventData.pointerDrag);   // Adiciona la carta al panel donde es colocada (List)
             GameManager.currentPlayer.hand.GetComponent<Panels>().cards.Remove(eventData.pointerDrag);  // Elimina la carta de la mano del jugador
             GameManager.currentPlayer.oneMove = true;                       // Indica que el jugador ha realizado un movimiento
+            if (eventData.pointerDrag.GetComponent<CardDisplay>().card.effect != null)
+                eventData.pointerDrag.GetComponent<CardDisplay>().card.effect(GameManager.currentPlayer);
         }                                               
     }
 }

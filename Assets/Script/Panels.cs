@@ -9,7 +9,24 @@ public class Panels : MonoBehaviour
     public List<Card.card_position> position = new List<Card.card_position>();     // Posiciones que acepta el panel 
     public int maxItems;                                                           // Máxima cantidad de cartas 
     public int itemsCounter;                                                       // (0) Cantidad de cartas actualmente
+    public GameObject IncreaseRow;
 
+    public int CounterUnity()
+    {
+        int counter = 0;
+        foreach(GameObject item in cards)
+            if(item.GetComponent<CardDisplay>().card.IsUnity)
+                counter++;
+        return counter;
+    }
+    public void RemoveAll()                                                        // Remueve todas las cartas
+    {
+        for (int i = 0; i < cards.Count; i++)
+        {
+            GameObject.Destroy(cards[i]);
+            cards.RemoveAt(i);
+        }
+    }
     private void Remove()                                                          // (1) Remueve cartas innecesarias del panel
     {
         if(cards != null && cards.Count > 0)
@@ -18,7 +35,8 @@ public class Panels : MonoBehaviour
             {
                 if (cards[i] == null)
                     cards.RemoveAt(i);
-                else if (cards[i].GetComponent<CardDisplay>().card.IsHero && int.Parse(cards[i].GetComponent<CardDisplay>().textPower.text) <= 0) 
+
+                else if (cards[i].GetComponent<CardDisplay>().card.IsUnity && int.Parse(cards[i].GetComponent<CardDisplay>().textPower.text) <= 0) 
                 {
                     GameObject.Destroy(cards[i]);
                     cards.RemoveAt(i);
@@ -51,7 +69,7 @@ public class Panels : MonoBehaviour
     }
     private void Update()
     {
-        Remove();                                                                   // ACtualiza el Método (1)                                     
+        Remove();                                                                   // Actualiza el Método (1)                                     
         itemsCounter = cards.Count;                                                 // Actualiza el contador (0)                              
         UnDragging();                                                               // ACtualiza el Método (3) 
     }

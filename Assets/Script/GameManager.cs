@@ -142,7 +142,9 @@ public class GameManager : MonoBehaviour
         {
             if (player1.powerRound[i] > player2.powerRound[i] && player1.powerRound[i] > player2.powerRound[i])
                 winner1++;
-            else winner2++;
+            else if (player1.powerRound[i] < player2.powerRound[i] && player1.powerRound[i] < player2.powerRound[i])
+                winner2++;
+            else { winner1++; winner2++; }
         }
         if (winner1 == 2 || winner2 == 2)
         {
@@ -154,13 +156,6 @@ public class GameManager : MonoBehaviour
     }
     public void ButtonGoBack() => Invoke("GoBack", 0.2f);
     private void GoBack() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);  // Cambia de escena (menú principal)
-
-    public void ModifiedRow(string nameRow, int delta)
-    {
-        for (int i = 0; i < GameObject.Find(nameRow).GetComponent<Panels>().itemsCounter; i++)
-            if (GameObject.Find(nameRow).GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsHero)
-                GameObject.Find(nameRow).GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta);   
-    }
 
     void Start()
     {
@@ -175,7 +170,6 @@ public class GameManager : MonoBehaviour
         currentPlayer = player1;                                      // Declara el jugador que comienza la ronda 1
         player1.TakeCard();                                           // Agrega cartas a la mano
         player2.TakeCard();
-
     }
     void Update()
     {

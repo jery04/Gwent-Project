@@ -9,7 +9,7 @@ using static Card;
 
 public class CardDisplay : MonoBehaviour
 {
-    public Card card;                       // Almacena la carta    
+    public Card card;                      // Almacena la carta    
     public Text textPower;                 // El poder (int)
     public Image artWork;                  // La imagen de la carta
     public Image portrait;                 // La imagen del marco
