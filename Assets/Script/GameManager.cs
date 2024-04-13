@@ -18,22 +18,11 @@ public class GameManager : MonoBehaviour
     public GameObject panelGameOver;                                 // (4) Panel que muestra los resultados a final del juego
     public GameObject panelRound;                                    // (5) Panel que muestra los resultados a final de ronda
     DataBase dataCard;                                               // (6) Base de Datos de las cartas
-    public Player player1;                                           // (7) Jugador 1
-    public Player player2;                                           // (8) Jugador 2
+    public  Player player1;                                          // (7) Jugador 1
+    public  Player player2;                                          // (8) Jugador 2
     private Player start;                                            // (9) Jugador que comienza cada ronda
     private Player playerEnd;                                        // (10) Jugador que termina cada ronda
     static public Player currentPlayer;                              // (11) Jugador actual
-
-    // Constructor 
-    public GameManager(string namePlayer1, string namePlayer2, List<Card> deck1, List<Card> deck2 )
-    {
-        // Requiere los nombres de los jugadores y sus mazos correspondientes
-        player1.name = namePlayer1;
-        player2.deck = deck1;
-
-        player2.name = namePlayer2;
-        player2.deck = deck2;
-    }
 
     // Métodos
     private void CallPanelRound()                                    // Muestra el panel (5)

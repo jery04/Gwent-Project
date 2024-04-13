@@ -16,8 +16,10 @@ public class CardDisplay : MonoBehaviour
     public Image Back;                     // La parte posterior de la imagen
     public kind_card type_Card;            // El tipo de carta
     public card_position cardPosition;     // El tipo de carta
+    public bool ClimateActive, IncreaseActive;
 
     public void Delta(int delta) => textPower.text = (int.Parse(textPower.text) + delta).ToString();    // Variar su poder (Aumentar-Disminuir)
+    public void NewPower(int delta) => textPower.text = delta.ToString();
     void Start()                           //Inicializador de parámetros
     {
         type_Card = card.typeCard;             
@@ -28,6 +30,9 @@ public class CardDisplay : MonoBehaviour
     }
     void Update()
     {
-        if (card != null) textPower.text = textPower.text;      // Actualiza el poder
+        if (card != null) 
+        {
+            textPower.text = textPower.text;      // Actualiza el poder
+        }
     }
 }

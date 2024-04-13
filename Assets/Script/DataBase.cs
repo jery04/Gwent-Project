@@ -18,31 +18,31 @@ public class DataBase : MonoBehaviour
         deckDemon.Add(new Card("6", 0, false, false, Resources.Load<Sprite>("s5"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Effects.ReturnToHand));
 
         deckDemon.Add(new Card("7", 5, true, false, Resources.Load<Sprite>("p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, Effects.TakeCard));          // Plata
-        deckDemon.Add(new Card("8", 4, true, false, Resources.Load<Sprite>("p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S));
-        deckDemon.Add(new Card("8", 4, true, false, Resources.Load<Sprite>("p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S));
-        deckDemon.Add(new Card("9", 2, true, false, Resources.Load<Sprite>("p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.M));
-        deckDemon.Add(new Card("10", 4, true, false, Resources.Load<Sprite>("p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R));
-        deckDemon.Add(new Card("11", 2, true, false, Resources.Load<Sprite>("p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MS));
-        deckDemon.Add(new Card("11", 2, true, false, Resources.Load<Sprite>("p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MS));
+        deckDemon.Add(new Card("8", 4, true, false, Resources.Load<Sprite>("p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, Effects.MultiplyPower));
+        deckDemon.Add(new Card("8", 4, true, false, Resources.Load<Sprite>("p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, Effects.MultiplyPower));
+        deckDemon.Add(new Card("9", 2, true, false, Resources.Load<Sprite>("p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.M, Effects.ClearRow));
+        deckDemon.Add(new Card("10", 4, true, false, Resources.Load<Sprite>("p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, Effects.MultiplyPower));
+        deckDemon.Add(new Card("11", 2, true, false, Resources.Load<Sprite>("p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MS, Effects.ClimateOut));
+        deckDemon.Add(new Card("11", 2, true, false, Resources.Load<Sprite>("p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MS, Effects.ClimateOut));
         deckDemon.Add(new Card("12", 3, true, false, Resources.Load<Sprite>("p6"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, Effects.TakeCard));
         deckDemon.Add(new Card("12", 3, true, false, Resources.Load<Sprite>("p6"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, Effects.TakeCard));
 
-        deckDemon.Add(new Card("13", 8, true, true, Resources.Load<Sprite>("o1"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.R));                            // Oro
-        deckDemon.Add(new Card("14", 6, true, true, Resources.Load<Sprite>("o2"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MRS));
+        deckDemon.Add(new Card("13", 8, true, true, Resources.Load<Sprite>("o1"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.R, Effects.RemoveMin));                            // Oro
+        deckDemon.Add(new Card("14", 6, true, true, Resources.Load<Sprite>("o2"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MRS, Effects.Average));
         deckDemon.Add(new Card("15", 5, true, true, Resources.Load<Sprite>("o3"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, Effects.TakeCard));
-        deckDemon.Add(new Card("16", 9, true, true, Resources.Load<Sprite>("o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.M));
-        deckDemon.Add(new Card("17", 7, true, true, Resources.Load<Sprite>("o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MR));
+        deckDemon.Add(new Card("16", 9, true, true, Resources.Load<Sprite>("o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.M, Effects.RemoveMax));
+        deckDemon.Add(new Card("17", 7, true, true, Resources.Load<Sprite>("o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MR, Effects.ClearRow));
 
         deckDemon.Add(new Card("18", 0, false, false, Resources.Load<Sprite>("d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, Effects.ClimateOut));                              // Despeje
         deckDemon.Add(new Card("19", 0, false, false, Resources.Load<Sprite>("d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, Effects.ClimateOut));
 
-        deckDemon.Add(new Card("20", 0, false, false, Resources.Load<Sprite>("c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, Effects.DiminishPower));  // Clima
-        deckDemon.Add(new Card("21", 0, false, false, Resources.Load<Sprite>("c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, Effects.DiminishPower));
-        deckDemon.Add(new Card("22", 0, false, false, Resources.Load<Sprite>("c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, Effects.DiminishPower));
+        deckDemon.Add(new Card("20", -1, false, false, Resources.Load<Sprite>("c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, Effects.Climate));  // Clima
+        deckDemon.Add(new Card("21", -1, false, false, Resources.Load<Sprite>("c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, Effects.Climate));
+        deckDemon.Add(new Card("22", -1, false, false, Resources.Load<Sprite>("c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, Effects.Climate));
 
-        deckDemon.Add(new Card("23", 0, false, false, Resources.Load<Sprite>("a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, Effects.Increase));      // Aumento
-        deckDemon.Add(new Card("24", 0, false, false, Resources.Load<Sprite>("a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, Effects.Increase));
-        deckDemon.Add(new Card("25", 0, false, false, Resources.Load<Sprite>("a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, Effects.Increase));
+        deckDemon.Add(new Card("23", 2, false, false, Resources.Load<Sprite>("a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, Effects.Increase));      // Aumento
+        deckDemon.Add(new Card("24", 2, false, false, Resources.Load<Sprite>("a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, Effects.Increase));
+        deckDemon.Add(new Card("25", 2, false, false, Resources.Load<Sprite>("a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, Effects.Increase));
 
 
 

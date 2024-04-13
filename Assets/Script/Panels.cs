@@ -9,7 +9,6 @@ public class Panels : MonoBehaviour
     public List<Card.card_position> position = new List<Card.card_position>();     // Posiciones que acepta el panel 
     public int maxItems;                                                           // Máxima cantidad de cartas 
     public int itemsCounter;                                                       // (0) Cantidad de cartas actualmente
-    public GameObject IncreaseRow;
 
     public int CounterUnity()
     {
@@ -29,19 +28,20 @@ public class Panels : MonoBehaviour
     }
     private void Remove()                                                          // (1) Remueve cartas innecesarias del panel
     {
-        if(cards != null && cards.Count > 0)
-        {
-            for (int i = 0; i < cards.Count; i++)
-            {
-                if (cards[i] == null)
-                    cards.RemoveAt(i);
-
-                else if (cards[i].GetComponent<CardDisplay>().card.IsUnity && int.Parse(cards[i].GetComponent<CardDisplay>().textPower.text) <= 0) 
+        if(cards != null && cards.Count > 0) 
+        { 
+            for (int i = 0; i < cards.Count; i++) 
+            { 
+                if (cards[i] == null) 
+                { 
+                    cards.RemoveAt(i); 
+                } 
+                else if (cards[i].GetComponent<CardDisplay>().card.IsUnity && int.Parse(cards[i].GetComponent<CardDisplay>().textPower.text) <= 0)
                 {
                     GameObject.Destroy(cards[i]);
                     cards.RemoveAt(i);
                 }
-            }
+            } 
         }
     }
     public int PowerRow()                                                          // (2) Poder acumulado del panel (fila)
@@ -51,7 +51,7 @@ public class Panels : MonoBehaviour
         if (cards != null && cards.Count > 0)
         {
             foreach (GameObject item in cards)
-                if(item!= null)
+                if(item != null && item.GetComponent<CardDisplay>().card.IsUnity)
                     powerRow += int.Parse(item.GetComponent<CardDisplay>().textPower.text);
         }
 

@@ -8,6 +8,54 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    private void ActiveEffect(CardDisplay item)
+    {
+        Player player1 = GameObject.Find("GameManager").GetComponent<GameManager>().player1;
+        Player player2 = GameObject.Find("GameManager").GetComponent<GameManager>().player2;
+        if (item.card.typeCard == Card.kind_card.climate)
+        {
+            item.card.effect(player1, player2, 0, item.card.power);
+        }
+        else if (item.card.typeCard == Card.kind_card.increase)
+        {
+            item.card.effect(GameManager.currentPlayer);
+        }
+        else if (item.card.typeCard == Card.kind_card.clear)
+        {
+            item.card.effect(GameManager.currentPlayer);
+        }
+        else if (item.card.name == "7" || item.card.name == "12")
+        {
+            item.card.effect(GameManager.currentPlayer);
+        }
+
+        else if (item.card.name == "8" || item.card.name == "10")
+        {
+            item.card.effect(GameManager.currentPlayer, item);
+        }
+        else if (item.card.name == "11")
+        {
+            item.card.effect(GameManager.currentPlayer, 0);
+        }
+        else if (item.card.name == "16")
+        {
+            item.card.effect(GameManager.currentPlayer);
+        }
+        else if (item.card.name == "13")
+        {
+            if(player1.myTurn)
+                item.card.effect(player2);
+            else item.card.effect(player1);
+        }
+        else if (item.card.name == "14")
+        {
+            item.card.effect(GameManager.currentPlayer);
+        }
+        else if (item.card.name == "17")
+        {
+            item.card.effect(GameManager.currentPlayer);
+        }
+    }
     private bool CardPosition(Drop item, GameObject item2)          // Verifica que la posición de la carta coincida con la del panel
     {
         foreach (Card.card_position i in item.GetComponent<Panels>().position)
@@ -36,8 +84,11 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             this.GetComponent<Panels>().cards.Add(eventData.pointerDrag);   // Adiciona la carta al panel donde es colocada (List)
             GameManager.currentPlayer.hand.GetComponent<Panels>().cards.Remove(eventData.pointerDrag);  // Elimina la carta de la mano del jugador
             GameManager.currentPlayer.oneMove = true;                       // Indica que el jugador ha realizado un movimiento
+
             if (eventData.pointerDrag.GetComponent<CardDisplay>().card.effect != null)
-                eventData.pointerDrag.GetComponent<CardDisplay>().card.effect(GameManager.currentPlayer);
+            {
+                ActiveEffect(eventData.pointerDrag.GetComponent<CardDisplay>());
+            }
         }                                               
     }
 }
