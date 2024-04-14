@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 2066407438}
   - component: {fileID: 2066407437}
   m_Layer: 5
-  m_Name: Image
+  m_Name: GameOfThrone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

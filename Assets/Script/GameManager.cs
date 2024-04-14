@@ -152,8 +152,8 @@ public class GameManager : MonoBehaviour
         dataCard.CreateCard();                                        // Crea las instancias de las cartas (crea los decks)
         round = 0;                                                    // Declara la ronda 1 (0)
     
-        player1.deck = dataCard.deckDemon;                            // Asigna los decks a los jugadores
-        player2.deck = dataCard.deckHeavenly;
+        player1.deck = dataCard.deckStark;                            // Asigna los decks a los jugadores
+        player2.deck = dataCard.deckTargaryen;
         start = player1;                                              //  Declara el jugador que terminará la ronda
         playerEnd = player2;
         currentPlayer = player1;                                      // Declara el jugador que comienza la ronda 1
