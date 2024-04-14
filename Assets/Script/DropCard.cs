@@ -60,6 +60,7 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;   
             GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);
             GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition);
+            GameObject.Find("Panel_Card").transform.GetChild(9).GetComponent<Text>().text = this.name;
         }
 
     }

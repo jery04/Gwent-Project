@@ -102,6 +102,8 @@ MonoBehaviour:
   Back: {fileID: 4318210015432970224}
   type_Card: 0
   cardPosition: 0
+  ClimateActive: 0
+  IncreaseActive: 0
 --- !u!114 &5728242484522748464
 MonoBehaviour:
   m_ObjectHideFlags: 0

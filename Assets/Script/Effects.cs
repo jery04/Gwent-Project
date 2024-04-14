@@ -146,4 +146,8 @@ public static class Effects
             }
         }
     }  
+    public static void JonSnow(params object[] item)
+    {
+
+    }
 }

@@ -22,9 +22,10 @@ public class Card : ScriptableObject
     public bool IsHeroe;                                                                // Es carta héroe
     public delegate void EffectDelegate(params object[] item);
     public EffectDelegate effect;                                                       // Delegado que almacena el efecto
+    private AudioClip clip;
 
     // Constructores (Sobrecargado)
-    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard)
+    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, AudioClip clip = null)
     {
         this.name = name;
         this.typeCard = typeCard;
@@ -33,8 +34,9 @@ public class Card : ScriptableObject
         this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
+        this.clip = clip;
     }
-    public Card(string name, int power, bool IsUnity,  bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, EffectDelegate effect)
+    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, EffectDelegate effect, AudioClip clip = null)
     {
         this.name = name;
         this.effect = effect;
@@ -44,8 +46,9 @@ public class Card : ScriptableObject
         this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
+        this.clip = clip;
     }
-    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition)
+    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition, AudioClip clip = null)
     {
         this.name = name;
         this.IsUnity = IsUnity;
@@ -55,6 +58,7 @@ public class Card : ScriptableObject
         this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
+        this.clip = clip;
     }
     public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition, EffectDelegate effect)
     {
@@ -67,5 +71,29 @@ public class Card : ScriptableObject
         this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
+    }
+    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition, EffectDelegate effect, AudioClip clip = null)
+    {
+        this.name = name;
+        this.effect = effect;
+        this.IsUnity = IsUnity;
+        this.IsHeroe = IsHeroe;
+        this.typeCard = typeCard;
+        this.cardPosition = cardPosition;
+        this.power = power;
+        this.artWork = artWork;
+        this.portrait = portrait;
+        this.clip = clip;
+    }
+
+    // Métodos
+    public void ActiveClip()
+    {
+        if(clip != null)
+        {
+            AudioSource audioEffect = GameObject.Find("MusicCards").GetComponent<AudioSource>();
+            audioEffect.clip = this.clip;
+            audioEffect.Play();
+        }
     }
 }
