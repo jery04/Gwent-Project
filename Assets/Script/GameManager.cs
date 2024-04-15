@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         {
             panelRound.SetActive(true);
             Transform panel = panelRound.GetComponent<CanvasGroup>().transform;
-            panel.GetChild(3).GetComponent<Image>().sprite = Winner(round).image;
+            panel.GetChild(3).GetComponent<Text>().text = Winner(round).playerName;
             yield return new WaitForSeconds(3);
 
             panelRound.SetActive(false);
@@ -97,6 +97,10 @@ public class GameManager : MonoBehaviour
         panelGameOver.SetActive(true);
         Transform panel = panelGameOver.GetComponent<CanvasGroup>().transform;
 
+        //Name Players
+        panel.GetChild(17).GetComponent<Text>().text = player1.playerName;
+        panel.GetChild(18).GetComponent<Text>().text = player2.playerName;
+
         //Player1
         panel.GetChild(6).GetComponent<Text>().text = player1.powerRound[0].ToString();
         panel.GetChild(7).GetComponent<Text>().text = player1.powerRound[1].ToString();
@@ -109,7 +113,7 @@ public class GameManager : MonoBehaviour
 
         //Winner
         if(Winner() != null)
-        panel.GetChild(18).GetComponent<Image>().sprite = Winner().image;
+        panel.GetChild(15).GetComponent<Text>().text = Winner().playerName;
     }
     private Player Winner(int round)                                 // Devuelve el ganador en una ronda (null si hay empate)
     {
