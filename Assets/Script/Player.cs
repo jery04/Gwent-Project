@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
 {
     #region Propiedades
     public string playerName;                              // Nombre del jugador
-    public Sprite image;                                   // Imagen-player
     public List<Card> deck = new List<Card>();             // Mazo del jugador
     public int[] powerRound;                               // Puntos acumulados por rondas
 
@@ -117,7 +116,6 @@ public class Player : MonoBehaviour
     {
         powerRound = new int[3] { 0, 0, 0 };              // Inicializa la puntuación de las ronndas en cero
     }
-
     public void Update()
     {
         GeneralPower(GameManager.round);                 // Actualiza el poder

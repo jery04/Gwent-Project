@@ -71,16 +71,12 @@ public class GameManager : MonoBehaviour
                 if (player1.powerRound[round] > player2.powerRound[round])
                 {
                     player1.myTurn = true; player2.myTurn = false;
-                    currentPlayer = player1;
-                    start = player1;
-                    playerEnd = player2;
+                    currentPlayer = player1; start = player1; playerEnd = player2;
                 }
                 else
                 {
                     player1.myTurn = false; player2.myTurn = true;
-                    currentPlayer = player2;
-                    start = player2;
-                    playerEnd = player1;
+                    currentPlayer = player2; start = player2; playerEnd = player1;
                 }
                 round += 1;
 
@@ -144,16 +140,19 @@ public class GameManager : MonoBehaviour
         return null;
     }
     public void ButtonGoBack() => Invoke("GoBack", 0.2f);
-    private void GoBack() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);  // Cambia de escena (menú principal)
+    private void GoBack() => SceneManager.LoadScene(0);  // Cambia de escena (menú principal)
 
     void Start()
     {
         dataCard = new DataBase();                                    // Crea una instancia de la base de datos
         dataCard.CreateCard();                                        // Crea las instancias de las cartas (crea los decks)
         round = 0;                                                    // Declara la ronda 1 (0)
-    
-        player1.deck = dataCard.deckStark;                            // Asigna los decks a los jugadores
-        player2.deck = dataCard.deckTargaryen;
+
+        player1.deck = Chose.deck1;                            // Asigna los decks a los jugadores
+        player2.deck = Chose.deck2;
+        player1.playerName = Chose.name1;
+        player2.playerName = Chose.name2;
+
         start = player1;                                              //  Declara el jugador que terminará la ronda
         playerEnd = player2;
         currentPlayer = player1;                                      // Declara el jugador que comienza la ronda 1

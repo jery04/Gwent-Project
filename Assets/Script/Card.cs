@@ -23,6 +23,7 @@ public class Card : ScriptableObject
     public delegate void EffectDelegate(params object[] item);
     public EffectDelegate effect;                                                       // Delegado que almacena el efecto
     private AudioClip clip;
+    public int climateField;
 
     // Constructores (Sobrecargado)
     public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, AudioClip clip = null)

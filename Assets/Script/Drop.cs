@@ -12,48 +12,33 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     {
         Player player1 = GameObject.Find("GameManager").GetComponent<GameManager>().player1;
         Player player2 = GameObject.Find("GameManager").GetComponent<GameManager>().player2;
+
         if (item.card.typeCard == Card.kind_card.climate)
         {
-            item.card.effect(player1, player2, 0, item.card.power);
+            item.card.climateField = Random.Range(0, 3);
+            item.card.effect(player1, player2, item.card.climateField, item.card.power);
         }
-        else if (item.card.typeCard == Card.kind_card.increase)
+        else if (item.card.typeCard == Card.kind_card.increase || item.card.typeCard == Card.kind_card.bait)
         {
             item.card.effect(GameManager.currentPlayer);
         }
         else if (item.card.typeCard == Card.kind_card.clear)
         {
-            item.card.effect(GameManager.currentPlayer);
+            item.card.effect(GameManager.currentPlayer, item.card.climateField);
         }
-        else if (item.card.name == "7" || item.card.name == "12")
+        else if (item.card.name == "Sansa" || item.card.name == "Theon" || item.card.name == "Arya" || item.card.name == "Mag Mar" || item.card.name == "Beric" || item.card.name == "Eddard")
         {
             item.card.effect(GameManager.currentPlayer);
         }
-
-        else if (item.card.name == "8" || item.card.name == "10")
-        {
-            item.card.effect(GameManager.currentPlayer, item);
-        }
-        else if (item.card.name == "11")
-        {
-            item.card.effect(GameManager.currentPlayer, 0);
-        }
-        else if (item.card.name == "16")
-        {
-            item.card.effect(GameManager.currentPlayer);
-        }
-        else if (item.card.name == "13")
+        else if (item.card.name == "Kristofer")
         {
             if(player1.myTurn)
                 item.card.effect(player2);
             else item.card.effect(player1);
         }
-        else if (item.card.name == "14")
+        else if (item.card.name == "La Guardia" || item.card.name == "Garra")
         {
-            item.card.effect(GameManager.currentPlayer);
-        }
-        else if (item.card.name == "17")
-        {
-            item.card.effect(GameManager.currentPlayer);
+            item.card.effect(GameManager.currentPlayer, item);
         }
     }
     private bool CardPosition(Drop item, GameObject item2)          // Verifica que la posición de la carta coincida con la del panel

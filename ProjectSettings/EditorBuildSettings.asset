@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 78395f0eff24db44394b76bbb3be93c6
   - enabled: 1
+    path: Assets/Scenes/ChosingDeck.unity
+    guid: 0a504f26a0e0bed48b320b7c88aff994
+  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 4216d95ccc01d9f4ea21eb5db840f9dc
   m_configObjects: {}
