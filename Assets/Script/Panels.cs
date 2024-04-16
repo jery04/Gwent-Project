@@ -10,7 +10,7 @@ public class Panels : MonoBehaviour
     public int maxItems;                                                           // Máxima cantidad de cartas 
     public int itemsCounter;                                                       // (0) Cantidad de cartas actualmente
 
-    public int CounterUnity()
+    public int CounterUnity()                                                      // Cantidad de cartas de tipo Unidad
     {
         int counter = 0;
         foreach(GameObject item in cards)
@@ -26,23 +26,24 @@ public class Panels : MonoBehaviour
             cards.RemoveAt(i);
         }
     }
-    private void Remove()                                                          // (1) Remueve cartas innecesarias del panel
+    public void Remove()                                                           // (1) Remueve cartas innecesarias del panel
     {
-        if(cards != null && cards.Count > 0) 
+        if(cards.Count > 0) 
         { 
             for (int i = 0; i < cards.Count; i++) 
             { 
                 if (cards[i] == null) 
-                { 
-                    cards.RemoveAt(i); 
+                {
+                    cards.RemoveAt(i);
                 } 
-                else if (cards[i].GetComponent<CardDisplay>().card.IsUnity && int.Parse(cards[i].GetComponent<CardDisplay>().textPower.text) <= 0)
+                else if (cards[i].GetComponent<CardDisplay>().card.IsUnity && cards[i].GetComponent<CardDisplay>().Power() <= 0)
                 {
                     GameObject.Destroy(cards[i]);
                     cards.RemoveAt(i);
                 }
             } 
         }
+        itemsCounter = cards.Count;                                                 // Actualiza el contador (0)   
     }
     public int PowerRow()                                                          // (2) Poder acumulado del panel (fila)
     {
@@ -52,7 +53,7 @@ public class Panels : MonoBehaviour
         {
             foreach (GameObject item in cards)
                 if(item != null && item.GetComponent<CardDisplay>().card.IsUnity)
-                    powerRow += int.Parse(item.GetComponent<CardDisplay>().textPower.text);
+                    powerRow += item.GetComponent<CardDisplay>().Power();
         }
 
         return powerRow;
@@ -67,10 +68,9 @@ public class Panels : MonoBehaviour
     {
 
     }
-    private void Update()
+    private void Update()                                                          // Actualización de propiedades
     {
-        Remove();                                                                   // Actualiza el Método (1)                                     
-        itemsCounter = cards.Count;                                                 // Actualiza el contador (0)                              
+        Remove();                                                                   // Actualiza el Método (1)                                                         
         UnDragging();                                                               // ACtualiza el Método (3) 
     }
 }

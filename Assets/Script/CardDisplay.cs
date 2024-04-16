@@ -9,18 +9,19 @@ using static Card;
 
 public class CardDisplay : MonoBehaviour
 {
-    public Card card;                      // Almacena la carta    
-    public Text textPower;                 // El poder (int)
-    public Image artWork;                  // La imagen de la carta
-    public Image portrait;                 // La imagen del marco
-    public Image Back;                     // La parte posterior de la imagen
-    public kind_card type_Card;            // El tipo de carta
-    public card_position cardPosition;     // El tipo de carta
+    public Card card;                               // Almacena la carta    
+    public Text textPower;                          // El poder (int)
+    public Image artWork;                           // La imagen de la carta
+    public Image portrait;                          // La imagen del marco
+    public Image Back;                              // La parte posterior de la imagen
+    public kind_card type_Card;                     // El tipo de carta
+    public card_position cardPosition;              // El tipo de carta
     public bool ClimateActive, IncreaseActive;
 
+    public int Power() => Convert.ToInt32(textPower.text);                                              // Retorna su poder
+    public void NewPower(int delta) => textPower.text = delta.ToString();                               // Coloca un nuevo poder
     public void Delta(int delta) => textPower.text = (int.Parse(textPower.text) + delta).ToString();    // Variar su poder (Aumentar-Disminuir)
-    public void NewPower(int delta) => textPower.text = delta.ToString();
-    void Start()                           //Inicializador de parámetros
+    void Start()                                    // Inicializa propiedades
     {
         type_Card = card.typeCard;             
         cardPosition = card.cardPosition;
@@ -30,9 +31,7 @@ public class CardDisplay : MonoBehaviour
     }
     void Update()
     {
-        if (card != null) 
-        {
-            textPower.text = textPower.text;      // Actualiza el poder
-        }
+        if (card != null)                           // Actualiza el poder
+            textPower.text = textPower.text;        
     }
 }

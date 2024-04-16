@@ -146,7 +146,7 @@ public static class Effects
             }
         }
     }  
-    public static void JonSnow(params object[] item)
+    public static void JonSnow(params object[] item)        // Efecto del líder(Jon Snow)
     {
 
     }

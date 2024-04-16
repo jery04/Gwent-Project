@@ -5,6 +5,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR;
@@ -17,7 +18,6 @@ public class GameManager : MonoBehaviour
     public GameObject[] numberRound;                                 // (3) Panel-Display hace referencia al número de ronda
     public GameObject panelGameOver;                                 // (4) Panel que muestra los resultados a final del juego
     public GameObject panelRound;                                    // (5) Panel que muestra los resultados a final de ronda
-    DataBase dataCard;                                               // (6) Base de Datos de las cartas
     public  Player player1;                                          // (7) Jugador 1
     public  Player player2;                                          // (8) Jugador 2
     private Player start;                                            // (9) Jugador que comienza cada ronda
@@ -32,7 +32,12 @@ public class GameManager : MonoBehaviour
         {
             panelRound.SetActive(true);
             Transform panel = panelRound.GetComponent<CanvasGroup>().transform;
-            panel.GetChild(3).GetComponent<Text>().text = Winner(round).playerName;
+
+            if (Winner(round) != null)
+                panel.GetChild(3).GetComponent<Text>().text = Winner(round).playerName;
+            else 
+                panel.GetChild(3).GetComponent<Text>().text = "DRAW";
+
             yield return new WaitForSeconds(3);
 
             panelRound.SetActive(false);
@@ -143,28 +148,29 @@ public class GameManager : MonoBehaviour
         }
         return null;
     }
-    public void ButtonGoBack() => Invoke("GoBack", 0.2f);
-    private void GoBack() => SceneManager.LoadScene(0);  // Cambia de escena (menú principal)
+    public void ButtonGoBack() => Invoke("GoBack", 0.2f);            // Volver al Menú Principal
+    private void GoBack() => SceneManager.LoadScene(0);              // Cambia de escena (menú principal)
+    public void Yes() => currentPlayer.ButtonTrigger(true);          // Botón(Yes) tomar cartas antes de la batalla
+    public void Not() => currentPlayer.ButtonNot();                  // Botón(No) tomar cartas antes de la batalla
 
-    void Start()
+    void Start()                                                     // Inicialización de propiedades
     {
-        dataCard = new DataBase();                                    // Crea una instancia de la base de datos
-        dataCard.CreateCard();                                        // Crea las instancias de las cartas (crea los decks)
-        round = 0;                                                    // Declara la ronda 1 (0)
+        round = 0;                                                    // Declara el inicio de ronda 1 (0)
 
-        player1.deck = Chose.deck1;                            // Asigna los decks a los jugadores
+        player1.deck = Chose.deck1;                                   // Asigna los decks a los jugadores
         player2.deck = Chose.deck2;
-        player1.playerName = Chose.name1;
+        player1.playerName = Chose.name1;                             // Asigna los nombres a los jugadores
         player2.playerName = Chose.name2;
 
-        start = player1;                                              //  Declara el jugador que terminará la ronda
-        playerEnd = player2;
+        start = player1;                                              //  Declara el jugador que empieza la ronda
+        playerEnd = player2;                                          //  Declara el jugador que termina la ronda
         currentPlayer = player1;                                      // Declara el jugador que comienza la ronda 1
-        player1.TakeCard();                                           // Agrega cartas a la mano
+
+        player1.TakeCard();                                           // Agrega cartas a la mano de los jugadores
         player2.TakeCard();
     }
     void Update()
     {
-        numberRound[round].GetComponent<CanvasGroup>().alpha = 1;     // Actualiza el panel (3) con la ronda ronda actual
+        numberRound[round].GetComponent<CanvasGroup>().alpha = 1;    // Actualiza el panel (3) con la ronda actual
     }
 }

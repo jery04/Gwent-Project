@@ -6,33 +6,32 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject musicManager;
-    public Button musicButton;
-    public Sprite play;
-    public Sprite stop;
-    bool sound = true;
-    public void ActiveSound()
+    public GameObject musicManager;               // Objeto que almacena la musica de fondo y el sonido de los botones
+    public Button buttonMute;                     // Botón para silenciar la música de fondo 
+    public Sprite playMusicIcon;                  // Imagen de boton Play         
+    public Sprite stopMusicIcon;                  // Imagen de boton Stop  
+    bool sound = true;                            // Estado(Active) del sonido de fondo
+    public void ActiveSound()                     // Modifica el estado(Active) del sonido de fondo
     {
-        if (sound)
+        if (sound)                                // Si está sonando lo pausa                                
         {
-            musicButton.GetComponent<Image>().sprite = play;
+            buttonMute.GetComponent<Image>().sprite = playMusicIcon;
             musicManager.GetComponent<AudioSource>().Stop();
             sound = false;
         }
-
-        else
+        else                                       // Si está pausado lo reproduce                                       
         {
-            musicButton.GetComponent<Image>().sprite = stop;
+            buttonMute.GetComponent<Image>().sprite = stopMusicIcon;
             musicManager.GetComponent<AudioSource>().Play();
             sound = true;
         }
 
     }
-    public void ActionEvent(string nameMethod)     // Llama a la próxima escena
+    public void ActionEvent(string nameMethod)    // Llama a la próxima escena
     {
         Invoke(nameMethod, 0.2f);
     }
-    private void GoPlay()
+    private void GoPlay()                         // Llama a la próxima escena
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

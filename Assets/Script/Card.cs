@@ -21,9 +21,9 @@ public class Card : ScriptableObject
     public bool IsUnity;                                                                // Es carta Unidad?
     public bool IsHeroe;                                                                // Es carta héroe
     public delegate void EffectDelegate(params object[] item);
-    public EffectDelegate effect;                                                       // Delegado que almacena el efecto
-    private AudioClip clip;
-    public int climateField;
+    public EffectDelegate effect;                                                       // Delegado que almacena el efecto(Método)
+    private AudioClip clip;                                                             // Audio de las cartas al colocarse
+    public int climateField;                                                            // Fila que afectan las cartas climas
 
     // Constructores (Sobrecargado)
     public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, AudioClip clip = null)
@@ -88,7 +88,7 @@ public class Card : ScriptableObject
     }
 
     // Métodos
-    public void ActiveClip()
+    public void ActiveClip()                                                            // Activa el AudioClip de la carta (En caso de que contenga)
     {
         if(clip != null)
         {

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataBase : MonoBehaviour 
+public class DataBase : MonoBehaviour
 {
     public List<Card> deckStark = new List<Card>();         // Mazo1 (Stark)
     public List<Card> deckTargaryen = new List<Card>();     // Mazo2 (Targaryen)
-    public List<Card> deckDead = new List<Card>();          // Mazo3 (Caminantes Blancos)      
-    public void CreateCard()                                // Crea las instancias de las cartas
+    public List<Card> deckDead = new List<Card>();          // Mazo3 (Caminantes Blancos)(Dead)
+    public DataBase() => CreateCard();
+                                
+    private void CreateCard()                                // Crea las instancias de las cartas
     {
         // Mazo1 (Casa Stark/Norte)
         // Lider

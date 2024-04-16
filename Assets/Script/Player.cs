@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,22 +10,28 @@ using UnityEngine.XR;
 
 public class Player : MonoBehaviour
 {
-    #region Propiedades
+    // Propiedades
+    #region Property
     public string playerName;                              // Nombre del jugador
     public List<Card> deck = new List<Card>();             // Mazo del jugador
     public int[] powerRound;                               // Puntos acumulados por rondas
+    public int takeCardStartGame = 0;                      // Cantidad de cartas cambiadas antes de la batalla
 
     public bool myTurn;                                    // Dicta el turno del jugador
     public bool SkipRound;                                 // Dicta si el jugador pasa la ronda
     public bool oneMove;                                   // Dicta si el jugador ya ha jugado una carta
     public Text counterDeck;
 
+    // Paneles
     public GameObject hand;                                // Cartas de la mano
     public GameObject[] field;                             // Cartas del campo(Melee-Range-Siege)
     public GameObject[] increase;                          // Cartas de aumento
     public GameObject climate;                             // Cartas clima
+    public GameObject panelTakeCard;                       // Panel para robar carta antes de la batalla
+    public GameObject InfoTakeCard;                        // Boton-Info que indica poder robar cartas
     #endregion 
 
+    // Métodos 
     public void Cementery()                                // Envía todas las cartas al cementerio
     {
         climate.GetComponent<Panels>().RemoveAll();        // Envía las cartas de climate al cementerio
@@ -43,7 +50,7 @@ public class Player : MonoBehaviour
 
         powerRound[round] = power;
     }
-    private void BackImageAndDrag()
+    private void BackImageAndDrag()                        // Modifica el estado(Active) del Script Drag e imágenes
     {
         if (!myTurn)                                                        // Si no está en juego...
         {
@@ -82,11 +89,12 @@ public class Player : MonoBehaviour
         GameObject prefarb = Resources.Load<GameObject>("Card");
         for (int i = 0; i < max; i++)
         {
-            int rand = Random.Range(1, deck.Count);
+            int rand = UnityEngine.Random.Range(1, deck.Count);
             GameObject a = Instantiate(prefarb, hand.transform);
-
+            a.GetComponent<EventTrigger>().enabled = false;
             a.GetComponent<CardDisplay>().card = deck[rand];
             a.name = deck[rand].name;
+
             hand.GetComponent<Panels>().cards.Add(a);
             deck.RemoveAt(rand);
 
@@ -95,21 +103,50 @@ public class Player : MonoBehaviour
     }
     public void TakeCard(int num = 0)                      // Tomar cartas del deck
     {
-        int numChild = hand.transform.childCount;
+        int numChild = hand.GetComponent<Panels>().itemsCounter;
 
         if (numChild == 0)
             StartCoroutine(For(10));                      // Tomar 10 iniciales 
 
-        else if (num != 0 && numChild < 10)               // Toma 1 carta
+        else if((num != 0)&& (numChild < 10))
             StartCoroutine(For(1));
 
-        else if ((numChild != 0) && (numChild < 10))      // Tomar 2 cartas o menos
+        else if (numChild < 10)      // Tomar 2 cartas o menos
         {
             if (10 - numChild <= 2)
                 StartCoroutine(For(10 - numChild));
             else
                 StartCoroutine(For(2));
         }
+    }
+    public void ButtonInfoTakeCard()                       // Modifica la visibilidad del botón Info
+    {
+        if(GameManager.round == 0 && myTurn && takeCardStartGame < 2)
+            InfoTakeCard.SetActive(true);
+        else 
+            InfoTakeCard.SetActive(false);
+    }           
+    public void Active(bool active)                        // Modifica el estado(Active) del componente EventTrigger
+    {
+        for (int i = 0; i < hand.GetComponent<Panels>().itemsCounter; i++)
+        {
+            hand.GetComponent<Panels>().cards[i].GetComponent<EventTrigger>().enabled = active;
+        }
+    }
+    public void ButtonTrigger(bool active)                 // Botón(Yes) tomar cartas antes de la batalla
+    {
+        Active(active);
+        panelTakeCard.SetActive(false);
+        takeCardStartGame += 1;
+    }
+    public void ButtonNot()                                // Botón(No) tomar cartas antes de la batalla
+    {
+        takeCardStartGame = 2;
+        panelTakeCard.SetActive(false);
+    }
+    public void ActivePanelTakeCard()                      // Muestra el panel TakeCard
+    {
+        panelTakeCard.SetActive(true);
     }
 
     void Start()
@@ -118,8 +155,10 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
+        ButtonInfoTakeCard();
         GeneralPower(GameManager.round);                 // Actualiza el poder
-        BackImageAndDrag();                              // Actualiza el Método
         counterDeck.text = deck.Count.ToString();
+        BackImageAndDrag();                              // Actualiza el Método
+        if (oneMove) takeCardStartGame = 2;              // Si juega una carta se desactiva la opcion TakeCard al inicio
     }
 }
