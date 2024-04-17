@@ -39,20 +39,21 @@ public class DataBase : MonoBehaviour
         deckStark.Add(new Card("Cuervo", "Stark", 0, false, false, Resources.Load<Sprite>("s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, Resources.Load<AudioClip>("Audios/Cuervo")));
 
         // Plata
-        deckStark.Add(new Card("Sansa", "Stark", 5, true, false, Resources.Load<Sprite>("p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.TakeCard));          
+        deckStark.Add(new Card("Sansa", "Stark", 5, true, false, Resources.Load<Sprite>("p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.DrawCard));          
+        deckStark.Add(new Card("La Guardia", "Stark", 4, true, false, Resources.Load<Sprite>("p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/WinterIsComing")));
         deckStark.Add(new Card("La Guardia", "Stark", 4, true, false, Resources.Load<Sprite>("p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/WinterIsComing")));
         deckStark.Add(new Card("La Guardia", "Stark", 4, true, false, Resources.Load<Sprite>("p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/WinterIsComing")));
         deckStark.Add(new Card("Theon", "Stark", 2, true, false, Resources.Load<Sprite>("p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.M, txt[6], Effects.ClearRow));
-        deckStark.Add(new Card("Garra", "Stark", 4, true, false, Resources.Load<Sprite>("p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[5], Effects.MultiplyPower));
-        deckStark.Add(new Card("Beric", "Stark", 2, true, false, Resources.Load<Sprite>("p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MS, txt[4], Effects.TakeCard));
-        deckStark.Add(new Card("Beric", "Stark", 2, true, false, Resources.Load<Sprite>("p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MS, txt[4], Effects.TakeCard));
+        deckStark.Add(new Card("Garra", "Stark", 4, true, false, Resources.Load<Sprite>("p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[3], Effects.RemoveMin));
+        deckStark.Add(new Card("Beric", "Stark", 2, true, false, Resources.Load<Sprite>("p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MS, txt[4], Effects.DrawCard));
+        deckStark.Add(new Card("Beric", "Stark", 2, true, false, Resources.Load<Sprite>("p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MS, txt[4], Effects.DrawCard));
 
         // Oro
         deckStark.Add(new Card("Kristofer", "Stark", 8, true, true, Resources.Load<Sprite>("o1"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.R, txt[3], Effects.RemoveMin));                           
         deckStark.Add(new Card("Arya", "Stark", 6, true, true, Resources.Load<Sprite>("o2"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MRS, txt[7], Effects.Average));
-        deckStark.Add(new Card("Eddard", "Stark", 5, true, true, Resources.Load<Sprite>("o3"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, txt[4], Effects.TakeCard));
-        deckStark.Add(new Card("Mag Mar", "Stark", 9, true, true, Resources.Load<Sprite>("o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.M, txt[2], Effects.RemoveMax, Resources.Load<AudioClip>("Audios/Gigante")));
-        deckStark.Add(new Card("Wun Wun", "Stark", 7, true, true, Resources.Load<Sprite>("o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MR, txt[6], Effects.ClearRow, Resources.Load<AudioClip>("Audios/Gigante")));
+        deckStark.Add(new Card("Eddard", "Stark", 5, true, true, Resources.Load<Sprite>("o3"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, txt[4], Effects.DrawCard));
+        deckStark.Add(new Card("Mag Mar", "Stark", 6, true, true, Resources.Load<Sprite>("o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.M, txt[2], Effects.RemoveMax, Resources.Load<AudioClip>("Audios/Gigante")));
+        deckStark.Add(new Card("Wun Wun", "Stark", 9, true, true, Resources.Load<Sprite>("o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MR, txt[6], Effects.ClearRow, Resources.Load<AudioClip>("Audios/Gigante")));
 
         // Despeje
         deckStark.Add(new Card("Ingrid", "Stark", 0, false, false, Resources.Load<Sprite>("d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut, Resources.Load<AudioClip>("Audios/Ingrid")));                             
@@ -83,22 +84,22 @@ public class DataBase : MonoBehaviour
         deckTargaryen.Add(new Card("Varys", "Targareyn",0, false, false, Resources.Load<Sprite>("2s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));
 
         // Plata
-        deckTargaryen.Add(new Card("Guerrero1", "Targareyn", 3, true, false, Resources.Load<Sprite>("2p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.TakeCard, Resources.Load<AudioClip>("Audios/Espadas")));    //Espadas                   
+        deckTargaryen.Add(new Card("Guerrero1", "Targareyn", 3, true, false, Resources.Load<Sprite>("2p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.DrawCard, Resources.Load<AudioClip>("Audios/Espadas")));    //Espadas                   
         deckTargaryen.Add(new Card("Guerrero2", "Targareyn", 5, true, false, Resources.Load<Sprite>("2p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, "", null, Resources.Load<AudioClip>("Audios/Espadas")));
         deckTargaryen.Add(new Card("8Guerrero3", "Targareyn", 4, true, false, Resources.Load<Sprite>("2p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/Espadas")));
-        deckTargaryen.Add(new Card("9Guerrero4", "Targareyn", 3, true, false, Resources.Load<Sprite>("2p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MR, txt[4], Effects.TakeCard, Resources.Load<AudioClip>("Audios/Espadas")));
+        deckTargaryen.Add(new Card("9Guerrero4", "Targareyn", 3, true, false, Resources.Load<Sprite>("2p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MR, txt[4], Effects.DrawCard, Resources.Load<AudioClip>("Audios/Espadas")));
         deckTargaryen.Add(new Card("8Guerrero3", "Targareyn", 4, true, false, Resources.Load<Sprite>("2p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/Espadas")));
-        deckTargaryen.Add(new Card("Guerrero4", "Targareyn", 3, true, false, Resources.Load<Sprite>("2p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MR, txt[4], Effects.TakeCard, Resources.Load<AudioClip>("Audios/Espadas")));
+        deckTargaryen.Add(new Card("8Guerrero3", "Targareyn", 4, true, false, Resources.Load<Sprite>("2p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/Espadas")));
+        deckTargaryen.Add(new Card("Guerrero4", "Targareyn", 3, true, false, Resources.Load<Sprite>("2p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MR, txt[4], Effects.DrawCard, Resources.Load<AudioClip>("Audios/Espadas")));
         deckTargaryen.Add(new Card("Guerrero5", "Targareyn", 4, true, false, Resources.Load<Sprite>("2p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, "", null, Resources.Load<AudioClip>("Audios/Espadas")));
-        deckTargaryen.Add(new Card("Guerrero5", "Targareyn", 4, true, false, Resources.Load<Sprite>("2p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, "", null, Resources.Load<AudioClip>("Audios/Espadas")));
-        deckTargaryen.Add(new Card("Sr. Bronn", "Targareyn", 2, true, false, Resources.Load<Sprite>("2p6"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.M, "", null, null));
+        deckTargaryen.Add(new Card("Sr. Bronn", "Targareyn", 2, true, false, Resources.Load<Sprite>("2p6"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.M, txt[3], Effects.RemoveMin, null));
         deckTargaryen.Add(new Card("Mormont", "Targareyn", 2, true, false, Resources.Load<Sprite>("2p7"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.M, txt[6], Effects.ClearRow, null));
 
         // Oro
         deckTargaryen.Add(new Card("Acero Valyrio", "Targareyn", 8, true, true, Resources.Load<Sprite>("2o1"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MRS, txt[3], Effects.RemoveMin, null));                     
         deckTargaryen.Add(new Card("Ballesta", "Targareyn", 5, true, true, Resources.Load<Sprite>("2o2"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MS, "", null, Resources.Load<AudioClip>("Audios/Caballos")));
         deckTargaryen.Add(new Card("Rhaegal", "Targareyn", 9, true, true, Resources.Load<Sprite>("2o3"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.RS, txt[2], Effects.RemoveMax, Resources.Load<AudioClip>("Audios/Dragon1")));
-        deckTargaryen.Add(new Card("Viserion", "Targareyn", 7, true, true, Resources.Load<Sprite>("2o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.R, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/Dragon2")));
+        deckTargaryen.Add(new Card("Viserion", "Targareyn", 7, true, true, Resources.Load<Sprite>("2o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.R, txt[4], Effects.DrawCard, Resources.Load<AudioClip>("Audios/Dragon2")));
         deckTargaryen.Add(new Card("Drogon", "Targareyn", 5, true, true, Resources.Load<Sprite>("2o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, txt[7], Effects.Average, Resources.Load<AudioClip>("Audios/Dragon2")));
         deckTargaryen.Add(new Card("Rey Loco", "Targareyn", 5, true, true, Resources.Load<Sprite>("2o6"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, txt[7], Effects.Average, null));
 
@@ -129,22 +130,23 @@ public class DataBase : MonoBehaviour
         deckDead.Add(new Card("Cam.Blanco3", "Dead", 0, false, false, Resources.Load<Sprite>("3s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));
 
         // Plata
-        deckDead.Add(new Card("Caminantes1", "Dead", 3, true, false, Resources.Load<Sprite>("3p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[3], Effects.RemoveMin, Resources.Load<AudioClip>("Audios/CaminanteBlanco1")));                       
-        deckDead.Add(new Card("Caminantes2", "Dead", 5, true, false, Resources.Load<Sprite>("3p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, txt[6], Effects.ClearRow, Resources.Load<AudioClip>("Audios/CaminanteBlanco2")));
-        deckDead.Add(new Card("Caminantes3", "Dead", 4, true, false, Resources.Load<Sprite>("3p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.TakeCard, Resources.Load<AudioClip>("Audios/CaminanteBlanco3")));
-        deckDead.Add(new Card("Caminantes4", "Dead", 3, true, false, Resources.Load<Sprite>("3p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MR, "", null, Resources.Load<AudioClip>("Audios/CaminanteBlanco4")));
-        deckDead.Add(new Card("Caminantes3", "Dead", 4, true, false, Resources.Load<Sprite>("3p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.TakeCard, Resources.Load<AudioClip>("Audios/CaminanteBlanco3")));
-        deckDead.Add(new Card("Caminantes4", "Dead", 3, true, false, Resources.Load<Sprite>("3p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MR,"", null, Resources.Load<AudioClip>("Audios/CaminanteBlanco4")));
-        deckDead.Add(new Card("Caminantes5", "Dead", 4, true, false, Resources.Load<Sprite>("3p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, "", null, Resources.Load<AudioClip>("Audios/CaminanteBlanco5")));
-        deckDead.Add(new Card("Caminantes5", "Dead", 4, true, false, Resources.Load<Sprite>("3p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, "", null, Resources.Load<AudioClip>("Audios/CaminanteBlanco5")));
-        deckDead.Add(new Card("Caminantes6", "Dead", 2, true, false, Resources.Load<Sprite>("3p6"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.M, txt[7], Effects.Average, Resources.Load<AudioClip>("Audios/CaminanteBlanco1")));;
+        deckDead.Add(new Card("Caminante1", "Dead", 3, true, false, Resources.Load<Sprite>("3p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[3], Effects.RemoveMin, Resources.Load<AudioClip>("Audios/CaminanteBlanco1")));                       
+        deckDead.Add(new Card("Caminante2", "Dead", 5, true, false, Resources.Load<Sprite>("3p2"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, txt[6], Effects.ClearRow, Resources.Load<AudioClip>("Audios/CaminanteBlanco2")));
+        deckDead.Add(new Card("Caminante3", "Dead", 4, true, false, Resources.Load<Sprite>("3p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.DrawCard, Resources.Load<AudioClip>("Audios/CaminanteBlanco3")));
+        deckDead.Add(new Card("Caminante4", "Dead", 3, true, false, Resources.Load<Sprite>("3p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MR, "", null, Resources.Load<AudioClip>("Audios/CaminanteBlanco4")));
+        deckDead.Add(new Card("Caminante3", "Dead", 4, true, false, Resources.Load<Sprite>("3p3"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.DrawCard, Resources.Load<AudioClip>("Audios/CaminanteBlanco3")));
+        deckDead.Add(new Card("Caminante4", "Dead", 3, true, false, Resources.Load<Sprite>("3p4"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.MR,"", null, Resources.Load<AudioClip>("Audios/CaminanteBlanco4")));
+        deckDead.Add(new Card("Caminante5", "Dead", 4, true, false, Resources.Load<Sprite>("3p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/CaminanteBlanco5")));
+        deckDead.Add(new Card("Caminante5", "Dead", 4, true, false, Resources.Load<Sprite>("3p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/CaminanteBlanco5")));
+        deckDead.Add(new Card("Caminante5", "Dead", 4, true, false, Resources.Load<Sprite>("3p5"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.S, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/CaminanteBlanco5")));
+        deckDead.Add(new Card("Caminante6", "Dead", 2, true, false, Resources.Load<Sprite>("3p6"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.M, txt[7], Effects.Average, Resources.Load<AudioClip>("Audios/CaminanteBlanco1")));;
 
         // Oro
         deckDead.Add(new Card("Wun Wun", "Dead", 8, true, true, Resources.Load<Sprite>("3o1"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MRS, txt[6], Effects.ClearRow, Resources.Load<AudioClip>("Audios/Gigante")));                     
-        deckDead.Add(new Card("Jefe1", "Dead", 5, true, true, Resources.Load<Sprite>("3o2"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MS, "", null, null));
-        deckDead.Add(new Card("Jefe2", "Dead", 9, true, true, Resources.Load<Sprite>("3o3"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.RS, "", null, null));
+        deckDead.Add(new Card("Jefe1", "Dead", 5, true, true, Resources.Load<Sprite>("3o2"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MS, txt[3], Effects.RemoveMin, null));
+        deckDead.Add(new Card("Jefe2", "Dead", 9, true, true, Resources.Load<Sprite>("3o3"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.RS, txt[3], Effects.RemoveMin, null));
         deckDead.Add(new Card("Jefe3", "Dead", 7, true, true, Resources.Load<Sprite>("3o4"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.R, txt[7], Effects.Average, null));
-        deckDead.Add(new Card("Viserion", "Dead", 5, true, true, Resources.Load<Sprite>("3o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, txt[5], Effects.MultiplyPower, Resources.Load<AudioClip>("Audios/Dragon2")));
+        deckDead.Add(new Card("Viserion", "Dead", 5, true, true, Resources.Load<Sprite>("3o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, txt[2], Effects.RemoveMax, Resources.Load<AudioClip>("Audios/Dragon2")));
 
         // Despeje
         deckDead.Add(new Card("Muerto", "Dead", 0, false, false, Resources.Load<Sprite>("3d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut, null));                                            

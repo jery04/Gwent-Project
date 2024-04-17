@@ -31,6 +31,7 @@ public class Chose : MonoBehaviour
             deck1 = data.deckStark;
             button[1].GetComponent<Button>().interactable = false;
             button[2].GetComponent<Button>().interactable = false;
+            button[3].GetComponent<Button>().interactable = false;
         }
         else if (input2.text != "Name" && input2.text != "")
         {
@@ -39,6 +40,7 @@ public class Chose : MonoBehaviour
             deck2 = data.deckStark;
             button[4].GetComponent<Button>().interactable = false;
             button[5].GetComponent<Button>().interactable = false;
+            button[0].GetComponent<Button>().interactable = false;
         }
     }
     public void ButtonTargaryen(bool key)                                        // Inicializa un mazo de cartas Targaryen
@@ -50,6 +52,7 @@ public class Chose : MonoBehaviour
             deck1 = data.deckTargaryen;
             button[0].GetComponent<Button>().interactable = false;
             button[2].GetComponent<Button>().interactable = false;
+            button[4].GetComponent<Button>().interactable = false;
         }
         else if (input2.text != "Name" && input2.text != "")
         {
@@ -58,6 +61,7 @@ public class Chose : MonoBehaviour
             deck2 = data.deckTargaryen;
             button[3].GetComponent<Button>().interactable = false;
             button[5].GetComponent<Button>().interactable = false;
+            button[1].GetComponent<Button>().interactable = false;
         }
 
     }
@@ -70,6 +74,7 @@ public class Chose : MonoBehaviour
             deck1 = data.deckDead;
             button[0].GetComponent<Button>().interactable = false;
             button[1].GetComponent<Button>().interactable = false;
+            button[5].GetComponent<Button>().interactable = false;
         }
         else if (input2.text != "Name" && input2.text != "")
         {
@@ -78,6 +83,7 @@ public class Chose : MonoBehaviour
             deck2 = data.deckDead;
             button[3].GetComponent<Button>().interactable = false;
             button[4].GetComponent<Button>().interactable = false;
+            button[2].GetComponent<Button>().interactable = false;
         }
     }
 

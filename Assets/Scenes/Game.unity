@@ -1719,9 +1719,9 @@ MonoBehaviour:
   - {fileID: 1727532462}
   - {fileID: 742431965}
   increase:
-  - {fileID: 2122747549}
-  - {fileID: 233853209}
   - {fileID: 1551062825}
+  - {fileID: 233853209}
+  - {fileID: 2122747549}
   climate: {fileID: 1836728249}
   panelTakeCard: {fileID: 2121571950}
   infoTakeCard: {fileID: 2048332152}
@@ -6533,9 +6533,9 @@ RectTransform:
   - {fileID: 1486067699}
   - {fileID: 1727532463}
   - {fileID: 742431966}
-  - {fileID: 2122747550}
-  - {fileID: 233853210}
   - {fileID: 1551062826}
+  - {fileID: 233853210}
+  - {fileID: 2122747550}
   - {fileID: 2005503999}
   - {fileID: 1862629117}
   - {fileID: 1983164494}

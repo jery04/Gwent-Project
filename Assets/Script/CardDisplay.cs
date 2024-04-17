@@ -20,7 +20,7 @@ public class CardDisplay : MonoBehaviour
 
     public int Power() => Convert.ToInt32(textPower.text);                                              // Retorna su poder
     public void NewPower(int delta) => textPower.text = delta.ToString();                               // Coloca un nuevo poder
-    public void Delta(int delta) => textPower.text = (int.Parse(textPower.text) + delta).ToString();    // Variar su poder (Aumentar-Disminuir)
+    public void PowerDelta(int delta) => textPower.text = (int.Parse(textPower.text) + delta).ToString();    // Variar su poder (Aumentar-Disminuir)
     void Start()                                    // Inicializa propiedades
     {
         type_Card = card.typeCard;    

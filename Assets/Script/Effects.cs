@@ -12,106 +12,117 @@ public static class Effects
         if (item[0] is Player player)
         {
             for (int j = 0; j < 3; j++)
-                if (player.increase[j].GetComponent<Panels>().cards.Count != 0)
+            {
+                Panels panel = player.increase[j].GetComponent<Panels>();
+                if (panel.cards.Count != 0)
+                {
                     for (int i = 0; i < player.field[j].GetComponent<Panels>().cards.Count; i++)
-                        if (player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe && !player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().increaseActive)
-                            player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(player.increase[j].GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().card.power);
+                    {
+                        CardDisplay thisCard = player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>();
+                        if (thisCard.card.isUnity && !thisCard.card.isHeroe && !thisCard.increaseActive)
+                            thisCard.PowerDelta(panel.cards[0].GetComponent<CardDisplay>().Power());
+                    }
+                }
+            }
         }
     }   
-    public static void Climate(params object[] item)        // Poner un clima
+    public static void Climate(params object[] item)        // Afectan una o varias filas simultaneamente para ambos jugadores
     {
-        if (item[0] is Player player1 && item[1] is Player player2 && item[2] is int pos && item[3] is int delta)
+        if (item[0] is Player player1 && item[1] is Player player2 && item[2] is int affectedRow && item[3] is int harm)
         {
-            for (int i = 0; i < player1.field[pos].GetComponent<Panels>().cards.Count; i++)
-                if (player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe && !player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().climateActive)
-                { player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta); player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().climateActive = true; }
+            for (int i = 0; i < player1.field[affectedRow].GetComponent<Panels>().cards.Count; i++)
+            {
+                CardDisplay thisCard = player1.field[affectedRow].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>();
+                if (thisCard.card.isUnity && !thisCard.card.isHeroe && !thisCard.climateActive)
+                    thisCard.PowerDelta(harm); thisCard.climateActive = true;
+            }
 
-            for (int i = 0; i < player2.field[pos].GetComponent<Panels>().cards.Count; i++)
-                if (player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe && !player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().climateActive)
-                { player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta); player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().climateActive = true; }
+            for (int i = 0; i < player2.field[affectedRow].GetComponent<Panels>().cards.Count; i++)
+            {
+                CardDisplay thisCard = player2.field[affectedRow].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>();
+                if (thisCard.card.isUnity && !thisCard.card.isHeroe && !thisCard.climateActive)
+                    thisCard.PowerDelta(harm); thisCard.climateActive = true;
+            }
         }
     }   
     public static void RemoveMax(params object[] item)      // Eliminar la carta con más poder del campo
     {
         if (item[0] is Player player)
         {
-            GameObject panelMax = null; int index = 0;
+            GameObject cardMax = null;
             foreach (GameObject row in player.field)
             {
-                foreach (GameObject rowCard in row.GetComponent<Panels>().cards)
+                foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
                 {
-                    if (panelMax == null && rowCard.GetComponent<CardDisplay>().card.isUnity)
+                    if (thisCard.GetComponent<CardDisplay>().card.isUnity)
                     {
-                        panelMax = row;
-                        index = row.GetComponent<Panels>().cards.IndexOf(rowCard);
-                    }
+                        if (cardMax == null)
+                            cardMax = thisCard;
 
-                    else if (int.Parse(rowCard.GetComponent<CardDisplay>().textPower.text) > int.Parse(panelMax.GetComponent<Panels>().cards[index].GetComponent<CardDisplay>().textPower.text))
-                    {
-                        panelMax = row;
-                        index = row.GetComponent<Panels>().cards.IndexOf(rowCard);
+                        else if (thisCard.GetComponent<CardDisplay>().Power() > cardMax.GetComponent<CardDisplay>().Power())
+                            cardMax = thisCard;
                     }
                 }
             }
-            if (panelMax != null)
-                GameObject.Destroy(panelMax.GetComponent<Panels>().cards[index]);
+            if (cardMax != null)
+                GameObject.Destroy(cardMax);
         }
     }
     public static void RemoveMin(params object[] item)      // Eliminar la carta con menos poder del rival
     {
         if (item[0] is Player player)
         {
-            GameObject panelMin = null; int index = 0;
+            GameObject cardMax = null;
             foreach (GameObject row in player.field)
             {
-                foreach (GameObject rowCard in row.GetComponent<Panels>().cards)
+                foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
                 {
-                    if (panelMin == null && rowCard.GetComponent<CardDisplay>().card.isUnity)
+                    if (thisCard.GetComponent<CardDisplay>().card.isUnity)
                     {
-                        panelMin = row;
-                        index = row.GetComponent<Panels>().cards.IndexOf(rowCard);
-                    }
+                        if (cardMax == null)
+                            cardMax = thisCard;
 
-                    else if (int.Parse(rowCard.GetComponent<CardDisplay>().textPower.text) < int.Parse(panelMin.GetComponent<Panels>().cards[index].GetComponent<CardDisplay>().textPower.text))
-                    {
-                        panelMin = row;
-                        index = row.GetComponent<Panels>().cards.IndexOf(rowCard);
+                        else if (thisCard.GetComponent<CardDisplay>().Power() < cardMax.GetComponent<CardDisplay>().Power())
+                            cardMax = thisCard;
                     }
                 }
             }
-            if (panelMin != null)
-                GameObject.Destroy(panelMin.GetComponent<Panels>().cards[index]);
+            if (cardMax != null)
+                GameObject.Destroy(cardMax);
         }
     }
-    public static void TakeCard(params object[] item)       // Robar una carta
+    public static void DrawCard(params object[] item)       // Robar una carta
     {
         if (item[0] is Player player)
             player.TakeCard(1);
-    }
+    } 
     public static void MultiplyPower(params object[] item)  // Multiplica por n su ataque, siendo n la cantidad de cartas iguales a ella en el campo
     {
-        if (item[0] is Player player && item[1] is CardDisplay card)
+        if (item[0] is Player player && item[1] is CardDisplay cardEffect)
         {
             int counter = 0;
-            foreach (GameObject row in player.field)
-            {
-                foreach (GameObject cardRow in row.GetComponent<Panels>().cards)
-                    if (card.card.name == cardRow.name)
+            foreach (GameObject row in player.field)  
+                foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
+                    if (cardEffect.name == thisCard.name)
                         counter++;
-            }
             if (counter != 0)
-                card.NewPower(counter * int.Parse(card.textPower.text));
+                cardEffect.NewPower((counter) * cardEffect.Power());
         }
     }
-    public static void ClearRow(params object[] item)       // Limpia la fila del campo (no vac´ıa, propia o del rival) con menos unidades
+    public static void ClearRow(params object[] item)       // Limpia la fila del campo (propia o del rival) con menos unidades
     {
         if (item[0] is Player player)
         {
-            GameObject minRow = player.field[0];
+            Panels minRow = null;
             foreach (GameObject row in player.field)
-                if (((row.GetComponent<Panels>().CounterUnity() > 0) && (row.GetComponent<Panels>().CounterUnity() < minRow.GetComponent<Panels>().CounterUnity())))
-                    minRow = row;
-            minRow.GetComponent<Panels>().RemoveAll();
+            {
+                Panels panelRow = row.GetComponent<Panels>();
+                if (panelRow.CounterUnity() > 0)
+                    if((minRow == null) || (panelRow.CounterUnity() < minRow.CounterUnity()))
+                        minRow = panelRow;
+            }
+            if(minRow != null)
+                minRow.RemoveAll();
         }
     }
     public static void Average(params object[] item)        // Caclula el promedio de poder entre todas las cartas del campo. Luego lo iguala al poder de todas las cartas del campo
@@ -120,12 +131,15 @@ public static class Effects
         {
             int counterUnity = 0;
             int sigmaUnity = 0;
-            foreach (GameObject item2 in player.field)
-            { sigmaUnity += item2.GetComponent<Panels>().PowerRow(); counterUnity += item2.GetComponent<Panels>().CounterUnity(); }
+            foreach (GameObject row in player.field) 
+            { 
+                sigmaUnity += row.GetComponent<Panels>().PowerRow(); 
+                counterUnity += row.GetComponent<Panels>().CounterUnity();
+            }
 
-            foreach (GameObject item2 in player.field)
-                for (int i = 0; i < item2.GetComponent<Panels>().cards.Count; i++)
-                    item2.GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().NewPower(sigmaUnity/counterUnity);
+            foreach (GameObject row in player.field)  
+                for (int i = 0; i < row.GetComponent<Panels>().cards.Count; i++)
+                    row.GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().NewPower(sigmaUnity/counterUnity);
         }
     }
     public static void ReturnToHand(params object[] item)   // Efecto de Señuelo
@@ -134,14 +148,15 @@ public static class Effects
     }
     public static void ClimateOut(params object[] item)     // Despeja una carta Clima
     {
-        if (item[0] is Player player && item[1] is int pos)
+        if (item[0] is Player player)
         {
+            int pos = player.climate.GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().card.affectedRow;
             if (player.climate.GetComponent<Panels>().cards.Count != 0)
             {
                 int delta = player.climate.GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().card.power;
                 for (int i = 0; i < player.field[pos].GetComponent<Panels>().cards.Count; i++)
                     if (player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe)
-                        player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta);
+                        player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().PowerDelta(delta);
                 GameObject.Destroy(player.climate.GetComponent<Panels>().cards[0]);
             }
         }

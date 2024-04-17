@@ -113,7 +113,9 @@ public class Player : MonoBehaviour
             GameObject a = Instantiate(Resources.Load<GameObject>("Card"), leader.transform);
             a.GetComponent<CardDisplay>().card = deck[0];
             a.name = deck[0].name;
+            leader.GetComponent<Panels>().cards.Add(a);
             deck.RemoveAt(0);
+
             StartCoroutine(For(10));                        // Instancia 10 cartas en la mano
         }                         
 
@@ -153,7 +155,7 @@ public class Player : MonoBehaviour
         takeCardStartGame = 2;
         panelTakeCard.SetActive(false);
     }
-    public void ActivePanelTakeCard()                      // Muestra el panel TakeCard
+    public void ActivePanelTakeCard()                      // Muestra el panel DrawCard
     {
         panelTakeCard.SetActive(true);
     }
@@ -168,6 +170,6 @@ public class Player : MonoBehaviour
         GeneralPower(GameManager.round);                 // Actualiza el poder
         counterDeck.text = deck.Count.ToString();
         BackImageAndDrag();                              // Actualiza el Método
-        if (oneMove) takeCardStartGame = 2;              // Si juega una carta se desactiva la opcion TakeCard al inicio
+        if (oneMove) takeCardStartGame = 2;              // Si juega una carta se desactiva la opcion DrawCard al inicio
     }
 }

@@ -56,20 +56,23 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         // Enviar la información de la carta el Panel de Datos
         if (this != null && !this.GetComponent<CardDisplay>().backImage.enabled)
         {
-             GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = this.name;                                                // Nombre
-             GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = this.GetComponent<CardDisplay>().card.faction;            // Facción
-             GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;          // Poder
-             GameObject.Find("Panel_Card").transform.GetChild(9).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);     // Tipo de carta
-             GameObject.Find("Panel_Card").transform.GetChild(11).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition); // Posición
-             GameObject.Find("Panel_Card").transform.GetChild(13).GetComponent<Text>().text = this.GetComponent<CardDisplay>().card.description;       // Descripción
-             GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().artWork.sprite;
-             GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().portrait.sprite;
+            GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = this.name;                                                // Nombre
+            GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = this.GetComponent<CardDisplay>().card.faction;            // Facción
+            GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;          // Poder
+            GameObject.Find("Panel_Card").transform.GetChild(9).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);     // Tipo de carta
+            GameObject.Find("Panel_Card").transform.GetChild(11).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition); // Posición
+            GameObject.Find("Panel_Card").transform.GetChild(13).GetComponent<Text>().text = this.GetComponent<CardDisplay>().card.description;       // Descripción
+            GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().artWork.sprite;
+            GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().portrait.sprite;
             
-            if (this.GetComponent<CardDisplay>().type_Card == Card.kind_card.climate)                         // Si es clima imprime "Harm"/"Damage"
+            if (this.GetComponent<CardDisplay>().type_Card == Card.kind_card.climate)                                                                                                                         
+            {
                 GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "Harm:";
-             else if (this.GetComponent<CardDisplay>().type_Card == Card.kind_card.increase)                  // Si es aumento imprime "Bonus"
+                GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text += $"  R:{this.GetComponent<CardDisplay>().card.affectedRow}";
+            }                     // Si es clima imprime "Harm"/"Damage"
+            else if (this.GetComponent<CardDisplay>().type_Card == Card.kind_card.increase)                  // Si es aumento imprime "Bonus"
                 GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "Bonus:";
-             else GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "Power:";   // De lo contrario "Power"
+            else GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "Power:";   // De lo contrario "Power"
         }
     }
     public void OnPointerExit(PointerEventData evenData)            // Se ejecuta cuando el puntero sale del área del objeto.
