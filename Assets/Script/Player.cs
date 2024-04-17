@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         GameObject prefarb = Resources.Load<GameObject>("Card");
         for (int i = 0; i < max; i++)
         {
-            int rand = UnityEngine.Random.Range(1, deck.Count);
+            int rand = UnityEngine.Random.Range(0, deck.Count);
             GameObject a = Instantiate(prefarb, hand.transform);
             a.GetComponent<EventTrigger>().enabled = false;
             a.GetComponent<CardDisplay>().card = deck[rand];
@@ -107,12 +107,14 @@ public class Player : MonoBehaviour
     {
         int numChild = hand.GetComponent<Panels>().itemsCounter;
 
-        if (numChild == 0)                                 // Tomar 10 iniciales 
+        if (numChild == 0)                                  // Tomar 10 iniciales                                  
         {
+            // Instancia al líder
             GameObject a = Instantiate(Resources.Load<GameObject>("Card"), leader.transform);
             a.GetComponent<CardDisplay>().card = deck[0];
             a.name = deck[0].name;
-            StartCoroutine(For(10));
+            deck.RemoveAt(0);
+            StartCoroutine(For(10));                        // Instancia 10 cartas en la mano
         }                         
 
         else if((num != 0) && (numChild < 10))              // Toma num cartas

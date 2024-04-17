@@ -11,79 +11,50 @@ public class Card : ScriptableObject
 {
     // Propiedades (Campo)
     public new string name;                                                             // Nombre de la carta
+    public string faction;                                                              // Faccion de la carta
     public int power;                                                                   // Poder
+    public string description;
     public Sprite artWork;                                                              // Imagen principal
     public Sprite portrait;                                                             // Imagen del marco
     public enum card_position { M, R, S, MR, MS, RS, MRS, I, C, L};                        // Posiciones en que se puede ubicar
     public enum kind_card { golden, silver, climate, clear, bait, increase, leader };   // Tipos de carta
     public kind_card typeCard;                                                          // Tipo de carta
     public card_position cardPosition;                                                  // Tipo de posición
-    public bool IsUnity;                                                                // Es carta Unidad?
-    public bool IsHeroe;                                                                // Es carta héroe
+    public bool IsUnity;                                                                // Es carta unidad?
+    public bool IsHeroe;                                                                // Es carta héroe?
     public delegate void EffectDelegate(params object[] item);
     public EffectDelegate effect;                                                       // Delegado que almacena el efecto(Método)
     private AudioClip clip;                                                             // Audio de las cartas al colocarse
     public int climateField;                                                            // Fila que afectan las cartas climas
 
     // Constructores (Sobrecargado)
-    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, AudioClip clip = null)
+    public Card(string name, string faction , int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, string description, EffectDelegate effect, AudioClip clip = null)
     {
         this.name = name;
-        this.typeCard = typeCard;
+        this.faction = faction;
+        this.power = power;
         this.IsUnity = IsUnity;
         this.IsHeroe = IsHeroe;
-        this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
+        this.typeCard = typeCard;
+        this.description = description;
+        this.effect = effect;
         this.clip = clip;
     }
-    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, EffectDelegate effect, AudioClip clip = null)
+    public Card(string name, string faction, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition, string description, EffectDelegate effect, AudioClip clip = null)
     {
         this.name = name;
-        this.effect = effect;
-        this.typeCard = typeCard;
+        this.faction = faction;
+        this.power = power;
         this.IsUnity = IsUnity;
         this.IsHeroe = IsHeroe;
-        this.power = power;
         this.artWork = artWork;
         this.portrait = portrait;
-        this.clip = clip;
-    }
-    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition, AudioClip clip = null)
-    {
-        this.name = name;
-        this.IsUnity = IsUnity;
-        this.IsHeroe = IsHeroe;
         this.typeCard = typeCard;
         this.cardPosition = cardPosition;
-        this.power = power;
-        this.artWork = artWork;
-        this.portrait = portrait;
-        this.clip = clip;
-    }
-    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition, EffectDelegate effect)
-    {
-        this.name = name;
+        this.description = description;
         this.effect = effect;
-        this.IsUnity = IsUnity;
-        this.IsHeroe = IsHeroe;
-        this.typeCard = typeCard;
-        this.cardPosition = cardPosition;
-        this.power = power;
-        this.artWork = artWork;
-        this.portrait = portrait;
-    }
-    public Card(string name, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition, EffectDelegate effect, AudioClip clip = null)
-    {
-        this.name = name;
-        this.effect = effect;
-        this.IsUnity = IsUnity;
-        this.IsHeroe = IsHeroe;
-        this.typeCard = typeCard;
-        this.cardPosition = cardPosition;
-        this.power = power;
-        this.artWork = artWork;
-        this.portrait = portrait;
         this.clip = clip;
     }
 

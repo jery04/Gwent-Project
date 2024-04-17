@@ -31,7 +31,7 @@ public static class Effects
                 { player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta); player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().ClimateActive = true; }
         }
     }   
-    public static void RemoveMax(params object[] item)      // Eliminar la carta con mas poder del campo
+    public static void RemoveMax(params object[] item)      // Eliminar la carta con más poder del campo
     {
         if (item[0] is Player player)
         {
@@ -103,7 +103,7 @@ public static class Effects
                 card.NewPower(counter * int.Parse(card.textPower.text));
         }
     }
-    public static void ClearRow(params object[] item)       // Limpia la fila del campo (no vac´ıa, propia o del rival) con menos unidades
+    public static void ClearRow(params object[] item)       // Limpia la fila del campo (no vac´ıa, propia o del rival) con menos unidades
     {
         if (item[0] is Player player)
         {
@@ -153,14 +153,14 @@ public static class Effects
 
         }
     }
-    public static void Daenerys(params object[] item)        // Efecto del líder(Daenerys)
+    public static void Daenerys(params object[] item)       // Efecto del líder(Daenerys)
     {
         if (item[0] is Player player)
         {
 
         }
     }
-    public static void ReyNoche(params object[] item)        // Efecto del líder(ReyNoche)
+    public static void NightKing(params object[] item)      // Efecto del líder(ReyNoche)
     {
         if (item[0] is Player player)
         {

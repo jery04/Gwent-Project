@@ -53,26 +53,31 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     }
     public void OnPointerEnter(PointerEventData evenData)           // Se ejecuta cuando el puntero entra en el área del objeto
     {
-        // Enviar la información de la carta el Panel
+        // Enviar la información de la carta el Panel de Datos
         if (this != null && !this.GetComponent<CardDisplay>().Back.enabled)
         {
-            GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().artWork.sprite;
-            GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().portrait.sprite;
-            GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;   
-            GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);
-            GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition);
-            GameObject.Find("Panel_Card").transform.GetChild(9).GetComponent<Text>().text = this.name;
+             GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = this.name;                                                // Name
+             GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = this.GetComponent<CardDisplay>().card.faction;            // Facción
+             GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = this.GetComponent<CardDisplay>().textPower.text;          // Power
+             GameObject.Find("Panel_Card").transform.GetChild(9).GetComponent<Text>().text = KindCard(this.GetComponent<CardDisplay>().type_Card);     // Tipo de carta
+             GameObject.Find("Panel_Card").transform.GetChild(11).GetComponent<Text>().text = Position(this.GetComponent<CardDisplay>().cardPosition); // Posición
+             GameObject.Find("Panel_Card").transform.GetChild(13).GetComponent<Text>().text = this.GetComponent<CardDisplay>().card.description;       // descripción
+             GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().artWork.sprite;
+             GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().portrait.sprite;
         }
-
     }
     public void OnPointerExit(PointerEventData evenData)            // Se ejecuta cuando el puntero sale del área del objeto.
     {
-        if (this != null)                                           // Limpiar(vaciar datos) el Panel
+        if (this != null)                                           // Limpiar(vaciar datos) el Panel de Datos
         {
-            GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Panel");
-            GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = "";
-            GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = "";
-            GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = "";
+             GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = "";   // Name
+             GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text = "";   // Power
+             GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = "";   // Facción
+             GameObject.Find("Panel_Card").transform.GetChild(9).GetComponent<Text>().text = "";   // Tipo de carta
+             GameObject.Find("Panel_Card").transform.GetChild(11).GetComponent<Text>().text = "";  // Posición
+             GameObject.Find("Panel_Card").transform.GetChild(13).GetComponent<Text>().text = "";  // Descripción
+             GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().artWork.sprite;
+             GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Panel");
         }
     }
     public void OnDrop(PointerEventData evenData)                   // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script.

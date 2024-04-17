@@ -25,7 +25,7 @@ public class EventClick : MonoBehaviour
                 else if (thisCard.name == "Daenerys")
                     Effects.Daenerys(GameObject.Find("Targaryen"));
                 else if (thisCard.name == "Rey Noche")
-                    Effects.ReyNoche(GameObject.Find("Dead"));
+                    Effects.NightKing(GameObject.Find("Dead"));
             }
             else
             {
