@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     // Propiedades
     #region Property
     public string playerName;                              // Nombre del jugador
+    public string faction;
     public List<Card> deck = new List<Card>();             // Mazo del jugador
     public int[] powerRound;                               // Puntos acumulados por rondas
     public int takeCardStartGame = 0;                      // Cantidad de cartas cambiadas antes de la batalla
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     public Text counterDeck;
 
     // Paneles
+    public GameObject leader;                              // Carta líder
     public GameObject hand;                                // Cartas de la mano
     public GameObject[] field;                             // Cartas del campo(Melee-Range-Siege)
     public GameObject[] increase;                          // Cartas de aumento
@@ -105,10 +107,15 @@ public class Player : MonoBehaviour
     {
         int numChild = hand.GetComponent<Panels>().itemsCounter;
 
-        if (numChild == 0)
-            StartCoroutine(For(10));                      // Tomar 10 iniciales 
+        if (numChild == 0)                                 // Tomar 10 iniciales 
+        {
+            GameObject a = Instantiate(Resources.Load<GameObject>("Card"), leader.transform);
+            a.GetComponent<CardDisplay>().card = deck[0];
+            a.name = deck[0].name;
+            StartCoroutine(For(10));
+        }                         
 
-        else if((num != 0)&& (numChild < 10))
+        else if((num != 0) && (numChild < 10))              // Toma num cartas
             StartCoroutine(For(1));
 
         else if (numChild < 10)      // Tomar 2 cartas o menos

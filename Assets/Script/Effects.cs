@@ -148,6 +148,23 @@ public static class Effects
     }  
     public static void JonSnow(params object[] item)        // Efecto del líder(Jon Snow)
     {
+        if (item[0] is Player player)
+        {
 
+        }
+    }
+    public static void Daenerys(params object[] item)        // Efecto del líder(Daenerys)
+    {
+        if (item[0] is Player player)
+        {
+
+        }
+    }
+    public static void ReyNoche(params object[] item)        // Efecto del líder(ReyNoche)
+    {
+        if (item[0] is Player player)
+        {
+
+        }
     }
 }

@@ -17,10 +17,23 @@ public class EventClick : MonoBehaviour
 
         else if (time.Millisecond - lastClickTime < 0.3)                // Algoritmo para reconocer DoubleClick
         {
-            Destroy(thisCard);                                          // Destruye la carta
-            GameManager.currentPlayer.hand.GetComponent<Panels>().itemsCounter -= 1;
-            GameManager.currentPlayer.TakeCard(1);                      // Agrega una carta a la mano
-            GameManager.currentPlayer.Active(false);                    // Desactiva el componente EventTrigger
+            // En caso de ser líder
+            if (thisCard.GetComponent<CardDisplay>().cardPosition == Card.card_position.L)
+            {
+                if(thisCard.name == "Jon Snow")
+                    Effects.JonSnow(GameObject.Find("Stark"));
+                else if (thisCard.name == "Daenerys")
+                    Effects.Daenerys(GameObject.Find("Targaryen"));
+                else if (thisCard.name == "Rey Noche")
+                    Effects.ReyNoche(GameObject.Find("Dead"));
+            }
+            else
+            {
+                Destroy(thisCard);                                          // Destruye la carta
+                GameManager.currentPlayer.hand.GetComponent<Panels>().itemsCounter -= 1;
+                GameManager.currentPlayer.TakeCard(1);                      // Agrega una carta a la mano
+                GameManager.currentPlayer.Active(false);                    // Desactiva el componente EventTrigger
+            }
         }
     }
 }

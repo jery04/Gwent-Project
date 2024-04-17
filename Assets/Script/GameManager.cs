@@ -161,6 +161,8 @@ public class GameManager : MonoBehaviour
         player2.deck = Chose.deck2;
         player1.playerName = Chose.name1;                             // Asigna los nombres a los jugadores
         player2.playerName = Chose.name2;
+        player1.name = Chose.faction1;
+        player2.name = Chose.faction2;
 
         start = player1;                                              //  Declara el jugador que empieza la ronda
         playerEnd = player2;                                          //  Declara el jugador que termina la ronda

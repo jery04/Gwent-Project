@@ -8,7 +8,7 @@ using UnityEngine.XR;
 
 public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    private string Position(Card.card_position pos)
+    private string Position(Card.card_position pos)                 // Retorna cadena string con la posición de la carta
     {
         switch (pos)
         {
@@ -26,10 +26,11 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                 return "Mel-Ran-Sie";
             case Card.card_position.RS:
                 return "range-siege";
+            default:
+                return "";
         }
-        return "";
     }
-    private string KindCard(Card.kind_card kind)
+    private string KindCard(Card.kind_card kind)                    // Retorna cadena string con el tipo de carta
     {
         switch (kind)
         {
@@ -50,9 +51,9 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         }
         return "";
     }
-    public void OnPointerEnter(PointerEventData evenData)            // Se ejecuta cuando el puntero entra en el área del objeto
+    public void OnPointerEnter(PointerEventData evenData)           // Se ejecuta cuando el puntero entra en el área del objeto
     {
-
+        // Enviar la información de la carta el Panel
         if (this != null && !this.GetComponent<CardDisplay>().Back.enabled)
         {
             GameObject.Find("Panel_Card").transform.GetChild(0).GetComponent<Image>().sprite = this.GetComponent<CardDisplay>().artWork.sprite;
@@ -64,9 +65,9 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         }
 
     }
-    public void OnPointerExit(PointerEventData evenData)            //  Se ejecuta cuando el puntero sale del área del objeto.
+    public void OnPointerExit(PointerEventData evenData)            // Se ejecuta cuando el puntero sale del área del objeto.
     {
-        if (this != null)
+        if (this != null)                                           // Limpiar(vaciar datos) el Panel
         {
             GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Panel");
             GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = "";

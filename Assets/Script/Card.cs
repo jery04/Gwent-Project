@@ -14,7 +14,7 @@ public class Card : ScriptableObject
     public int power;                                                                   // Poder
     public Sprite artWork;                                                              // Imagen principal
     public Sprite portrait;                                                             // Imagen del marco
-    public enum card_position { M, R, S, MR, MS, RS, MRS, I, C};                        // Posiciones en que se puede ubicar
+    public enum card_position { M, R, S, MR, MS, RS, MRS, I, C, L};                        // Posiciones en que se puede ubicar
     public enum kind_card { golden, silver, climate, clear, bait, increase, leader };   // Tipos de carta
     public kind_card typeCard;                                                          // Tipo de carta
     public card_position cardPosition;                                                  // Tipo de posición

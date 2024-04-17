@@ -13,7 +13,7 @@ public class DataBase : MonoBehaviour
     {
         // Mazo1 (Casa Stark/Norte)
         // Lider
-        deckStark.Add(new Card("Jon Snow", 0, false, false, Resources.Load<Sprite>("l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, Effects.JonSnow));
+        deckStark.Add(new Card("Jon Snow", 0, false, false, Resources.Load<Sprite>("l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, Card.card_position.L, Effects.JonSnow));
 
         // Señuelo
         deckStark.Add(new Card("Manada", 0, false, false, Resources.Load<Sprite>("s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Effects.ReturnToHand, Resources.Load<AudioClip>("Audios/Lobo1")));                            
