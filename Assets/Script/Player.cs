@@ -13,16 +13,16 @@ public class Player : MonoBehaviour
     // Propiedades
     #region Property
     public string playerName;                              // Nombre del jugador
-    public string faction;
+    public string faction;                                 // Facción
     public List<Card> deck = new List<Card>();             // Mazo del jugador
     public int[] powerRound;                               // Puntos acumulados por rondas
     public int takeCardStartGame = 0;                      // Cantidad de cartas cambiadas antes de la batalla
 
     public bool myTurn;                                    // Dicta el turno del jugador
-    public bool SkipRound;                                 // Dicta si el jugador pasa la ronda
+    public bool skipRound;                                 // Dicta si el jugador pasa la ronda
     public bool oneMove;                                   // Dicta si el jugador ya ha jugado una carta
     public Text counterDeck;
-
+     
     // Paneles
     public GameObject leader;                              // Carta líder
     public GameObject hand;                                // Cartas de la mano
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     public GameObject[] increase;                          // Cartas de aumento
     public GameObject climate;                             // Cartas clima
     public GameObject panelTakeCard;                       // Panel para robar carta antes de la batalla
-    public GameObject InfoTakeCard;                        // Boton-Info que indica poder robar cartas
+    public GameObject infoTakeCard;                        // Boton-Info que indica poder robar cartas
     #endregion 
 
     // Métodos 
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         {
             foreach (GameObject item in hand.GetComponent<Panels>().cards)
             {
-                item.GetComponent<CardDisplay>().Back.enabled = true;       // Si no está jugando se activa el BackImage 
+                item.GetComponent<CardDisplay>().backImage.enabled = true;  // Si no está jugando se activa el BackImage 
                 item.GetComponent<Drag>().enabled = false;                  // Si no está jugando se desactiva el Script Drag
             }
             foreach(GameObject item in field)                               // Desactiva el Script Drop de field
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
             {
                 foreach (GameObject item in hand.GetComponent<Panels>().cards)
                 {
-                    item.GetComponent<CardDisplay>().Back.enabled = false;      // Si está jugando se desactiva el BackImage 
+                    item.GetComponent<CardDisplay>().backImage.enabled = false; // Si está jugando se desactiva el BackImage 
                     item.GetComponent<Drag>().enabled = true;                   // Si está jugando y no ha hecho ningún movimiento se activa el Script Drag
                 }
             }
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
             {
                 foreach (GameObject item in hand.GetComponent<Panels>().cards)
                 {
-                    item.GetComponent<CardDisplay>().Back.enabled = false;      // Si está jugando se desactiva el BackImage 
+                    item.GetComponent<CardDisplay>().backImage.enabled = false;      // Si está jugando se desactiva el BackImage 
                     item.GetComponent<Drag>().enabled = false;                  // Si está jugando y ya hizo un movimiento y es heroe se desactiva el Script Drag
                 }
             }
@@ -131,9 +131,9 @@ public class Player : MonoBehaviour
     public void ButtonInfoTakeCard()                       // Modifica la visibilidad del botón Info
     {
         if(GameManager.round == 0 && myTurn && takeCardStartGame < 2)
-            InfoTakeCard.SetActive(true);
+            infoTakeCard.SetActive(true);
         else 
-            InfoTakeCard.SetActive(false);
+            infoTakeCard.SetActive(false);
     }           
     public void Active(bool active)                        // Modifica el estado(Active) del componente EventTrigger
     {

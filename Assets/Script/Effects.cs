@@ -14,7 +14,7 @@ public static class Effects
             for (int j = 0; j < 3; j++)
                 if (player.increase[j].GetComponent<Panels>().cards.Count != 0)
                     for (int i = 0; i < player.field[j].GetComponent<Panels>().cards.Count; i++)
-                        if (player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsUnity && !player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsHeroe && !player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().IncreaseActive)
+                        if (player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe && !player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().increaseActive)
                             player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(player.increase[j].GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().card.power);
         }
     }   
@@ -23,12 +23,12 @@ public static class Effects
         if (item[0] is Player player1 && item[1] is Player player2 && item[2] is int pos && item[3] is int delta)
         {
             for (int i = 0; i < player1.field[pos].GetComponent<Panels>().cards.Count; i++)
-                if (player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsUnity && !player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsHeroe && !player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().ClimateActive)
-                { player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta); player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().ClimateActive = true; }
+                if (player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe && !player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().climateActive)
+                { player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta); player1.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().climateActive = true; }
 
             for (int i = 0; i < player2.field[pos].GetComponent<Panels>().cards.Count; i++)
-                if (player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsUnity && !player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsHeroe && !player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().ClimateActive)
-                { player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta); player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().ClimateActive = true; }
+                if (player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe && !player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().climateActive)
+                { player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta); player2.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().climateActive = true; }
         }
     }   
     public static void RemoveMax(params object[] item)      // Eliminar la carta con más poder del campo
@@ -40,7 +40,7 @@ public static class Effects
             {
                 foreach (GameObject rowCard in row.GetComponent<Panels>().cards)
                 {
-                    if (panelMax == null && rowCard.GetComponent<CardDisplay>().card.IsUnity)
+                    if (panelMax == null && rowCard.GetComponent<CardDisplay>().card.isUnity)
                     {
                         panelMax = row;
                         index = row.GetComponent<Panels>().cards.IndexOf(rowCard);
@@ -66,7 +66,7 @@ public static class Effects
             {
                 foreach (GameObject rowCard in row.GetComponent<Panels>().cards)
                 {
-                    if (panelMin == null && rowCard.GetComponent<CardDisplay>().card.IsUnity)
+                    if (panelMin == null && rowCard.GetComponent<CardDisplay>().card.isUnity)
                     {
                         panelMin = row;
                         index = row.GetComponent<Panels>().cards.IndexOf(rowCard);
@@ -140,7 +140,7 @@ public static class Effects
             {
                 int delta = player.climate.GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().card.power;
                 for (int i = 0; i < player.field[pos].GetComponent<Panels>().cards.Count; i++)
-                    if (player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsUnity && !player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.IsHeroe)
+                    if (player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe)
                         player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().Delta(delta);
                 GameObject.Destroy(player.climate.GetComponent<Panels>().cards[0]);
             }
@@ -157,7 +157,7 @@ public static class Effects
     {
         if (item[0] is Player player)
         {
-
+            
         }
     }
     public static void NightKing(params object[] item)      // Efecto del líder(ReyNoche)

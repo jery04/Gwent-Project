@@ -9,7 +9,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
-    // Propiedades (Campo)
+    // Propiedades (Campo) 
     public new string name;                                                             // Nombre de la carta
     public string faction;                                                              // Faccion de la carta
     public int power;                                                                   // Poder
@@ -20,8 +20,8 @@ public class Card : ScriptableObject
     public enum kind_card { golden, silver, climate, clear, bait, increase, leader };   // Tipos de carta
     public kind_card typeCard;                                                          // Tipo de carta
     public card_position cardPosition;                                                  // Tipo de posición
-    public bool IsUnity;                                                                // Es carta unidad?
-    public bool IsHeroe;                                                                // Es carta héroe?
+    public bool isUnity;                                                                // Es carta unidad?
+    public bool isHeroe;                                                                // Es carta héroe?
     public delegate void EffectDelegate(params object[] item);
     public EffectDelegate effect;                                                       // Delegado que almacena el efecto(Método)
     private AudioClip clip;                                                             // Audio de las cartas al colocarse
@@ -33,8 +33,8 @@ public class Card : ScriptableObject
         this.name = name;
         this.faction = faction;
         this.power = power;
-        this.IsUnity = IsUnity;
-        this.IsHeroe = IsHeroe;
+        this.isUnity = IsUnity;
+        this.isHeroe = IsHeroe;
         this.artWork = artWork;
         this.portrait = portrait;
         this.typeCard = typeCard;
@@ -47,8 +47,8 @@ public class Card : ScriptableObject
         this.name = name;
         this.faction = faction;
         this.power = power;
-        this.IsUnity = IsUnity;
-        this.IsHeroe = IsHeroe;
+        this.isUnity = IsUnity;
+        this.isHeroe = IsHeroe;
         this.artWork = artWork;
         this.portrait = portrait;
         this.typeCard = typeCard;

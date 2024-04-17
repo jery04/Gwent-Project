@@ -1133,7 +1133,7 @@ MonoBehaviour:
   powerRound: 
   takeCardStartGame: 0
   myTurn: 1
-  SkipRound: 0
+  skipRound: 0
   oneMove: 0
   counterDeck: {fileID: 1846925426}
   leader: {fileID: 810644497}
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   - {fileID: 1064159217}
   climate: {fileID: 1836728249}
   panelTakeCard: {fileID: 2121571950}
-  InfoTakeCard: {fileID: 1128616068}
+  infoTakeCard: {fileID: 1128616068}
 --- !u!4 &284526075
 Transform:
   m_ObjectHideFlags: 0
@@ -1709,7 +1709,7 @@ MonoBehaviour:
   powerRound: 
   takeCardStartGame: 0
   myTurn: 0
-  SkipRound: 0
+  skipRound: 0
   oneMove: 0
   counterDeck: {fileID: 422602417}
   leader: {fileID: 317765081}
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   - {fileID: 1551062825}
   climate: {fileID: 1836728249}
   panelTakeCard: {fileID: 2121571950}
-  InfoTakeCard: {fileID: 2048332152}
+  infoTakeCard: {fileID: 2048332152}
 --- !u!4 &385249162
 Transform:
   m_ObjectHideFlags: 0
@@ -7298,7 +7298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e9e0f8d6dbb8c42a1e05c40f364ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkipRound: 0
+  skipRound: 0
   numberRound:
   - {fileID: 109072476}
   - {fileID: 130957206}

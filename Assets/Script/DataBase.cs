@@ -55,8 +55,8 @@ public class DataBase : MonoBehaviour
         deckStark.Add(new Card("Wun Wun", "Stark", 7, true, true, Resources.Load<Sprite>("o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MR, txt[6], Effects.ClearRow, Resources.Load<AudioClip>("Audios/Gigante")));
 
         // Despeje
-        deckStark.Add(new Card("Ingrid", "Stark",0, false, false, Resources.Load<Sprite>("d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut, Resources.Load<AudioClip>("Audios/Ingrid")));                             
-        deckStark.Add(new Card("Muro Hielo", "Stark",0, false, false, Resources.Load<Sprite>("d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut));
+        deckStark.Add(new Card("Ingrid", "Stark", 0, false, false, Resources.Load<Sprite>("d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut, Resources.Load<AudioClip>("Audios/Ingrid")));                             
+        deckStark.Add(new Card("Muro Hielo", "Stark", 0, false, false, Resources.Load<Sprite>("d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut));
 
         // Clima
         deckStark.Add(new Card("Arciano", "Stark", -1, false, false, Resources.Load<Sprite>("c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate));  
@@ -75,11 +75,11 @@ public class DataBase : MonoBehaviour
 
         // Mazo2 (Casa Targaryen)
         // Lider
-        deckTargaryen.Add(new Card("Daenerys", "Targareyn", 0, false, false, Resources.Load<Sprite>("2l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, txt[11], Effects.Daenerys, null));                                             
+        deckTargaryen.Add(new Card("Daenerys", "Targareyn", 0, false, false, Resources.Load<Sprite>("2l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, Card.card_position.L, txt[11], Effects.Daenerys, null));                                             
 
         // Señuelo
-        deckTargaryen.Add(new Card("La Mano", "Targareyn",0, false, false, Resources.Load<Sprite>("2s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));                                               
-        deckTargaryen.Add(new Card("Missandei", "Targareyn",0, false, false,  Resources.Load<Sprite>("2s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));
+        deckTargaryen.Add(new Card("La Mano", "Targareyn", 0, false, false, Resources.Load<Sprite>("2s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));                                               
+        deckTargaryen.Add(new Card("Missandei", "Targareyn", 0, false, false,  Resources.Load<Sprite>("2s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));
         deckTargaryen.Add(new Card("Varys", "Targareyn",0, false, false, Resources.Load<Sprite>("2s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));
 
         // Plata
@@ -121,7 +121,7 @@ public class DataBase : MonoBehaviour
 
         // Mazo3 (Caminantes Blancos)
         // Lider
-        deckDead.Add(new Card("Rey Noche", "Dead",  0, false, false, Resources.Load<Sprite>("3l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, txt[12], Effects.NightKing, null));
+        deckDead.Add(new Card("Rey Noche", "Dead",  0, false, false, Resources.Load<Sprite>("3l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, Card.card_position.L, txt[12], Effects.NightKing, null));
 
         // Señuelo
         deckDead.Add(new Card("Cam.Blanco1", "Dead", 0, false, false, Resources.Load<Sprite>("3s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));                                               

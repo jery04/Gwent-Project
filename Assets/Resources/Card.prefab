@@ -102,11 +102,11 @@ MonoBehaviour:
   textPower: {fileID: 2512134465393078206}
   artWork: {fileID: 5550093308497448100}
   portrait: {fileID: 1443074159576760818}
-  Back: {fileID: 4318210015432970224}
+  backImage: {fileID: 4318210015432970224}
   type_Card: 0
   cardPosition: 0
-  ClimateActive: 0
-  IncreaseActive: 0
+  climateActive: 0
+  increaseActive: 0
 --- !u!114 &5728242484522748464
 MonoBehaviour:
   m_ObjectHideFlags: 0

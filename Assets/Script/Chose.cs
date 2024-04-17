@@ -46,7 +46,7 @@ public class Chose : MonoBehaviour
         if (key && input1.text != "Name" && input1.text != "")
         {
             name1 = input1.text;
-            faction1 = "Targareyn";
+            faction1 = "Targaryen";
             deck1 = data.deckTargaryen;
             button[0].GetComponent<Button>().interactable = false;
             button[2].GetComponent<Button>().interactable = false;
@@ -54,7 +54,7 @@ public class Chose : MonoBehaviour
         else if (input2.text != "Name" && input2.text != "")
         {
             name2 = input2.text;
-            faction2 = "Targareyn";
+            faction2 = "Targaryen";
             deck2 = data.deckTargaryen;
             button[3].GetComponent<Button>().interactable = false;
             button[5].GetComponent<Button>().interactable = false;

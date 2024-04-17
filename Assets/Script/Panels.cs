@@ -14,7 +14,7 @@ public class Panels : MonoBehaviour
     {
         int counter = 0;
         foreach(GameObject item in cards)
-            if(item.GetComponent<CardDisplay>().card.IsUnity)
+            if(item.GetComponent<CardDisplay>().card.isUnity)
                 counter++;
         return counter;
     }
@@ -36,7 +36,7 @@ public class Panels : MonoBehaviour
                 {
                     cards.RemoveAt(i);
                 } 
-                else if (cards[i].GetComponent<CardDisplay>().card.IsUnity && cards[i].GetComponent<CardDisplay>().Power() <= 0)
+                else if (cards[i].GetComponent<CardDisplay>().card.isUnity && cards[i].GetComponent<CardDisplay>().Power() <= 0)
                 {
                     GameObject.Destroy(cards[i]);
                     cards.RemoveAt(i);
@@ -52,7 +52,7 @@ public class Panels : MonoBehaviour
         if (cards != null && cards.Count > 0)
         {
             foreach (GameObject item in cards)
-                if(item != null && item.GetComponent<CardDisplay>().card.IsUnity)
+                if(item != null && item.GetComponent<CardDisplay>().card.isUnity)
                     powerRow += item.GetComponent<CardDisplay>().Power();
         }
 

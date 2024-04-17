@@ -20,7 +20,7 @@ public class EventClick : MonoBehaviour
             // En caso de ser líder
             if (thisCard.GetComponent<CardDisplay>().cardPosition == Card.card_position.L)
             {
-                if(thisCard.name == "Jon Snow")
+                if (thisCard.name == "Jon Snow")
                     Effects.JonSnow(GameObject.Find("Stark"));
                 else if (thisCard.name == "Daenerys")
                     Effects.Daenerys(GameObject.Find("Targaryen"));

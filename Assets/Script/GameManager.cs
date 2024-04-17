@@ -11,10 +11,10 @@ using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
-{
+{ 
     // Propiedades (Campo)
     public static int round;                                         // (1) Número de Ronda
-    public bool SkipRound;                                           // (2) True(si algún jugador pasa la ronda) 
+    public bool skipRound;                                           // (2) True(si algún jugador pasa la ronda) 
     public GameObject[] numberRound;                                 // (3) Panel-Display hace referencia al número de ronda
     public GameObject panelGameOver;                                 // (4) Panel que muestra los resultados a final del juego
     public GameObject panelRound;                                    // (5) Panel que muestra los resultados a final de ronda
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     private void ButtonSkipTurn()                                    // Salta el turno
     {
         currentPlayer.oneMove = false;
-        if (!SkipRound)
+        if (!skipRound)
         {
             if (player1.myTurn)
             {
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 CallPanelRound();
-                SkipRound = false;
+                skipRound = false;
                 currentPlayer.oneMove = false;
                 if (player1.powerRound[round] > player2.powerRound[round])
                 {
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         else
         {
             ButtonSkipTurn();
-            SkipRound = true;
+            skipRound = true;
         }
     }
     private void PanelGameOver()                                     // Muestra el panel (4)
@@ -159,13 +159,18 @@ public class GameManager : MonoBehaviour
 
         player1.deck = Chose.deck1;                                   // Asigna los decks a los jugadores
         player2.deck = Chose.deck2;
+
         player1.playerName = Chose.name1;                             // Asigna los nombres a los jugadores
         player2.playerName = Chose.name2;
-        player1.name = Chose.faction1;
-        player2.name = Chose.faction2;
 
-        start = player1;                                              //  Declara el jugador que empieza la ronda
-        playerEnd = player2;                                          //  Declara el jugador que termina la ronda
+        player1.name = Chose.faction1;                                // Asigna al Objeto Player el nombre de la Facción
+        player2.name = Chose.faction2;
+            
+        player1.faction = Chose.faction1;                             // Asigna la facción a los jugadores
+        player2.faction = Chose.faction2;
+
+        start = player1;                                              // Declara el jugador que empieza la ronda
+        playerEnd = player2;                                          // Declara el jugador que termina la ronda
         currentPlayer = player1;                                      // Declara el jugador que comienza la ronda 1
 
         player1.TakeCard();                                           // Agrega cartas a la mano de los jugadores

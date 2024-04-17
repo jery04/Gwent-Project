@@ -54,7 +54,7 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public void OnPointerEnter(PointerEventData evenData)           // Se ejecuta cuando el puntero entra en el área del objeto
     {
         // Enviar la información de la carta el Panel de Datos
-        if (this != null && !this.GetComponent<CardDisplay>().Back.enabled)
+        if (this != null && !this.GetComponent<CardDisplay>().backImage.enabled)
         {
              GameObject.Find("Panel_Card").transform.GetChild(3).GetComponent<Text>().text = this.name;                                                // Name
              GameObject.Find("Panel_Card").transform.GetChild(5).GetComponent<Text>().text = this.GetComponent<CardDisplay>().card.faction;            // Facción
