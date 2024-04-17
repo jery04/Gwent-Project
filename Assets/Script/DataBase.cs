@@ -59,13 +59,13 @@ public class DataBase : MonoBehaviour
         deckStark.Add(new Card("Muro Hielo", "Stark", 0, false, false, Resources.Load<Sprite>("d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut));
 
         // Clima
-        deckStark.Add(new Card("Arciano", "Stark", -1, false, false, Resources.Load<Sprite>("c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate));  
-        deckStark.Add(new Card("Niño Bosque", "Stark", -1, false, false, Resources.Load<Sprite>("c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate));
-        deckStark.Add(new Card("Niña Bosque", "Stark", -1, false, false, Resources.Load<Sprite>("c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate));
+        deckStark.Add(new Card("Arciano", "Stark", -1, 2, false, false, Resources.Load<Sprite>("c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate));  
+        deckStark.Add(new Card("Niño Bosque", "Stark", -2, 1, false, false, Resources.Load<Sprite>("c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate));
+        deckStark.Add(new Card("Niña Bosque", "Stark", -1, 0, false, false, Resources.Load<Sprite>("c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate));
 
         // Aumento
         deckStark.Add(new Card("Brandon", "Stark", 2, false, false, Resources.Load<Sprite>("a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase));      
-        deckStark.Add(new Card("Samwell", "Stark", 2, false, false, Resources.Load<Sprite>("a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase));
+        deckStark.Add(new Card("Samwell", "Stark", 1, false, false, Resources.Load<Sprite>("a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase));
         deckStark.Add(new Card("Hodor", "Stark", 2, false, false, Resources.Load<Sprite>("a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, Resources.Load<AudioClip>("Audios/Hodor")));
 
 
@@ -106,13 +106,13 @@ public class DataBase : MonoBehaviour
         deckTargaryen.Add(new Card("Gusano Gris", "Targareyn", 0, false, false, Resources.Load<Sprite>("2d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut, null));
 
         // Clima
-        deckTargaryen.Add(new Card("Catapulta", "Targareyn", 0, false, false, Resources.Load<Sprite>("2c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Catapultas")));                   
-        deckTargaryen.Add(new Card("Flota", "Targareyn", 0, false, false, Resources.Load<Sprite>("2c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Flota")));
+        deckTargaryen.Add(new Card("Catapulta", "Targareyn", -1, 1, false, false, Resources.Load<Sprite>("2c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Catapultas")));                   
+        deckTargaryen.Add(new Card("Flota", "Targareyn", -2, 0, false, false, Resources.Load<Sprite>("2c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Flota")));
 
         // Aumento
-        deckTargaryen.Add(new Card("Inmaculados", "Targareyn", 0, false, false,  Resources.Load<Sprite>("2a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, Resources.Load<AudioClip>("Audios/Marchando")));                 
-        deckTargaryen.Add(new Card("Dothraki", "Targareyn", 0, false, false,  Resources.Load<Sprite>("2a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, Resources.Load<AudioClip>("Audios/Caballos")));
-        deckTargaryen.Add(new Card("Tyron", "Targareyn", 0, false, false, Resources.Load<Sprite>("2a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0],Effects.Increase, null));
+        deckTargaryen.Add(new Card("Inmaculados", "Targareyn", 2, false, false,  Resources.Load<Sprite>("2a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, Resources.Load<AudioClip>("Audios/Marchando")));                 
+        deckTargaryen.Add(new Card("Dothraki", "Targareyn", 1, false, false,  Resources.Load<Sprite>("2a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, Resources.Load<AudioClip>("Audios/Caballos")));
+        deckTargaryen.Add(new Card("Tyron", "Targareyn", 2, false, false, Resources.Load<Sprite>("2a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0],Effects.Increase, null));
 
 
 
@@ -151,13 +151,13 @@ public class DataBase : MonoBehaviour
         deckDead.Add(new Card("Muerto", "Dead", 0, false, false, Resources.Load<Sprite>("3d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut, null));
 
         // Clima
-        deckDead.Add(new Card("Avalancha1", "Dead", 0, false, false, Resources.Load<Sprite>("3c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Avalancha")));                   
-        deckDead.Add(new Card("Congelar", "Dead", 0, false, false, Resources.Load<Sprite>("3c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, null));
-        deckDead.Add(new Card("Avalancha2", "Dead", 0, false, false, Resources.Load<Sprite>("3c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Avalancha")));
+        deckDead.Add(new Card("Avalancha1", "Dead", -2, 0, false, false, Resources.Load<Sprite>("3c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Avalancha")));                   
+        deckDead.Add(new Card("Congelar", "Dead", -1, 1, false, false, Resources.Load<Sprite>("3c2"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, null));
+        deckDead.Add(new Card("Avalancha2", "Dead", -1, 2, false, false, Resources.Load<Sprite>("3c3"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Avalancha")));
 
         // Aumento
-        deckDead.Add(new Card("Muro", "Dead", 0, false, false, Resources.Load<Sprite>("3a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, null));                
-        deckDead.Add(new Card("Ataque", "Dead", 0, false, false, Resources.Load<Sprite>("3a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, null));
-        deckDead.Add(new Card("Gigante", "Dead", 0, false, false, Resources.Load<Sprite>("3a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, Resources.Load<AudioClip>("Audios/Gigante")));
+        deckDead.Add(new Card("Muro", "Dead", 2, false, false, Resources.Load<Sprite>("3a1"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, null));                
+        deckDead.Add(new Card("Ataque", "Dead", 3, false, false, Resources.Load<Sprite>("3a2"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, null));
+        deckDead.Add(new Card("Gigante", "Dead", 1, false, false, Resources.Load<Sprite>("3a3"), Resources.Load<Sprite>("emerald"), Card.kind_card.increase, Card.card_position.I, txt[0], Effects.Increase, Resources.Load<AudioClip>("Audios/Gigante")));
     }
 }

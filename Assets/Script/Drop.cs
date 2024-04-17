@@ -15,8 +15,8 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
         if (item.card.typeCard == Card.kind_card.climate)
         {
-            item.card.climateField = Random.Range(0, 3);
-            item.card.effect(player1, player2, item.card.climateField, item.card.power);
+            item.card.affectedRow = Random.Range(0, 3);
+            item.card.effect(player1, player2, item.card.affectedRow, item.card.power);
         }
         else if (item.card.typeCard == Card.kind_card.increase || item.card.typeCard == Card.kind_card.bait)
         {
@@ -24,7 +24,7 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         }
         else if (item.card.typeCard == Card.kind_card.clear)
         {
-            item.card.effect(GameManager.currentPlayer, item.card.climateField);
+            item.card.effect(GameManager.currentPlayer, item.card.affectedRow);
         }
         else if (item.card.name == "Sansa" || item.card.name == "Theon" || item.card.name == "Arya" || item.card.name == "Mag Mar" || item.card.name == "Beric" || item.card.name == "Eddard")
         {
