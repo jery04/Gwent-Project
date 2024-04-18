@@ -105,8 +105,6 @@ MonoBehaviour:
   backImage: {fileID: 4318210015432970224}
   type_Card: 0
   cardPosition: 0
-  climateActive: 0
-  increaseActive: 0
 --- !u!114 &5728242484522748464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,8 +313,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 70.8, y: -0.70000076}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -0.6, y: 4.9}
+  m_SizeDelta: {x: 18.4504, y: 17.7673}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2319730028357416611
 CanvasRenderer:
@@ -339,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.028301716, b: 0.028301716, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -351,7 +349,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0

@@ -68,7 +68,7 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             if (this.GetComponent<CardDisplay>().type_Card == Card.kind_card.climate)                                                                                                                         
             {
                 GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "Harm:";
-                GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text += $"  R:{this.GetComponent<CardDisplay>().card.affectedRow}";
+                GameObject.Find("Panel_Card").transform.GetChild(7).GetComponent<Text>().text += $"  R:{this.GetComponent<CardDisplay>().card.affectedRow+1}";
             }                     // Si es clima imprime "Harm"/"Damage"
             else if (this.GetComponent<CardDisplay>().type_Card == Card.kind_card.increase)                  // Si es aumento imprime "Bonus"
                 GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "Bonus:";

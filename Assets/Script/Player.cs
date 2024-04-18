@@ -62,6 +62,9 @@ public class Player : MonoBehaviour
             {
                 item.GetComponent<CardDisplay>().backImage.enabled = true;  // Si no está jugando se activa el BackImage 
                 item.GetComponent<Drag>().enabled = false;                  // Si no está jugando se desactiva el Script Drag
+
+                if(item.GetComponent<CardDisplay>().card.isUnity)           //  Si no está jugando se desactiva el indicador de poder(carta unidad)
+                    item.GetComponent<CardDisplay>().textPower.enabled = false;
             }
             foreach(GameObject item in field)                               // Desactiva el Script Drop de field
                 item.GetComponent<Drop>().enabled = false;
@@ -77,14 +80,17 @@ public class Player : MonoBehaviour
                 {
                     item.GetComponent<CardDisplay>().backImage.enabled = false; // Si está jugando se desactiva el BackImage 
                     item.GetComponent<Drag>().enabled = true;                   // Si está jugando y no ha hecho ningún movimiento se activa el Script Drag
+                    
+                    if (item.GetComponent<CardDisplay>().card.isUnity)           //  Si está jugando se activa el indicador de poder(carta unidad) 
+                        item.GetComponent<CardDisplay>().textPower.enabled = true;
                 }
             }
             else
             {
                 foreach (GameObject item in hand.GetComponent<Panels>().cards)
                 {
-                    item.GetComponent<CardDisplay>().backImage.enabled = false;      // Si está jugando se desactiva el BackImage 
-                    item.GetComponent<Drag>().enabled = false;                  // Si está jugando y ya hizo un movimiento y es heroe se desactiva el Script Drag
+                    item.GetComponent<CardDisplay>().backImage.enabled = false;   // Si está jugando se desactiva el BackImage 
+                    item.GetComponent<Drag>().enabled = false;                    // Si está jugando y ya hizo un movimiento se desactiva el Script Drag
                 }
             }
             foreach (GameObject item in field)                               // Activa el Script Drop de field

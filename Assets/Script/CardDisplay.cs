@@ -27,10 +27,11 @@ public class CardDisplay : MonoBehaviour
         textPower.text = card.power.ToString();
         artWork.sprite = card.artWork;
         portrait.sprite = card.portrait;
+        textPower.enabled = false;
     }
     void Update()                                   // Actualiza propiedades
     {
         if (card != null)                           // Actualiza el poder
-            textPower.text = textPower.text;        
+            textPower.text = textPower.text;    
     }
 }
