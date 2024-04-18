@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EventClick : MonoBehaviour
 {
@@ -13,20 +14,13 @@ public class EventClick : MonoBehaviour
     public void OnSingleClick()                                         // Reconoce un Click-DoubleClick
     {
         if(lastClickTime == 0)
+        {
             lastClickTime = time.Millisecond;
 
-        else if (time.Millisecond - lastClickTime < 0.3)                // Algoritmo para reconocer DoubleClick
-        {
             // En caso de ser líder
             if (thisCard.GetComponent<CardDisplay>().cardPosition == Card.card_position.L)
-            {
-                if (thisCard.name == "Jon Snow")
-                    Effects.JonSnow(GameObject.Find("Stark"));
-                else if (thisCard.name == "Daenerys")
-                    Effects.Daenerys(GameObject.Find("Targaryen"));
-                else if (thisCard.name == "Rey Noche")
-                    Effects.NightKing(GameObject.Find("Dead"));
-            }
+                Drop.ActiveEffect(thisCard.GetComponent<CardDisplay>());
+
             else
             {
                 Destroy(thisCard);                                          // Destruye la carta
@@ -35,5 +29,11 @@ public class EventClick : MonoBehaviour
                 GameManager.currentPlayer.Active(false);                    // Desactiva el componente EventTrigger
             }
         }
+            
+        else if (time.Millisecond - lastClickTime < 0.3)                // Algoritmo para reconocer DoubleClick
+        {
+            // Continuará...
+        }
+
     }
 }

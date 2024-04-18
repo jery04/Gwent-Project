@@ -21,9 +21,11 @@ public class Player : MonoBehaviour
     public bool myTurn;                                    // Dicta el turno del jugador
     public bool skipRound;                                 // Dicta si el jugador pasa la ronda
     public bool oneMove;                                   // Dicta si el jugador ya ha jugado una carta
-    public Text counterDeck;
-     
+    public Text counterDeck;                               // Cantidad de cartas en el mazo
+    public Text counterCementery;                          // Cantidad de cartas en el cementerio
+
     // Paneles
+    public List<Card> cementeryCards;                      // Cartas enviadas al cementerio
     public GameObject leader;                              // Carta líder
     public GameObject hand;                                // Cartas de la mano
     public GameObject[] field;                             // Cartas del campo(Melee-Range-Siege)
@@ -36,13 +38,13 @@ public class Player : MonoBehaviour
     // Métodos 
     public void Cementery()                                // Envía todas las cartas al cementerio
     {
-        climate.GetComponent<Panels>().RemoveAll();        // Envía las cartas de climate al cementerio
+        climate.GetComponent<Panels>().RemoveAll(cementeryCards); // Envía las cartas de climate al cementerio
 
-        foreach (GameObject item in field)                 // Envía las cartas de increase al cementerio
-            item.GetComponent<Panels>().RemoveAll();
+        foreach (GameObject item in field)                        // Envía las cartas de increase al cementerio
+            item.GetComponent<Panels>().RemoveAll(cementeryCards);
 
-        foreach (GameObject item in increase)              // Envía las cartas Melee, Range y Siege al cementerio
-            item.GetComponent<Panels>().RemoveAll();
+        foreach (GameObject item in increase)                     // Envía las cartas Melee, Range y Siege al cementerio
+            item.GetComponent<Panels>().RemoveAll(cementeryCards);
     }
     private void GeneralPower(int round)                   // Devuelve la puntuación del jugador al finalizar la ronda
     {
@@ -63,6 +65,9 @@ public class Player : MonoBehaviour
             }
             foreach(GameObject item in field)                               // Desactiva el Script Drop de field
                 item.GetComponent<Drop>().enabled = false;
+
+            if(leader.GetComponent<Panels>().cards.Count != 0)
+                leader.GetComponent<Panels>().cards[0].GetComponent<EventTrigger>().enabled = false;
         }
         else                                                                // De lo contrario, si está en juego...
         {
@@ -84,6 +89,9 @@ public class Player : MonoBehaviour
             }
             foreach (GameObject item in field)                               // Activa el Script Drop de field
                 item.GetComponent<Drop>().enabled = true;
+
+            if(leader.GetComponent<Panels>().cards.Count != 0)
+                leader.GetComponent<Panels>().cards[0].GetComponent<EventTrigger>().enabled = true;
         }
     }
     private IEnumerator For(int max)                       // Cantidad de cartas que puede tomar del deck
@@ -107,28 +115,39 @@ public class Player : MonoBehaviour
     {
         int numChild = hand.GetComponent<Panels>().itemsCounter;
 
-        if (numChild == 0)                                  // Tomar 10 iniciales                                  
+        if (numChild == 0)                                  // Tomar 10 iniciales  y el líder                                
         {
-            // Instancia al líder
-            GameObject a = Instantiate(Resources.Load<GameObject>("Card"), leader.transform);
-            a.GetComponent<CardDisplay>().card = deck[0];
-            a.name = deck[0].name;
-            leader.GetComponent<Panels>().cards.Add(a);
+            TakeCard(deck[0], leader);                      // Instancia al líder
             deck.RemoveAt(0);
-
             StartCoroutine(For(10));                        // Instancia 10 cartas en la mano
         }                         
 
         else if((num != 0) && (numChild < 10))              // Toma num cartas
             StartCoroutine(For(1));
 
-        else if (numChild < 10)      // Tomar 2 cartas o menos
+        else if (numChild < 10)                             // Tomar 2 cartas o menos
         {
             if (10 - numChild <= 2)
                 StartCoroutine(For(10 - numChild));
             else
                 StartCoroutine(For(2));
         }
+    }
+    public void TakeCard(Card card, GameObject panel = null) // Crea una carta determinada en un panel determinado
+    {
+        GameObject newCard;
+        if (panel == null)
+            newCard = Instantiate(Resources.Load<GameObject>("Card"), hand.transform);
+        else
+            newCard = Instantiate(Resources.Load<GameObject>("Card"), panel.transform);
+
+        newCard.GetComponent<EventTrigger>().enabled = false;
+        newCard.GetComponent<CardDisplay>().card = card;
+        newCard.name = card.name;
+
+        if(panel == null)
+            hand.GetComponent<Panels>().cards.Add(newCard);
+        else panel.GetComponent<Panels>().cards.Add(newCard);
     }
     public void ButtonInfoTakeCard()                       // Modifica la visibilidad del botón Info
     {
@@ -167,9 +186,10 @@ public class Player : MonoBehaviour
     public void Update()
     {
         ButtonInfoTakeCard();
-        GeneralPower(GameManager.round);                 // Actualiza el poder
-        counterDeck.text = deck.Count.ToString();
-        BackImageAndDrag();                              // Actualiza el Método
-        if (oneMove) takeCardStartGame = 2;              // Si juega una carta se desactiva la opcion DrawCard al inicio
+        GeneralPower(GameManager.round);                  // Actualiza el poder
+        counterDeck.text = deck.Count.ToString();         // Actualiza la cantidad de cartas en el mazo
+        counterCementery.text = cementeryCards.Count.ToString(); // Actualiza las cantidad de cartas en el cementerio
+        BackImageAndDrag();                               // Actualiza el Método
+        if (oneMove) takeCardStartGame = 2;               // Si juega una carta se desactiva la opcion DrawCard al inicio
     }
 }

@@ -51,7 +51,7 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         }
         return "";
     }
-    public void OnPointerEnter(PointerEventData evenData)           // Se ejecuta cuando el puntero entra en el área del objeto
+    public void OnPointerEnter(PointerEventData eventData)          // Se ejecuta cuando el puntero entra en el área del objeto
     {
         // Enviar la información de la carta el Panel de Datos
         if (this != null && !this.GetComponent<CardDisplay>().backImage.enabled)
@@ -75,7 +75,7 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             else GameObject.Find("Panel_Card").transform.GetChild(6).GetComponent<Text>().text = "Power:";   // De lo contrario "Power"
         }
     }
-    public void OnPointerExit(PointerEventData evenData)            // Se ejecuta cuando el puntero sale del área del objeto.
+    public void OnPointerExit(PointerEventData eventData)           // Se ejecuta cuando el puntero sale del área del objeto
     {
         if (this != null)                                           // Limpiar(vaciar datos) el Panel de Datos
         {
@@ -90,8 +90,34 @@ public class DropCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
              GameObject.Find("Panel_Card").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Panel");
         }
     }
-    public void OnDrop(PointerEventData evenData)                   // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script.
+    public void OnDrop(PointerEventData eventData)                  // Se ejecuta cuando un objeto es soltado sobre el objeto asociado a este script
     {
-    
+        if (Effects.baitEffect) 
+        {
+            Drag item = eventData.pointerDrag.GetComponent<Drag>();                         // Almacena el Componente Darg de la carta
+            GameObject panel = this.gameObject.transform.parent.gameObject;                 // Almacena el panel padre del objeto de este componente
+            CardDisplay cardDrag = eventData.pointerDrag.GetComponent<CardDisplay>();
+
+            // Si el objeto tiene un componente Drag, tiene poder 0, cabe en la fila y pertenece al panel establece el padre del objeto arrastrado al objeto actual
+            if (item != null && !cardDrag.card.isUnity && panel.GetComponent<Panels>().itemsCounter <= panel.GetComponent<Panels>().maxItems && Drop.CardPosition(panel.GetComponent<Drop>(), eventData.pointerDrag))
+            {   
+                //Añade la carta nueva
+                item.parent = panel.transform;                                           
+                GameManager.currentPlayer.hand.GetComponent<Panels>().cards.Remove(eventData.pointerDrag); 
+                panel.GetComponent<Panels>().cards.Add(eventData.pointerDrag);           
+
+                //Devuelve la carta a la mano
+                Card thisCard = this.gameObject.GetComponent<CardDisplay>().card;
+                Destroy(this.gameObject);
+                GameManager.currentPlayer.TakeCard(thisCard);
+
+                GameManager.currentPlayer.oneMove = true;                                   // Indica que el jugador ha realizado un movimiento
+                cardDrag.card.ActiveClip();                                                 // Activa el AudioClip de la carta 
+
+                if (eventData.pointerDrag.GetComponent<CardDisplay>().card.effect != null)
+                    Drop.ActiveEffect(cardDrag);                                            // Activa el efecto de la carta
+                Effects.baitEffect = false;
+            }
+        }
     }
 }

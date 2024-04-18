@@ -7,6 +7,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public static class Effects
 {
+    public static bool baitEffect;
     public static void Increase(params object[] item)       // Poner un aumento en una fila propia
     {
         if (item[0] is Player player)
@@ -19,7 +20,7 @@ public static class Effects
                     for (int i = 0; i < player.field[j].GetComponent<Panels>().cards.Count; i++)
                     {
                         CardDisplay thisCard = player.field[j].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>();
-                        if (thisCard.card.isUnity && !thisCard.card.isHeroe && !thisCard.increaseActive)
+                        if (thisCard.card.isUnity && !thisCard.card.isHeroe)
                             thisCard.PowerDelta(panel.cards[0].GetComponent<CardDisplay>().Power());
                     }
                 }
@@ -33,15 +34,15 @@ public static class Effects
             for (int i = 0; i < player1.field[affectedRow].GetComponent<Panels>().cards.Count; i++)
             {
                 CardDisplay thisCard = player1.field[affectedRow].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>();
-                if (thisCard.card.isUnity && !thisCard.card.isHeroe && !thisCard.climateActive)
-                    thisCard.PowerDelta(harm); thisCard.climateActive = true;
+                if (thisCard.card.isUnity && !thisCard.card.isHeroe)
+                    thisCard.PowerDelta(harm);
             }
 
             for (int i = 0; i < player2.field[affectedRow].GetComponent<Panels>().cards.Count; i++)
             {
                 CardDisplay thisCard = player2.field[affectedRow].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>();
-                if (thisCard.card.isUnity && !thisCard.card.isHeroe && !thisCard.climateActive)
-                    thisCard.PowerDelta(harm); thisCard.climateActive = true;
+                if (thisCard.card.isUnity && !thisCard.card.isHeroe)
+                    thisCard.PowerDelta(harm);
             }
         }
     }   
@@ -122,10 +123,10 @@ public static class Effects
                         minRow = panelRow;
             }
             if(minRow != null)
-                minRow.RemoveAll();
+                minRow.RemoveAll(player.cementeryCards);
         }
     }
-    public static void Average(params object[] item)        // Caclula el promedio de poder entre todas las cartas del campo. Luego lo iguala al poder de todas las cartas del campo
+    public static void Average(params object[] item)        // Caclula el promedio de poder entre todas las cartas del campo y lo iguala al poder de todas las cartas del campo
     {
         if (item[0] is Player player)
         {
@@ -144,42 +145,75 @@ public static class Effects
     }
     public static void ReturnToHand(params object[] item)   // Efecto de Señuelo
     {
-
+        if (item[0] is Player player && player.hand.GetComponent<Panels>().cards.Count <= 10)
+        {
+            baitEffect = true;
+            player.oneMove = false;
+        }
     }
     public static void ClimateOut(params object[] item)     // Despeja una carta Clima
     {
-        if (item[0] is Player player)
+        if (item[0] is Player player1 && item[1] is Player player2) 
         {
-            int pos = player.climate.GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().card.affectedRow;
-            if (player.climate.GetComponent<Panels>().cards.Count != 0)
-            {
-                int delta = player.climate.GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().card.power;
-                for (int i = 0; i < player.field[pos].GetComponent<Panels>().cards.Count; i++)
-                    if (player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isUnity && !player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().card.isHeroe)
-                        player.field[pos].GetComponent<Panels>().cards[i].GetComponent<CardDisplay>().PowerDelta(delta);
-                GameObject.Destroy(player.climate.GetComponent<Panels>().cards[0]);
+            if (player1.climate.GetComponent<Panels>().cards.Count != 0)
+            { 
+                int affectedRow = player1.climate.GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().card.affectedRow;
+                int delta = player1.climate.GetComponent<Panels>().cards[0].GetComponent<CardDisplay>().Power();
+                Panels panel1 = player1.field[affectedRow].GetComponent<Panels>(); 
+                Panels panel2 = player2.field[affectedRow].GetComponent<Panels>();
+                for (int i = 0; i < panel1.cards.Count; i++)
+                {
+                    CardDisplay thisCard = panel1.cards[i].GetComponent<CardDisplay>();
+                    if (thisCard.card.isUnity && !thisCard.card.isHeroe)
+                        thisCard.PowerDelta((-1)*delta);
+                }
+                for (int i = 0; i < panel2.cards.Count; i++)
+                {
+                    CardDisplay thisCard = panel2.cards[i].GetComponent<CardDisplay>();
+                    if (thisCard.card.isUnity && !thisCard.card.isHeroe)
+                        thisCard.PowerDelta((-1) * delta);
+                }
+                GameObject.Destroy(player1.climate.GetComponent<Panels>().cards[0]);
             }
         }
     }  
-    public static void JonSnow(params object[] item)        // Efecto del líder(Jon Snow)
+    public static void JonSnow(params object[] item)        // Efecto del líder(Jon Snow) Aumenta en 2 el poder de las cartas de unidad en todas las filas propias.
     {
         if (item[0] is Player player)
         {
-
+            foreach(GameObject row in player.field)
+                foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
+                    if(thisCard.GetComponent<CardDisplay>().card.isUnity)
+                        thisCard.GetComponent<CardDisplay>().PowerDelta(2);
         }
     }
     public static void Daenerys(params object[] item)       // Efecto del líder(Daenerys)
     {
-        if (item[0] is Player player)
+        if (item[0] is Player player1 && item[1] is Player player2)
         {
-            
+            foreach (GameObject row in player1.field)
+                foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
+                    if (thisCard.GetComponent<CardDisplay>().card.isUnity)
+                        thisCard.GetComponent<CardDisplay>().PowerDelta(-2);
+
+            foreach (GameObject row in player2.field)
+                foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
+                    if (thisCard.GetComponent<CardDisplay>().card.isUnity)
+                        thisCard.GetComponent<CardDisplay>().PowerDelta(-2);
         }
     }
-    public static void NightKing(params object[] item)      // Efecto del líder(ReyNoche)
+    public static void NightKing(params object[] item)      // Efecto del líder(ReyNoche) Retorna a la mano la carta unidad con más poder del cementerio pertenciente a su facción
     {
         if (item[0] is Player player)
         {
-
+            Card maxPower = null;
+            foreach (Card thisCard in player.cementeryCards)
+            {
+                if ((thisCard.isUnity) && (maxPower == null || thisCard.power > maxPower.power))
+                    maxPower = thisCard;
+            }
+            player.TakeCard(maxPower);
+            player.cementeryCards.Remove(maxPower);
         }
     }
-}
+}                                                           // Esta línea (219) va dedicada a mi familia, gracias por todo.

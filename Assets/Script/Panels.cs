@@ -18,10 +18,11 @@ public class Panels : MonoBehaviour
                 counter++;
         return counter;
     }
-    public void RemoveAll()                                                        // Remueve todas las cartas
+    public void RemoveAll(List<Card> cementery)                                    // Remueve todas las cartas
     {
         for (int i = 0; i < cards.Count; i++)
         {
+            cementery.Add(cards[i].GetComponent<CardDisplay>().card);
             GameObject.Destroy(cards[i]);
             cards.RemoveAt(i);
         }
