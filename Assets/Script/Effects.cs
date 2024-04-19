@@ -212,8 +212,11 @@ public static class Effects
                 if ((thisCard.isUnity) && (maxPower == null || thisCard.power > maxPower.power))
                     maxPower = thisCard;
             }
-            player.TakeCard(maxPower);
-            player.cementeryCards.Remove(maxPower);
+            if (maxPower != null)
+            {
+                player.TakeCard(maxPower);
+                player.cementeryCards.Remove(maxPower);
+            }
         }
     }
 }                                                           // Esta línea (219) va dedicada a mi familia, gracias por todo.
