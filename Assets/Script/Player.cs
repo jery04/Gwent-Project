@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
     private IEnumerator For(int max)                       // Cantidad de cartas que puede tomar del deck
     {
         GameObject prefarb = Resources.Load<GameObject>("Card");
-        for (int i = 0; i < max; i++)
+        for (int i = 0; i < max; i++) 
         {
             int rand = UnityEngine.Random.Range(0, deck.Count);
             GameObject a = Instantiate(prefarb, hand.transform);
