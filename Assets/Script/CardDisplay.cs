@@ -22,12 +22,15 @@ public class CardDisplay : MonoBehaviour
     public void PowerDelta(int delta) => textPower.text = (int.Parse(textPower.text) + delta).ToString();    // Variar su poder (Aumentar-Disminuir)
     void Start()                                    // Inicializa propiedades
     {
-        type_Card = card.typeCard;    
-        cardPosition = card.cardPosition;
-        textPower.text = card.power.ToString();
-        artWork.sprite = card.artWork;
-        portrait.sprite = card.portrait;
-        textPower.enabled = false;
+        if(card != null)
+        {
+            type_Card = card.typeCard;
+            cardPosition = card.cardPosition;
+            textPower.text = card.power.ToString();
+            artWork.sprite = card.artWork;
+            portrait.sprite = card.portrait;
+            textPower.enabled = false;
+        }
     }
     void Update()                                   // Actualiza propiedades
     {

@@ -183,7 +183,7 @@ public static class Effects
         {
             foreach(GameObject row in player.field)
                 foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
-                    if(thisCard.GetComponent<CardDisplay>().card.isUnity)
+                    if(thisCard.GetComponent<CardDisplay>().card.isUnity && !thisCard.GetComponent<CardDisplay>().card.isHeroe)
                         thisCard.GetComponent<CardDisplay>().PowerDelta(2);
         }
     }
@@ -193,12 +193,12 @@ public static class Effects
         {
             foreach (GameObject row in player1.field)
                 foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
-                    if (thisCard.GetComponent<CardDisplay>().card.isUnity)
+                    if (thisCard.GetComponent<CardDisplay>().card.isUnity && !thisCard.GetComponent<CardDisplay>().card.isHeroe)
                         thisCard.GetComponent<CardDisplay>().PowerDelta(-2);
 
             foreach (GameObject row in player2.field)
                 foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
-                    if (thisCard.GetComponent<CardDisplay>().card.isUnity)
+                    if (thisCard.GetComponent<CardDisplay>().card.isUnity && !thisCard.GetComponent<CardDisplay>().card.isHeroe )
                         thisCard.GetComponent<CardDisplay>().PowerDelta(-2);
         }
     }

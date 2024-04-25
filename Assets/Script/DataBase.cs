@@ -54,9 +54,9 @@ public class DataBase : MonoBehaviour
         deckStark.Add(new Card("Jon Snow", "Stark", 0, false, false, Resources.Load<Sprite>("l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, Card.card_position.L, txt[25]+txt[10], Effects.JonSnow));
 
         // Señuelo
-        deckStark.Add(new Card("Herd", "Stark", 0, false, false, Resources.Load<Sprite>("s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, Resources.Load<AudioClip>("Audios/Lobo1")));                            
-        deckStark.Add(new Card("Ghost", "Stark", 0, false, false, Resources.Load<Sprite>("s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, Resources.Load<AudioClip>("Audios/Lobo2")));
-        deckStark.Add(new Card("Crow", "Stark", 0, false, false, Resources.Load<Sprite>("s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, Resources.Load<AudioClip>("Audios/Cuervo")));
+        deckStark.Add(new Card("Herd", "Stark", 0, false, false, Resources.Load<Sprite>("s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[8], Effects.ReturnToHand, Resources.Load<AudioClip>("Audios/Lobo1")));                            
+        deckStark.Add(new Card("Ghost", "Stark", 0, false, false, Resources.Load<Sprite>("s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[8], Effects.ReturnToHand, Resources.Load<AudioClip>("Audios/Lobo2")));
+        deckStark.Add(new Card("Crow", "Stark", 0, false, false, Resources.Load<Sprite>("s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[8], Effects.ReturnToHand, Resources.Load<AudioClip>("Audios/Cuervo")));
 
         // Plata
         deckStark.Add(new Card("Sansa", "Stark", 5, true, false, Resources.Load<Sprite>("p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.DrawCard));          
@@ -76,8 +76,8 @@ public class DataBase : MonoBehaviour
         deckStark.Add(new Card("Wun Wun", "Stark", 9, true, true, Resources.Load<Sprite>("o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.MR, txt[6], Effects.ClearRow, Resources.Load<AudioClip>("Audios/Gigante")));
 
         // Despeje
-        deckStark.Add(new Card("Ingrid", "Stark", 0, false, false, Resources.Load<Sprite>("d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[17] + txt[9], Effects.ClimateOut, Resources.Load<AudioClip>("Audios/Ingrid")));                             
-        deckStark.Add(new Card("Wall Door", "Stark", 0, false, false, Resources.Load<Sprite>("d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9] + txt[18], Effects.ClimateOut));
+        deckStark.Add(new Card("Ingrid", "Stark", 0, false, false, Resources.Load<Sprite>("d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, Card.card_position.MRS, txt[17] + txt[9], Effects.ClimateOut, Resources.Load<AudioClip>("Audios/Ingrid")));                             
+        deckStark.Add(new Card("Wall Door", "Stark", 0, false, false, Resources.Load<Sprite>("d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, Card.card_position.MRS, txt[9] + txt[18], Effects.ClimateOut));
 
         // Clima
         deckStark.Add(new Card("Arciano", "Stark", -1, 2, false, false, Resources.Load<Sprite>("c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate));  
@@ -99,9 +99,9 @@ public class DataBase : MonoBehaviour
         deckTargaryen.Add(new Card("Daenerys", "Targareyn", 0, false, false, Resources.Load<Sprite>("2l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, Card.card_position.L, txt[21] +txt[11], Effects.Daenerys, null));                                             
 
         // Señuelo
-        deckTargaryen.Add(new Card("The Hand", "Targareyn", 0, false, false, Resources.Load<Sprite>("2s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));                                               
-        deckTargaryen.Add(new Card("Missandei", "Targareyn", 0, false, false,  Resources.Load<Sprite>("2s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));
-        deckTargaryen.Add(new Card("Varys", "Targareyn",0, false, false, Resources.Load<Sprite>("2s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[30]+txt[8], Effects.ReturnToHand, null));
+        deckTargaryen.Add(new Card("The Hand", "Targareyn", 0, false, false, Resources.Load<Sprite>("2s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[8], Effects.ReturnToHand, null));                                               
+        deckTargaryen.Add(new Card("Missandei", "Targareyn", 0, false, false,  Resources.Load<Sprite>("2s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[8], Effects.ReturnToHand, null));
+        deckTargaryen.Add(new Card("Varys", "Targareyn",0, false, false, Resources.Load<Sprite>("2s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[30]+txt[8], Effects.ReturnToHand, null));
 
         // Plata
         deckTargaryen.Add(new Card("Guerrero1", "Targareyn", 3, true, false, Resources.Load<Sprite>("2p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[4], Effects.DrawCard, Resources.Load<AudioClip>("Audios/Espadas")));    //Espadas                   
@@ -125,7 +125,7 @@ public class DataBase : MonoBehaviour
         deckTargaryen.Add(new Card("Mad king", "Targareyn", 5, true, true, Resources.Load<Sprite>("2o6"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, txt[22]+txt[7], Effects.Average, null));
 
         // Despeje
-        deckTargaryen.Add(new Card("Gusano Gris", "Targareyn", 0, false, false, Resources.Load<Sprite>("2d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[23]+txt[9], Effects.ClimateOut, null));
+        deckTargaryen.Add(new Card("Gusano Gris", "Targareyn", 0, false, false, Resources.Load<Sprite>("2d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, Card.card_position.MRS, txt[23]+txt[9], Effects.ClimateOut, null));
 
         // Clima
         deckTargaryen.Add(new Card("Catapult", "Targareyn", -1, 1, false, false, Resources.Load<Sprite>("2c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Catapultas")));                   
@@ -146,9 +146,9 @@ public class DataBase : MonoBehaviour
         deckDead.Add(new Card("King Night", "Dead",  0, false, false, Resources.Load<Sprite>("3l1"), Resources.Load<Sprite>("golden"), Card.kind_card.leader, Card.card_position.L, txt[27]+txt[12], Effects.NightKing, null));
 
         // Señuelo
-        deckDead.Add(new Card("Cam.White1", "Dead", 0, false, false, Resources.Load<Sprite>("3s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));                                               
-        deckDead.Add(new Card("Cam.White2", "Dead", 0, false, false, Resources.Load<Sprite>("3s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));
-        deckDead.Add(new Card("Cam.White3", "Dead", 0, false, false, Resources.Load<Sprite>("3s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, txt[8], Effects.ReturnToHand, null));
+        deckDead.Add(new Card("Cam.White1", "Dead", 0, false, false, Resources.Load<Sprite>("3s1"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[8], Effects.ReturnToHand, null));                                               
+        deckDead.Add(new Card("Cam.White2", "Dead", 0, false, false, Resources.Load<Sprite>("3s2"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[8], Effects.ReturnToHand, null));
+        deckDead.Add(new Card("Cam.White3", "Dead", 0, false, false, Resources.Load<Sprite>("3s3"), Resources.Load<Sprite>("silver"), Card.kind_card.bait, Card.card_position.MRS, txt[8], Effects.ReturnToHand, null));
 
         // Plata
         deckDead.Add(new Card("Walking1", "Dead", 3, true, false, Resources.Load<Sprite>("3p1"), Resources.Load<Sprite>("silver"), Card.kind_card.silver, Card.card_position.R, txt[3], Effects.RemoveMin, Resources.Load<AudioClip>("Audios/CaminanteBlanco1")));                       
@@ -170,8 +170,8 @@ public class DataBase : MonoBehaviour
         deckDead.Add(new Card("Viserion", "Dead", 5, true, true, Resources.Load<Sprite>("3o5"), Resources.Load<Sprite>("golden"), Card.kind_card.golden, Card.card_position.S, txt[16] + txt[4], Effects.RemoveMax, Resources.Load<AudioClip>("Audios/Dragon2")));
 
         // Despeje
-        deckDead.Add(new Card("Dead", "Dead", 0, false, false, Resources.Load<Sprite>("3d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut, null));                                            
-        deckDead.Add(new Card("Dead", "Dead", 0, false, false, Resources.Load<Sprite>("3d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, txt[9], Effects.ClimateOut, null));
+        deckDead.Add(new Card("Dead", "Dead", 0, false, false, Resources.Load<Sprite>("3d1"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, Card.card_position.MRS, txt[9], Effects.ClimateOut, null));                                            
+        deckDead.Add(new Card("Dead", "Dead", 0, false, false, Resources.Load<Sprite>("3d2"), Resources.Load<Sprite>("silver"), Card.kind_card.clear, Card.card_position.MRS, txt[9], Effects.ClimateOut, null));
 
         // Clima
         deckDead.Add(new Card("Avalanche1", "Dead", -2, 0, false, false, Resources.Load<Sprite>("3c1"), Resources.Load<Sprite>("emerald"), Card.kind_card.climate, Card.card_position.C, txt[28]+txt[1], Effects.Climate, Resources.Load<AudioClip>("Audios/Avalancha")));                   
