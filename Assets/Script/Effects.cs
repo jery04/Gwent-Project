@@ -55,7 +55,7 @@ public static class Effects
             {
                 foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
                 {
-                    if (thisCard.GetComponent<CardDisplay>().card.isUnity)
+                    if (thisCard.GetComponent<CardDisplay>().card.isUnity && !thisCard.GetComponent<CardDisplay>().card.isHeroe)
                     {
                         if (cardMax == null)
                             cardMax = thisCard;
@@ -78,7 +78,7 @@ public static class Effects
             {
                 foreach (GameObject thisCard in row.GetComponent<Panels>().cards)
                 {
-                    if (thisCard.GetComponent<CardDisplay>().card.isUnity)
+                    if (thisCard.GetComponent<CardDisplay>().card.isUnity && !thisCard.GetComponent<CardDisplay>().card.isHeroe)
                     {
                         if (cardMax == null)
                             cardMax = thisCard;
