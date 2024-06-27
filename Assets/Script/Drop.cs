@@ -41,10 +41,9 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     static public bool CardPosition(Drop item, GameObject item2)                            // Verifica que la posición de la carta coincida con la del panel
     {
         foreach (Card.card_position i in item.GetComponent<Panels>().position)
-        {
             if (i == item2.GetComponent<CardDisplay>().cardPosition)
                 return true;
-        }
+
         return false;
     }
     public void OnPointerEnter(PointerEventData eventData)                                  // Se ejecuta cuando el puntero entra en el área del objeto

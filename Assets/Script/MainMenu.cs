@@ -35,6 +35,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    public void CreateCard()
+    {
+        SceneManager.LoadScene("CreateCard");
+    }
     private void Out()                            // Cierra la aplicación
     {
         Application.Quit();

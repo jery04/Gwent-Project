@@ -27,7 +27,7 @@ public class Card : ScriptableObject
     private AudioClip clip;                                                             // Audio de las cartas al colocarse
     public int affectedRow;                                                             // Fila que afectan las cartas climas
 
-    // Constructores (Sobrecargado)
+    // Constructores (Sobrecargado) 
     public Card(string name, string faction , int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, string description, EffectDelegate effect, AudioClip clip = null)
     {
         this.name = name;

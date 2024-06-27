@@ -439,7 +439,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: []
-  butStart: {fileID: 0}
   input1: {fileID: 0}
   input2: {fileID: 0}
 --- !u!1 &728931616
@@ -544,7 +543,7 @@ MonoBehaviour:
       m_Calls: []
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
-  m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
+  m_SelectionColor: {r: 0.22264141, g: 0.22264141, b: 0.22264141, a: 0.76862746}
   m_Text: Name
   m_CaretBlinkRate: 1.25
   m_CaretWidth: 1
@@ -851,7 +850,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: []
-  butStart: {fileID: 0}
   input1: {fileID: 0}
   input2: {fileID: 0}
 --- !u!1 &888073251
@@ -1104,7 +1102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: []
-  butStart: {fileID: 0}
   input1: {fileID: 0}
   input2: {fileID: 0}
 --- !u!1 &1294448039
@@ -1340,7 +1337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: []
-  butStart: {fileID: 0}
   input1: {fileID: 0}
   input2: {fileID: 0}
 --- !u!1 &1621113667
@@ -1527,7 +1523,6 @@ MonoBehaviour:
   - {fileID: 762545106}
   - {fileID: 1931203945}
   - {fileID: 440258027}
-  butStart: {fileID: 1436240678}
   input1: {fileID: 2076790791}
   input2: {fileID: 728931618}
 --- !u!4 &1751210026
@@ -1799,7 +1794,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: []
-  butStart: {fileID: 0}
   input1: {fileID: 0}
   input2: {fileID: 0}
 --- !u!1 &1873733184
@@ -2172,7 +2166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: []
-  butStart: {fileID: 0}
   input1: {fileID: 0}
   input2: {fileID: 0}
 --- !u!1 &2067307513
@@ -2357,7 +2350,7 @@ MonoBehaviour:
       m_Calls: []
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
-  m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
+  m_SelectionColor: {r: 0.2603773, g: 0.2603773, b: 0.2603773, a: 0.7529412}
   m_Text: Name
   m_CaretBlinkRate: 1.25
   m_CaretWidth: 1
@@ -2588,7 +2581,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: []
-  butStart: {fileID: 0}
   input1: {fileID: 0}
   input2: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
