@@ -8,6 +8,8 @@ public class DataBase : MonoBehaviour
     public List<Card> deckStark = new List<Card>();         // Mazo1 (Stark)
     public List<Card> deckTargaryen = new List<Card>();     // Mazo2 (Targaryen)
     public List<Card> deckDead = new List<Card>();          // Mazo3 (Caminantes Blancos)(Dead)
+    public List<Card> deckCompiler = new List<Card>();      // Mazo3 (Compiler)
+
     public DataBase() => CreateCard();
                                 
     private void CreateCard()                                // Crea las instancias de las cartas

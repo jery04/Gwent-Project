@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LineNumberDisplay : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class LineNumberDisplay : MonoBehaviour
     public TMP_Text lineNumbersText;
     public Scrollbar scrollbar;
     public Scrollbar otherScrollbar; // Aquí asigna el Scrollbar del otro texto que también se puede desplazar
+    private string[] code;
 
     private void Start()
     {
@@ -21,7 +23,6 @@ public class LineNumberDisplay : MonoBehaviour
         // Actualizar los números de línea inicialmente
         UpdateLineNumbers(inputField.text);
     }
-
     private void UpdateLineNumbers(string newText)
     {
         string[] lines = newText.Split('\n');
@@ -34,8 +35,8 @@ public class LineNumberDisplay : MonoBehaviour
         }
         // Actualizar el texto que muestra los números de línea
         lineNumbersText.text = lineNumbers;
+        this.code = lines;
     }
-
     private void OnScrollbarValueChanged(float value)
     {
         // Si tienes otro scrollbar, ajusta su valor también
@@ -46,6 +47,14 @@ public class LineNumberDisplay : MonoBehaviour
 
         // Ajustar la posición vertical del texto de los números de línea
         //lineNumbersText.rectTransform.anchoredPosition = new Vector2(0, value * (inputField.textComponent.preferredHeight - inputField.textViewport.rect.height));
+    }
+    public void ActionEvent(string nameMethod)    // Llama a la próxima escena
+    {
+        Invoke(nameMethod, 0.2f);
+    }
+    private void GoMain()                         // Llama a la próxima escena
+    {
+        SceneManager.LoadScene(0);
     }
 }
 

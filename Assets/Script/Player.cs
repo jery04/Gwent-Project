@@ -12,9 +12,9 @@ public class Player : MonoBehaviour
 {
     // Propiedades
     #region Property
-    public string playerName;                              // Nombre del jugador
-    public string faction;                                 // Facción
-    public List<Card> deck = new List<Card>();             // Mazo del jugador
+    public string playerName;                              // Nombre del jugador 
+    public string faction;                                 // Facción 
+    public List<Card> deck = new List<Card>();             // Mazo del jugador 
     public int[] powerRound;                               // Puntos acumulados por rondas
     public int takeCardStartGame = 0;                      // Cantidad de cartas cambiadas antes de la batalla
 
