@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Token : MonoBehaviour
+public class Token
 {
     // Field
     public enum TokenType
@@ -23,8 +23,8 @@ public class Token : MonoBehaviour
         LessThan,         // <
         LessThanEqual,    // <=
         GreaterThanEqual, // =>
-        PlusEquals,       // +=
-        MinusEquals,      // -=
+        Increase,         // +=
+        Decrease,         // -=
         Assignment,       // =
         Equal,            // == 
         Colon,            // :
@@ -32,6 +32,7 @@ public class Token : MonoBehaviour
         Comma,            // ,
         SemiColon,        // ;
         Arrow,            // =>
+
 
         // Operadores Aritméticos
         Plus,             // +
@@ -50,7 +51,9 @@ public class Token : MonoBehaviour
         AT,               // @
 
         // Tipos
-        Number,           // 1354
+        Targets,
+        Context,
+        Digit,           // 1354 
         UnKnown,          // qwevju
 
         //Boolean
@@ -58,12 +61,16 @@ public class Token : MonoBehaviour
         False,
 
         // KeyWords
+        Call,
+        Number,
+        String,
+        Bool,
         Add,
         Action,
-        Amount,
         Board,
         Card,
         Deck,
+        TriggerPlayer,
         DeckOfPlayer,
         Effect,
         EffectActivation,
@@ -132,5 +139,4 @@ public class Token : MonoBehaviour
 
         return index;
     }
-
 }

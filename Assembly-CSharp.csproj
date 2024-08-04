@@ -60,25 +60,33 @@
     <Analyzer Include="C:\Program Files\Unity 2022.3.15f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Effects.cs" />
-    <Compile Include="Assets\Script\CardDisplay.cs" />
-    <Compile Include="Assets\Script\Compiler\Lexer.cs" />
-    <Compile Include="Assets\Script\Compiler.cs" />
-    <Compile Include="Assets\Script\Chose.cs" />
+    <Compile Include="Assets\Script\Drag &amp;&amp; Drop\Drag.cs" />
+    <Compile Include="Assets\Script\Card &amp;&amp; Player\DeckManager.cs" />
+    <Compile Include="Assets\Script\Compiler\Lexer\Token.cs" />
+    <Compile Include="Assets\Script\Effects\EventClick.cs" />
+    <Compile Include="Assets\Script\Compiler\Parser\Parser.cs" />
+    <Compile Include="Assets\Script\Compiler\Card\CardBlocks.cs" />
+    <Compile Include="Assets\Script\Compiler\ProgramCompiler.cs" />
+    <Compile Include="Assets\Script\Effects\Effects.cs" />
+    <Compile Include="Assets\Script\Mains &amp;&amp; Panels\KeepMusic.cs" />
+    <Compile Include="Assets\Script\Card &amp;&amp; Player\Player.cs" />
+    <Compile Include="Assets\Script\Compiler\Lexer\Lexer.cs" />
+    <Compile Include="Assets\Script\Compiler\Utils\Interfaces.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
-    <Compile Include="Assets\Script\Compiler\Parser.cs" />
-    <Compile Include="Assets\Script\MainMenu.cs" />
-    <Compile Include="Assets\Script\Drop.cs" />
-    <Compile Include="Assets\Script\Card.cs" />
-    <Compile Include="Assets\Script\KeepMusic.cs" />
-    <Compile Include="Assets\Script\Player.cs" />
-    <Compile Include="Assets\Script\DropCard.cs" />
-    <Compile Include="Assets\Script\EventClick.cs" />
-    <Compile Include="Assets\Script\Drag.cs" />
-    <Compile Include="Assets\Script\Compiler\Token.cs" />
-    <Compile Include="Assets\Script\Panels.cs" />
-    <Compile Include="Assets\Script\DataBase.cs" />
-    <Compile Include="Assets\Script\DeckManager.cs" />
+    <Compile Include="Assets\Script\Compiler\Effect\EffectBlocks.cs" />
+    <Compile Include="Assets\Script\Compiler\Expression\Statements.cs" />
+    <Compile Include="Assets\Script\Card &amp;&amp; Player\CardDisplay.cs" />
+    <Compile Include="Assets\Script\Compiler\Display_Compiler.cs" />
+    <Compile Include="Assets\Script\Drag &amp;&amp; Drop\DropCard.cs" />
+    <Compile Include="Assets\Script\Compiler\Utils\Utils.cs" />
+    <Compile Include="Assets\Script\Mains &amp;&amp; Panels\Panels.cs" />
+    <Compile Include="Assets\Script\DataBase\DataBase.cs" />
+    <Compile Include="Assets\Script\Mains &amp;&amp; Panels\MainMenu.cs" />
+    <Compile Include="Assets\Script\Drag &amp;&amp; Drop\Drop.cs" />
+    <Compile Include="Assets\Script\Card &amp;&amp; Player\Card.cs" />
+    <Compile Include="Assets\Script\Compiler\Expression\Binary_Expression.cs" />
+    <Compile Include="Assets\Script\Mains &amp;&amp; Panels\Chose.cs" />
+    <Compile Include="Assets\Script\Compiler\Scope\Scope.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

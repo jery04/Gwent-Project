@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
-using System.Text.RegularExpressions;
 using System.Linq;
 
-public class Lexer : MonoBehaviour
+public class Lexer
 {
     // Field
     private static Dictionary<string, Token.TokenType> keywords = new Dictionary<string, Token.TokenType>()
@@ -16,39 +14,20 @@ public class Lexer : MonoBehaviour
             {"for", Token.TokenType.For},
 
             // KeyWords
+            {"Number", Token.TokenType.Number},
+            {"String", Token.TokenType.String},
+            {"Bool", Token.TokenType.Bool},
             {"Action", Token.TokenType.Action},
-            {"Amount", Token.TokenType.Amount},
             {"card", Token.TokenType.Card},
-            {"DeckOfPlayer", Token.TokenType.DeckOfPlayer},
-            {"Deck", Token.TokenType.Deck},
             {"effect", Token.TokenType.Effect},
-            {"Effect", Token.TokenType.EffectActivation},
-            {"FieldOfPlayer", Token.TokenType.FieldOfPlayer},
-            {"Field", Token.TokenType.Field},
-            {"Faction", Token.TokenType.Faction},
-            {"Find", Token.TokenType.Find},
-            {"GraveyardOfPlayer", Token.TokenType.GraveyardOfPlayer},
-            {"Graveyard", Token.TokenType.Graveyard},
-            {"HandOfPlayer", Token.TokenType.HandOfPlayer},
-            {"Hand", Token.TokenType.Hand},
+            {"EffectBlock", Token.TokenType.EffectActivation},
             {"in", Token.TokenType.In},
-            {"Name", Token.TokenType.Name},
             {"OnActivation", Token.TokenType.OnActivation},
-            {"Owner", Token.TokenType.Owner},
             {"Params", Token.TokenType.Params},
-            {"Pop", Token.TokenType.Pop},
-            {"Power", Token.TokenType.Power},
             {"Predicate", Token.TokenType.Predicate},
-            {"Push", Token.TokenType.Push},
-            {"Range", Token.TokenType.Range},
-            {"Remove", Token.TokenType.Remove},
-            {"SendBottom", Token.TokenType.SendBottom},
             {"Selector", Token.TokenType.Selector},
-            {"Shuffle", Token.TokenType.Shuffle},
             {"Single", Token.TokenType.Single},
             {"Source", Token.TokenType.Source},
-            {"StringField", Token.TokenType.Field},
-            {"Type", Token.TokenType.Type},
             {"PostAction", Token.TokenType.PostAction},
 
 
@@ -60,12 +39,12 @@ public class Lexer : MonoBehaviour
             {"\\[", Token.TokenType.OpenBracket},
             {"\\]", Token.TokenType.ClosedBracket},
             {"\"", Token.TokenType.Quote},
-            {"<=", Token.TokenType.MinusEquals},
+            {"<=", Token.TokenType.LessThanEqual},
             {">=", Token.TokenType.GreaterThanEqual},
             {"<", Token.TokenType.LessThan},
             {">", Token.TokenType.GreaterThan},
-            {"\\+=", Token.TokenType.PlusEquals},
-            {"-=", Token.TokenType.MinusEquals},
+            {"\\+=", Token.TokenType.Increase},
+            {"-=", Token.TokenType.Decrease},
             {"==", Token.TokenType.Equal},
             {"=>", Token.TokenType.Arrow},
             {"=", Token.TokenType.Assignment},
@@ -96,7 +75,7 @@ public class Lexer : MonoBehaviour
 
             // Keys Arbitrarias
             {"[a-zA-Z_]\\w*", Token.TokenType.UnKnown},
-            {"\\d+", Token.TokenType.Number},
+            {"\\d+", Token.TokenType.Digit},
 
         };
     private string[] code;
@@ -136,7 +115,7 @@ public class Lexer : MonoBehaviour
                 tokensList.Add(new Token(tokenType, match.Value, Token.SearchLine(input, match.Index), Token.SearchColumn(input, match.Index)));
 
             else if (match.Value.All(char.IsDigit) && Regex.IsMatch(match.Value, "\\d+"))
-                tokensList.Add(new Token(Token.TokenType.Number, match.Value, Token.SearchLine(input, match.Index), Token.SearchColumn(input, match.Index)));
+                tokensList.Add(new Token(Token.TokenType.Digit, match.Value, Token.SearchLine(input, match.Index), Token.SearchColumn(input, match.Index)));
 
             else
             {
