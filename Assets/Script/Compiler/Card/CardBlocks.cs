@@ -6,6 +6,7 @@ using UnityEngine;
 
 // Card Block
 #region
+#nullable enable
 public class CardBlock : ISemantic
 {
     //Property 

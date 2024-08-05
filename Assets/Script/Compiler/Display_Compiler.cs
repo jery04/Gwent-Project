@@ -9,7 +9,7 @@ public class LineNumberDisplay : MonoBehaviour
     public TMP_Text lineNumbersText;
     public Scrollbar scrollbar;
     public Scrollbar otherScrollbar; // Aquí asigna el Scrollbar del otro texto que también se puede desplazar
-    private string[] code;
+    public static string[] code;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class LineNumberDisplay : MonoBehaviour
         }
         // Actualizar el texto que muestra los números de línea
         lineNumbersText.text = lineNumbers;
-        this.code = lines;
+        code = lines;
     }
     private void OnScrollbarValueChanged(float value)
     {

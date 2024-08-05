@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Program (Beginning)
+#nullable enable
 public class ProgramCompiler : ISemantic
 {
     // Property

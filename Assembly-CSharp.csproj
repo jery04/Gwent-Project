@@ -69,6 +69,7 @@
     <Compile Include="Assets\Script\Compiler\ProgramCompiler.cs" />
     <Compile Include="Assets\Script\Effects\Effects.cs" />
     <Compile Include="Assets\Script\Mains &amp;&amp; Panels\KeepMusic.cs" />
+    <Compile Include="Assets\Script\Compiler\Button_Run.cs" />
     <Compile Include="Assets\Script\Card &amp;&amp; Player\Player.cs" />
     <Compile Include="Assets\Script\Compiler\Lexer\Lexer.cs" />
     <Compile Include="Assets\Script\Compiler\Utils\Interfaces.cs" />

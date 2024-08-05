@@ -8,6 +8,7 @@ using static UnityEngine.GraphicsBuffer;
 
 // Effect Block
 #region  
+#nullable enable
 public class EffectBlock : ISemantic
 {
     // Property

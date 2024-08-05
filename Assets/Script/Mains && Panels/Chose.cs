@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Chose : MonoBehaviour
 {
     public Button[] button;                                                      // Arrays de botones(Mazos a elegir)                                                         
-    DataBase data;                                                               // Variable que gestiona los mazos
+    public DataBase data;                                                        // Variable que gestiona los mazos
     public InputField input1, input2;                                            // Entradas de los nombres de los jugadores
     public static List<Card> deck1, deck2;                                       // Almacenarán las cartas de los mazos selecionados
     public static string name1, name2, faction1, faction2;                       // Almacena los nombres de los jugadores

@@ -11,8 +11,13 @@ public class DataBase : MonoBehaviour
     public List<Card> deckCompiler = new List<Card>();      // Mazo3 (Compiler)
 
     public DataBase() => CreateCard();
-                                
-    private void CreateCard()                                // Crea las instancias de las cartas
+    
+    public static void CreateCardsCompiler(ProgramCompiler program)                 // Crea las instancias de las cartas del compilador
+    {
+        Debug.Log("OK, Not Problem");
+        // Type Code Here...
+    }
+    private void CreateCard()                               // Crea las instancias de las cartas
     {
         string[] txt =
         {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#nullable enable
 public static class Utils
 {
     public enum ReturnType { Bool, String, Number, Context, List, Card, Owner, Void }
@@ -166,5 +167,10 @@ public static class Utils
     {
         if (effect is not null)
             effects.Add(effect, new Dictionary<string, ReturnType?>());
+    }
+    public static void Reset()
+    {
+        errors.Clear();
+        effects.Clear();
     }
 }

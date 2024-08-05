@@ -6,6 +6,7 @@ using UnityEngine;
 
 // Binary's Class
 #region
+#nullable enable
 public class Expressions
 {
     // Property

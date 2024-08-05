@@ -28,20 +28,6 @@ public class Card : ScriptableObject
     public int affectedRow;                                                             // Fila que afectan las cartas climas
 
     // Constructores (Sobrecargado) 
-    public Card(string name, string faction , int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, string description, EffectDelegate effect, AudioClip clip = null)
-    {
-        this.name = name;
-        this.faction = faction;
-        this.power = power;
-        this.isUnity = IsUnity;
-        this.isHeroe = IsHeroe;
-        this.artWork = artWork;
-        this.portrait = portrait;
-        this.typeCard = typeCard;
-        this.description = description;
-        this.effect = effect;
-        this.clip = clip;
-    }
     public Card(string name, string faction, int power, bool IsUnity, bool IsHeroe, Sprite artWork, Sprite portrait, kind_card typeCard, card_position cardPosition, string description, EffectDelegate effect, AudioClip clip = null)
     {
         this.name = name;

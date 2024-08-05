@@ -5,13 +5,14 @@ using UnityEngine;
 
 // Statement's Class
 #region
+#nullable enable
 public abstract class GeneralStatement
 {
     public abstract Utils.ReturnType? GetType(IScope scope);
     public abstract bool CheckSemantic(IScope scope);
     public abstract object? Evaluate(IScope scope);
 }
-public class Target : GeneralStatement
+public class Target: GeneralStatement
 {
     public override object? Evaluate(IScope scope)
     {
@@ -23,7 +24,7 @@ public class Target : GeneralStatement
     }
     public override bool CheckSemantic(IScope scope) { return true; }
 }
-public class Context : GeneralStatement
+public class Context: GeneralStatement
 {
     public override object? Evaluate(IScope scope)
     {
@@ -35,7 +36,7 @@ public class Context : GeneralStatement
     }
     public override bool CheckSemantic(IScope scope) { return true; }
 }
-public class Parameters : GeneralStatement
+public class Parameters: GeneralStatement
 {
     //Property
     public Utils.ReturnType? Type { get; set; }
@@ -57,7 +58,7 @@ public class Parameters : GeneralStatement
     }
     public override bool CheckSemantic(IScope scope) { return true; }
 }
-public class CardKey : GeneralStatement
+public class CardKey: GeneralStatement
 {
     public override object? Evaluate(IScope scope)
     {
@@ -69,7 +70,7 @@ public class CardKey : GeneralStatement
     }
     public override bool CheckSemantic(IScope scope) { return true; }
 }
-public class Statement : GeneralStatement
+public class Statement: GeneralStatement
 {
     // Property 
     public Token? LogOperator { get; set; }
@@ -175,7 +176,7 @@ public class SubStatement
         return NodeLeft?.Location();
     }
 }
-public class Molecule : Instructions
+public class Molecule: Instructions
 {
     // Property
     public Token? ArtOpeartor { get; set; }
@@ -257,7 +258,7 @@ public abstract class Atom
     public abstract object? Evaluate(IScope scope);
     public abstract Token? Location();
 }
-public class Atom0 : Atom
+public class Atom0: Atom
 {
     // Property
     public Token? Boolean { get; set; }
@@ -287,7 +288,7 @@ public class Atom0 : Atom
         return Boolean;
     }
 }
-public class Atom1 : Atom
+public class Atom1: Atom
 {
     // Property
     public Expressions? Expression { get; set; }
@@ -319,7 +320,7 @@ public class Atom1 : Atom
 
                 if (Expression.GetType(scope) != Utils.ReturnType.Number)
                 {
-                    Utils.errors.Add(@$"No se puede asignar el operador {OpIncrease.Value} a un tipo {Expression.GetType(scope)}");
+                    Utils.errors.Add(@$"No se puede asignar el operador ""{OpIncrease.Value}"" a un tipo ""{Expression.GetType(scope)}"" ");
                     return false;
                 }
             }
@@ -334,7 +335,7 @@ public class Atom1 : Atom
         return Expression?.Location();
     }
 }
-public class Atom2 : Atom
+public class Atom2: Atom
 {
     //Property
     public List<Token?>? Call { get; set; }
@@ -566,7 +567,7 @@ public class Atom2 : Atom
         return Call?[0];
     }
 }
-public class Atom3 : Atom
+public class Atom3: Atom
 {
     //Property
     public List<Token?>? String { get; set; }
