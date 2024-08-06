@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Card;
 
 
 // Card Block
@@ -45,6 +46,41 @@ public class CardBlock : ISemantic
             check = false;
 
         return check;
+    }
+    public Card.kind_card Type_Field(IScope scope)
+    {
+        switch (Convert.ToString(Type?.Evaluate(scope)))
+        {
+            case "oro":
+                return kind_card.golden;
+            case "silver":
+                return kind_card.silver;
+            case "climate":
+                return kind_card.climate;
+            case "despeje":
+                return kind_card.clear;
+            case "señuelo":
+                return kind_card.bait;
+            case "aumento":
+                return kind_card.increase;
+        }
+        return kind_card.leader;
+    }
+    public string Name_Field(IScope scope)
+    {
+        return Convert.ToString(Name?.Evaluate(scope));
+    }
+    public string Faction_Field(IScope scope)
+    {
+        return Convert.ToString(Faction?.Evaluate(scope));
+    }
+    public double Power_Field(IScope scope)
+    {
+        return Convert.ToDouble(Power?.Evaluate(scope));
+    }
+    public Card.card_position Range_Field(IScope scope)
+    {
+        return (Card.card_position)Convert.ChangeType(Range?.Evaluate(scope), typeof(Card.card_position));
     }
 }
 public class OnActivation

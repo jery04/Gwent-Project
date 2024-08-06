@@ -123,6 +123,7 @@ public class Player : MonoBehaviour
 
         if (numChild == 0)                                  // Tomar 10 iniciales  y el líder                                
         {
+            //Debug.Log(deck.Count);
             TakeCard(deck[0], leader);                      // Instancia al líder
             deck.RemoveAt(0);
             StartCoroutine(For(10));                        // Instancia 10 cartas en la mano

@@ -59,6 +59,14 @@ public class Card : ScriptableObject
         this.effect = effect;
         this.clip = clip;
     }
+    public Card(string name, string faction, int power, kind_card typeCard, card_position cardPosition)
+    {
+        this.name = name;
+        this.faction = faction;
+        this.power = power;
+        this.typeCard = typeCard;
+        this.cardPosition = cardPosition;
+    }
 
     // Métodos
     public void ActiveClip()                                                            // Activa el AudioClip de la carta (En caso de que contenga)
@@ -69,5 +77,94 @@ public class Card : ScriptableObject
             audioEffect.clip = this.clip;
             audioEffect.Play();
         }
+    }
+}
+public class CardCompiler : Card
+{
+    public OnActivation effects { get; private set; }
+    private IScope scope { get; set; }
+
+    public CardCompiler(string name, string faction, int power, kind_card typeCard, card_position cardPosition, OnActivation effects, IScope scope)
+        : base(name, faction, power, typeCard, cardPosition)
+    {
+        this.effects = effects;
+        this.scope = scope;
+        this.isHeroe = IsHeroe(typeCard);
+        this.isUnity = IsUnity(typeCard);
+        artWork = Resources.Load<Sprite>("cc");
+        portrait = Portrait(typeCard);
+        this.description = Description_Maker(scope);
+    }
+    private string Description_Maker(IScope scope)
+    {
+        string description = $"{this.name} it's a card made in a compiler. ";
+        List<string> effect_names = GetEffectNames(effects, scope);
+
+        if (effect_names.Count == 0)
+            description += "It doesn't contain effects.";
+        else
+        {
+            description += $@"Contains {effect_names.Count} effect(s) called";
+            for(int i = 0; i < effect_names.Count; i++)
+            {
+                if(i != 0)
+                {
+                    if (i == effect_names.Count - 1)
+                        description += $@" y";
+                    else
+                        description += $@",";
+                }
+
+                description += @$" ""{effect_names[i]}""";
+            }
+            description += ".";
+        }
+
+        return description;
+    }
+    private List<string> GetEffectNames(OnActivation effects, IScope scope)
+    {
+        List<string> effect_list = new List<string>(); 
+
+        if(effects is not null)
+        {
+            foreach (OnActivationBody body in effects.Body) 
+            {
+                if(body is not null)
+                {
+                    effect_list.Add(Convert.ToString(body.EffectActivation.Name.Evaluate(scope)));
+
+                    if(body.PosAction is not null)
+                        foreach (PosAction pos_action in body.PosAction)
+                            effect_list.Add(Convert.ToString(pos_action.Name.Evaluate(scope)));
+                }
+            }
+        }
+
+        return effect_list;
+    }
+    private static Sprite Portrait(kind_card typeCard)
+    {
+        if (typeCard == Card.kind_card.golden)
+            return Resources.Load<Sprite>("golden");
+
+        else if (typeCard == Card.kind_card.silver)
+            return Resources.Load<Sprite>("silver");
+
+        return Resources.Load<Sprite>("emerald");
+    }
+    private static bool IsHeroe(kind_card typeCard)
+    {
+        if (typeCard == Card.kind_card.golden)
+            return true;
+
+        return false;
+    }
+    private static bool IsUnity(kind_card typeCard)
+    {
+        if (typeCard == Card.kind_card.golden || typeCard == Card.kind_card.silver)
+            return true;
+
+        return false;
     }
 }

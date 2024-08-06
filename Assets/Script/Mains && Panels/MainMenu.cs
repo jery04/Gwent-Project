@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public static DataBase data;
     public GameObject musicManager;               // Objeto que almacena la musica de fondo y el sonido de los botones
     public Button buttonMute;                     // Botón para silenciar la música de fondo 
     public Sprite playMusicIcon;                  // Imagen de boton Play         
@@ -42,5 +43,9 @@ public class MainMenu : MonoBehaviour
     private void Out()                            // Cierra la aplicación
     {
         Application.Quit();
+    }
+    void Start()                                  // Instancia la base de datos de las Cartas
+    {
+        data = new DataBase();
     }
 }                                                 

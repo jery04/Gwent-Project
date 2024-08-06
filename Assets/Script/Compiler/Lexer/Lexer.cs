@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using System.Linq;
 
+#nullable enable
 public class Lexer
 {
     // Field
@@ -20,7 +21,7 @@ public class Lexer
             {"Action", Token.TokenType.Action},
             {"card", Token.TokenType.Card},
             {"effect", Token.TokenType.Effect},
-            {"EffectBlock", Token.TokenType.EffectActivation},
+            {"Effect", Token.TokenType.EffectActivation},
             {"in", Token.TokenType.In},
             {"OnActivation", Token.TokenType.OnActivation},
             {"Params", Token.TokenType.Params},

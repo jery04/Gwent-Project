@@ -8,14 +8,26 @@ public class DataBase : MonoBehaviour
     public List<Card> deckStark = new List<Card>();         // Mazo1 (Stark)
     public List<Card> deckTargaryen = new List<Card>();     // Mazo2 (Targaryen)
     public List<Card> deckDead = new List<Card>();          // Mazo3 (Caminantes Blancos)(Dead)
-    public List<Card> deckCompiler = new List<Card>();      // Mazo3 (Compiler)
+    public static List<Card> deckCompiler = new List<Card>();      // Mazo3 (Compiler)
 
     public DataBase() => CreateCard();
     
-    public static void CreateCardsCompiler(ProgramCompiler program)                 // Crea las instancias de las cartas del compilador
+    public void CreateCardsCompiler(ProgramCompiler program, IScope scope)                 // Crea las instancias de las cartas del compilador
     {
         Debug.Log("OK, Not Problem");
         // Type Code Here...
+
+        foreach (CardBlock card in program.Card)
+        {           
+            string name = card.Name_Field(scope);
+            string faction = card.Faction_Field(scope);
+            int power = (int)card.Power_Field(scope);
+            Card.kind_card type = card.Type_Field(scope); 
+            Card.card_position range = card.Range_Field(scope);
+            CardCompiler card_compiler = new CardCompiler(name, faction,power, type, range, card.OnActivation, scope);
+
+            deckCompiler.Add(card_compiler);
+        }
     }
     private void CreateCard()                               // Crea las instancias de las cartas
     {

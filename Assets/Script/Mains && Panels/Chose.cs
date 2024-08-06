@@ -13,7 +13,7 @@ public class Chose : MonoBehaviour
     public InputField input1, input2;                                            // Entradas de los nombres de los jugadores
     public static List<Card> deck1, deck2;                                       // Almacenarán las cartas de los mazos selecionados
     public static string name1, name2, faction1, faction2;                       // Almacena los nombres de los jugadores
-    private bool ActiveCompiler = false;
+    public GameObject warn_Panel;
 
     public void ActionEvent(string nameMethod)                                   // Llama a la próxima escena
     {
@@ -98,31 +98,45 @@ public class Chose : MonoBehaviour
     }
     public void ButtonCompiler(bool key)                                         // Inicializa un mazo de cartas Compiler
     {
-        if (key && input1.text != "Name" && input1.text != "")
+        if (DataBase.deckCompiler.Count >= 10)
         {
-            name1 = input1.text;
-            //faction1 = "Dead";
-            deck1 = data.deckCompiler;
-            button[0].GetComponent<Button>().interactable = false;
-            button[1].GetComponent<Button>().interactable = false;
-            button[2].GetComponent<Button>().interactable = false;
-            button[7].GetComponent<Button>().interactable = false;
+            if (key && input1.text != "Name" && input1.text != "")
+            {
+                name1 = input1.text;
+                //faction1 = "Dead";
+                deck1 = DataBase.deckCompiler;
+                button[0].GetComponent<Button>().interactable = false;
+                button[1].GetComponent<Button>().interactable = false;
+                button[2].GetComponent<Button>().interactable = false;
+                button[7].GetComponent<Button>().interactable = false;
+            }
+            else if (input2.text != "Name" && input2.text != "")
+            {
+                name2 = input2.text;
+                //faction2 = "Dead";
+                deck2 = DataBase.deckCompiler;
+                button[3].GetComponent<Button>().interactable = false;
+                button[4].GetComponent<Button>().interactable = false;
+                button[5].GetComponent<Button>().interactable = false;
+                button[6].GetComponent<Button>().interactable = false;
+            }
         }
-        else if (input2.text != "Name" && input2.text != "")
+        else
         {
-            name2 = input2.text;
-            //faction2 = "Dead";
-            deck2 = data.deckCompiler;
-            button[3].GetComponent<Button>().interactable = false;
-            button[4].GetComponent<Button>().interactable = false;
-            button[5].GetComponent<Button>().interactable = false;
-            button[6].GetComponent<Button>().interactable = false;
+            StartCoroutine(WaitAndPrintMessage());
+
+            IEnumerator WaitAndPrintMessage()
+            {
+                warn_Panel.SetActive(true);
+                yield return new WaitForSeconds(4);     // Espera 4 segundos (mostrando el aviso)
+                warn_Panel.SetActive(false);
+            }
         }
     }
 
     void Start()                                                                 // Instancia la base de datos de las Cartas
     {
-        data = new DataBase();
+        data = MainMenu.data;
     }
     void Update()
     {

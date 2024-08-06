@@ -28,7 +28,7 @@ public class Button_Run : MonoBehaviour
         else if (Utils.NotError)
         {
             if (program.CheckSemantic(scope))
-                DataBase.CreateCardsCompiler(program);
+                MainMenu.data.CreateCardsCompiler(program, scope);
 
             else
                 Warn_Active(true);
