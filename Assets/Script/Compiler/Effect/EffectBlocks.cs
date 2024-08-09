@@ -9,7 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 // Effect Block
 #region  
 #nullable enable
-public class EffectBlock : ISemantic
+public class EffectBlock: ISemantic
 {
     // Property
     public Variable? Name { get; set; }
@@ -17,7 +17,7 @@ public class EffectBlock : ISemantic
     public Action? Action { get; set; }
 
     // Methods
-    public void Evaluate()
+    public void Evaluate(List<Card> target)
     {
         throw new NotImplementedException();
     }
@@ -37,6 +37,10 @@ public class EffectBlock : ISemantic
             check = false;
 
         return check;
+    }
+    public string GetName()
+    {
+        return Convert.ToString(Name?.Evaluate(new Scope()));
     }
 }
 public class Params

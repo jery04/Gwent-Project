@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Card;
 
@@ -19,9 +20,19 @@ public class CardBlock : ISemantic
     public OnActivation? OnActivation { get; set; }
 
     // Methods
-    public void Evaluate(IScope scope)
+    public CardCompiler Evaluate(IScope scope)
     {
-        throw new NotImplementedException();
+        CardCompiler card_compiler;
+
+        string name = this.Name_Field(scope);
+        string faction = this.Faction_Field(scope);
+        int power = (int)this.Power_Field(scope);
+        Card.kind_card type = this.Type_Field(scope);
+        Card.card_position range = this.Range_Field(scope);
+
+        card_compiler = new CardCompiler(name, faction, power, type, range, this.OnActivation, scope);
+
+        return card_compiler;
     }
     public bool CheckSemantic(IScope scope)
     {
@@ -47,7 +58,7 @@ public class CardBlock : ISemantic
 
         return check;
     }
-    public Card.kind_card Type_Field(IScope scope)
+    private Card.kind_card Type_Field(IScope scope)
     {
         switch (Convert.ToString(Type?.Evaluate(scope)))
         {
@@ -66,19 +77,19 @@ public class CardBlock : ISemantic
         }
         return kind_card.leader;
     }
-    public string Name_Field(IScope scope)
+    private string Name_Field(IScope scope)
     {
         return Convert.ToString(Name?.Evaluate(scope));
     }
-    public string Faction_Field(IScope scope)
+    private string Faction_Field(IScope scope)
     {
         return Convert.ToString(Faction?.Evaluate(scope));
     }
-    public double Power_Field(IScope scope)
+    private double Power_Field(IScope scope)
     {
         return Convert.ToDouble(Power?.Evaluate(scope));
     }
-    public Card.card_position Range_Field(IScope scope)
+    private Card.card_position Range_Field(IScope scope)
     {
         return (Card.card_position)Convert.ChangeType(Range?.Evaluate(scope), typeof(Card.card_position));
     }
@@ -95,6 +106,13 @@ public class OnActivation
     }
 
     // Methods
+    public void Evaluate()
+    {
+        if (Body is not null)
+            foreach (OnActivationBody? body in Body)
+                if (body is not null)
+                    body.Evaluate();
+    }
     public bool CheckSemantic(IScope scope)
     {
         if (Body != null && Body.Count > 0)
@@ -119,6 +137,26 @@ public class OnActivationBody
     }
 
     // Methods
+    public void Evaluate()
+    {
+        List<Card> target_selector = new List<Card>();
+        string effectActive = "";
+        if (!(Selector is null) && !(EffectActivation is null))
+        {
+            target_selector = Selector.Evaluate();
+            effectActive = EffectActivation.GetName();
+
+            if (Utils.program.Effect is not null)
+                foreach (EffectBlock effects in Utils.program.Effect)
+                    if (effects.GetName() == effectActive)
+                        effects.Evaluate(target_selector);
+        }
+
+        if (PosAction is not null)
+            foreach (PosAction? pos_action in PosAction)
+                if (pos_action is not null)
+                    pos_action.Evaluate(target_selector);
+    }
     public bool CheckSemantic(IScope scope)
     {
         bool check = true;
@@ -189,6 +227,10 @@ public class EffectActivation
         }
         return true;
     }
+    public string GetName()
+    {
+        return Convert.ToString(Name?.Evaluate(new Scope()));
+    }
 }
 public class Selector
 {
@@ -198,6 +240,10 @@ public class Selector
     public Predicate? Predicate { get; set; }
 
     // Methods
+    public List<Card> Evaluate()
+    {
+        throw new NotImplementedException();
+    }
     public bool CheckSemantic(IScope scope)
     {
         bool check = true;
@@ -221,6 +267,26 @@ public class PosAction
     public Selector? Selector { get; set; }
 
     // Methods
+    public void Evaluate(List<Card> parent_selector)
+    {
+        List<Card> target_selector = new List<Card>();
+        string effectActive = "";
+
+        if (!(Name is null))
+        {
+            if (Selector is null)
+                target_selector = parent_selector;
+            else
+                target_selector = Selector.Evaluate();
+
+            effectActive = Convert.ToString(Name.Evaluate(new Scope()));
+
+            if (Utils.program.Effect is not null)
+                foreach (EffectBlock effects in Utils.program.Effect)
+                    if (effects.GetName() == effectActive)
+                        effects.Evaluate(target_selector);
+        }
+    }
     public bool CheckSemantic(IScope scope)
     {
         bool check = true;

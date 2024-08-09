@@ -14,20 +14,7 @@ public class DataBase : MonoBehaviour
     
     public void CreateCardsCompiler(ProgramCompiler program, IScope scope)                 // Crea las instancias de las cartas del compilador
     {
-        Debug.Log("OK, Not Problem");
-        // Type Code Here...
-
-        foreach (CardBlock card in program.Card)
-        {           
-            string name = card.Name_Field(scope);
-            string faction = card.Faction_Field(scope);
-            int power = (int)card.Power_Field(scope);
-            Card.kind_card type = card.Type_Field(scope); 
-            Card.card_position range = card.Range_Field(scope);
-            CardCompiler card_compiler = new CardCompiler(name, faction,power, type, range, card.OnActivation, scope);
-
-            deckCompiler.Add(card_compiler);
-        }
+        program.Evaluate(scope);
     }
     private void CreateCard()                               // Crea las instancias de las cartas
     {

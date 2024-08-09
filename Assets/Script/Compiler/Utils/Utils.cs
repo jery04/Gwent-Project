@@ -6,33 +6,39 @@ using UnityEngine;
 #nullable enable
 public static class Utils
 {
+    // Árbol de sintaxis abstracta
+    public static ProgramCompiler program = new ProgramCompiler();
+
+    // Listados de palabras claves
     public enum ReturnType { Bool, String, Number, Context, List, Card, Owner, Void }
-    public static List<string> errors = new List<string>();    // Errores encontrados Parser y Semantic
     public static List<Token.TokenType> fieldCard = new List<Token.TokenType>()
-        {
-            Token.TokenType.Name, Token.TokenType.Type, Token.TokenType.Faction,
-            Token.TokenType.Power, Token.TokenType.Range
-        };
+    {
+        Token.TokenType.Name, Token.TokenType.Type, Token.TokenType.Faction,
+        Token.TokenType.Power, Token.TokenType.Range
+    };
     public static List<string?> card = new List<string?>
-        {
-            "Name", "Type", "Faction", "Power", "Range", "Owner"
-        };
+    {
+        "Name", "Type", "Faction", "Power", "Range", "Owner"
+    };
     public static List<string?> context = new List<string?>
-        {
-            "DeckOfPlayer", "Deck", "FieldOfPlayer", "Field", "Board",
-            "GraveyardOfPlayer", "Graveyard", "HandOfPlayer", "Hand", "TriggerPlayer"
-        };
+    {
+        "DeckOfPlayer", "Deck", "FieldOfPlayer", "Field", "Board",
+        "GraveyardOfPlayer", "Graveyard", "HandOfPlayer", "Hand", "TriggerPlayer"
+    };
     public static List<string?> listMethods = new List<string?>
-        {
-            "Push", "Find", "SendBottom", "Pop", "Remove", "Shuffle", "Add"
-        };
+    {
+        "Push", "Find", "SendBottom", "Pop", "Remove", "Shuffle", "Add"
+    };
     public static List<Token.TokenType> symbols = new List<Token.TokenType>
-        {
-            Token.TokenType.Equal, Token.TokenType.LessThan,
-            Token.TokenType.LessThanEqual, Token.TokenType.GreaterThan,
-            Token.TokenType.GreaterThanEqual, Token.TokenType.Increase,
-            Token.TokenType.Assignment, Token.TokenType.Decrease
-        };
+    {
+        Token.TokenType.Equal, Token.TokenType.LessThan,
+        Token.TokenType.LessThanEqual, Token.TokenType.GreaterThan,
+        Token.TokenType.GreaterThanEqual, Token.TokenType.Increase,
+        Token.TokenType.Assignment, Token.TokenType.Decrease
+    };
+
+    // Errores encontrados
+    public static List<string> errors = new List<string>();    
     public static bool NotError
     {
         get
@@ -41,6 +47,8 @@ public static class Utils
         }
         set { }
     }
+
+    // Evaluador de operaciones
     public static double Operation(double a, double b, Token? operation)
     {
         switch (operation?.Type)
@@ -132,7 +140,7 @@ public static class Utils
         return null;
     }
 
-    // Effects' Methods
+    // Métodos para recorrer efectos
     public static Dictionary<string, Dictionary<string, Utils.ReturnType?>> effects = new Dictionary<string, Dictionary<string, ReturnType?>>();
     public static bool ContainsEffect(string? effect)
     {

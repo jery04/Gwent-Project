@@ -22,7 +22,7 @@ public class ProgramCompiler : ISemantic
     {
         if (Card != null)
             foreach (CardBlock card in Card)
-                card.Evaluate(scope);
+                DataBase.deckCompiler.Add(card.Evaluate(scope));
     }
     public bool CheckSemantic(IScope scope)
     {

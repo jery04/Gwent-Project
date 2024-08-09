@@ -12,12 +12,12 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     {
         Player player1 = GameObject.Find("GameManager").GetComponent<GameManager>().player1;
         Player player2 = GameObject.Find("GameManager").GetComponent<GameManager>().player2;
-        List<string> names1 = new List<string>() 
+        List<string> names1 = new List<string>()
         { "Mag Mar", "Rhaegal", "Viserion", "Sansa", "Beric", "Eddard", "Guerrero1", "Guerrero4", "Jefe3",
-          "Theon", "Wun Wun", "Mormont", "Caminante2", "Arya", "Drogon", "Rey Loco", "Caminante6", "Jon Snow", "Rey Noche" };
+          "Theon", "Wun Wun", "Mormont", "Walking2", "Walking3", "Arya", "Drogon", "Rey Loco", "Walking6", "Jon Snow", "Rey Noche" };
         List<string> names2 = new List<string>()
-        { "Garra", "Kristofer", "Sr. Bronn", "Acero Valyrio", "Caminante1", "Jefe1", "Jefe2", "", "", "", "", "", "", "", "" };
-        List<string> names3 = new List<string>() { "La Guardia", "Guerrero3", "Caminante5" };
+        { "Garra", "Kristofer", "Sr. Bronn", "Acero Valyrio", "Walking1", "Jefe1", "Jefe2" };
+        List<string> names3 = new List<string>() { "La Guardia", "Guerrero3", "Walking5" };
 
         if (item.type_Card == Card.kind_card.climate)
             item.card.effect(player1, player2, item.card.affectedRow, item.card.power);
@@ -67,8 +67,12 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             GameManager.currentPlayer.oneMove = true;                                       // Indica que el jugador ha realizado un movimiento
             cardDrag.card.ActiveClip();                                                     // Activa el AudioClip de la carta 
 
-            if (eventData.pointerDrag.GetComponent<CardDisplay>().card.effect != null)
-                ActiveEffect(cardDrag);                                                     // Activa el efecto de la carta
+            // Activa el efecto de la carta
+            if (cardDrag.card is CardCompiler card)                                         // Si es de tipo CardCompiler
+                card.Active_Effect();
+
+            else if (cardDrag.card.effect != null) // Si es de tipo Card
+                ActiveEffect(cardDrag);                                                     
         }                                               
     }
 }

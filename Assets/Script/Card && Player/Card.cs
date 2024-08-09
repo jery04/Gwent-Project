@@ -79,26 +79,35 @@ public class Card : ScriptableObject
         }
     }
 }
-public class CardCompiler : Card
+public class CardCompiler : Card                                                        // Cartas creadas por el Compilador
 {
-    public OnActivation effects { get; private set; }
-    private IScope scope { get; set; }
+    // Property
+    public new OnActivation effect { get; private set; }                                // Effectos otorgados a la carta
+    private IScope scope { get; set; }                                                  // Alcance de variables
 
+    // Builder
     public CardCompiler(string name, string faction, int power, kind_card typeCard, card_position cardPosition, OnActivation effects, IScope scope)
         : base(name, faction, power, typeCard, cardPosition)
     {
-        this.effects = effects;
+        this.effect = effects;
         this.scope = scope;
         this.isHeroe = IsHeroe(typeCard);
         this.isUnity = IsUnity(typeCard);
         artWork = Resources.Load<Sprite>("cc");
         portrait = Portrait(typeCard);
         this.description = Description_Maker(scope);
+        
     }
+
+    // Methods
+    public void Active_Effect()
+    {
+        effect.Evaluate();
+    }                                                     // Activar los efectos correspondientes 
     private string Description_Maker(IScope scope)
     {
         string description = $"{this.name} it's a card made in a compiler. ";
-        List<string> effect_names = GetEffectNames(effects, scope);
+        List<string> effect_names = GetEffectNames(effect, scope);
 
         if (effect_names.Count == 0)
             description += "It doesn't contain effects.";
@@ -121,7 +130,7 @@ public class CardCompiler : Card
         }
 
         return description;
-    }
+    }                                  // Crea una descripción para la carta                                                                                                                    
     private List<string> GetEffectNames(OnActivation effects, IScope scope)
     {
         List<string> effect_list = new List<string>(); 
@@ -142,7 +151,7 @@ public class CardCompiler : Card
         }
 
         return effect_list;
-    }
+    }         // Retorna los nombres de los efectos asignados a la carta
     private static Sprite Portrait(kind_card typeCard)
     {
         if (typeCard == Card.kind_card.golden)
@@ -152,19 +161,19 @@ public class CardCompiler : Card
             return Resources.Load<Sprite>("silver");
 
         return Resources.Load<Sprite>("emerald");
-    }
+    }                              // Designa el marco(Sprite) de la carta
     private static bool IsHeroe(kind_card typeCard)
     {
         if (typeCard == Card.kind_card.golden)
             return true;
 
         return false;
-    }
+    }                                 // Identifica si es Héroe
     private static bool IsUnity(kind_card typeCard)
     {
         if (typeCard == Card.kind_card.golden || typeCard == Card.kind_card.silver)
             return true;
 
         return false;
-    }
+    }                                 // Identifica si es Unidad
 }
